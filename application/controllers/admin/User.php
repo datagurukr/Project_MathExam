@@ -17,7 +17,7 @@ class User extends CI_Controller {
 		parent::__construct();
 	}
     
-    function index ( $p = 0 ) {        
+    function index ( $p = 0, $q = '' ) {        
         /*******************
         data
         *******************/
@@ -54,6 +54,43 @@ class User extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        /*******************
+        data query
+        *******************/             
+		$this->load->model('user_model');                
+        
+        $p = (($p * 2) * 10) - 20;  
+        $data['p'] = $p;
+        $data['q'] = $q;        
+        $pagination_url = '';
+        $result = $this->user_model->out('all',array(
+            'user_id' => $session_id,
+            'p' => $p,
+            'q' => $q
+        ));
+        $result_count = $this->user_model->out('all',array(
+            'user_id' => $session_id,
+            'p' => $p,
+            'q' => $q,
+            'count' => TRUE
+        ));    
+        $pagination_count = 0;
+        if ( $result_count ) {
+            $pagination_count = $result_count[0]['cnt'];            
+        };
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result,
+                'out_cnt' => $pagination_count,               
+                'count' => count($result)
+            );        
+        } else {
+            $response['status'] = 401;
+        }        
+        
+        $data['response'] = $response;
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/admin/user/list', $data, TRUE);
@@ -98,6 +135,7 @@ class User extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/admin/user/detail', $data, TRUE);

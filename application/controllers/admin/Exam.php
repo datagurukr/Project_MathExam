@@ -54,6 +54,7 @@ class Exam extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/admin/exam/list', $data, TRUE);
@@ -98,6 +99,7 @@ class Exam extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/admin/exam/question', $data, TRUE);
@@ -142,6 +144,7 @@ class Exam extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/admin/exam/edit', $data, TRUE);

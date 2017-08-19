@@ -54,6 +54,7 @@ class Page extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/page/privacy', $data, TRUE);
@@ -98,6 +99,7 @@ class Page extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/page/terms', $data, TRUE);

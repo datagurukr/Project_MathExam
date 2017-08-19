@@ -1,6 +1,9 @@
+<?
+print_r($response);
+?>
 <div class="section">
     <div class="row">
-        <form class="col s12">
+        <form class="col s12" method="get" enctype="application/x-www-form-urlencoded">
             <div class="row">
                 <div class="col s12">
                     <h4>회원정보</h4>
@@ -16,38 +19,65 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?
+                            if ( $response['status'] == 200 ) {
+                                if ( 0 < $response['data']['count'] ) {
+                                    $num = $response['data']['out_cnt'] - $p; 
+                                    foreach ( $response['data']['out'] as $row ) {
+                                        ?>
                             <tr>
-                                <td>1</td>
-                                <td><a href="/admin/user/detail/0">홍길동</a></td>
-                                <td>abc@abc.com</td>
-                                <td>남</td>
-                                <td>19900403</td>
-                                <td>2017-07-08</td>
+                                <td><? echo $num; $num--; ?></td>
+                                <td>
+                                    <a href="/admin/user/detail/0">
+                                        <? 
+                                        if ( 0 < strlen(trim($row['user_name'])) ) {
+                                            echo $row['user_name'];
+                                        } else { 
+                                            echo '입력안함'; 
+                                        }; 
+                                        ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <?
+                                    if ( 0 < strlen(trim($row['user_email'])) ) {
+                                        echo $row['user_email'];
+                                    } else { 
+                                        echo '입력안함'; 
+                                    }; 
+                                    ?>                                    
+                                </td>
+                                <td>
+                                    <?
+                                    if ( $row['user_gender'] == 0 ) {
+                                        echo '입력안함';
+                                    } elseif ( $row['user_gender'] == 1 ) { 
+                                        echo '남';
+                                    } elseif ( $row['user_gender'] == 2 ) {                                         
+                                        echo '여'; 
+                                    }; 
+                                    ?>                                                                        
+                                </td>
+                                <td>
+                                    <?
+                                    if ( $row['user_birthday'] != '0000-00-00' ) {
+                                        echo $row['user_birthday'];
+                                    } else { 
+                                        echo '입력안함'; 
+                                    }; 
+                                    ?>                                    
+                                </td>
+                                <td>
+                                    <?
+                                    echo date("Y-m-d", strtotime($row['user_register_date']));
+                                    ?>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="/admin/user/detail/0">홍길동</a></td>
-                                <td>abc@abc.com</td>
-                                <td>남</td>
-                                <td>19900403</td>
-                                <td>2017-07-08</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><a href="/admin/user/detail/0">홍길동</a></td>
-                                <td>abc@abc.com</td>
-                                <td>남</td>
-                                <td>19900403</td>
-                                <td>2017-07-08</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><a href="/admin/user/detail/0">홍길동</a></td>
-                                <td>abc@abc.com</td>
-                                <td>남</td>
-                                <td>19900403</td>
-                                <td>2017-07-08</td>
-                            </tr>
+                                        <?
+                                    };
+                                };
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -61,11 +91,11 @@
                     </select>
                 </div>
                 <div class="input-field col s6">
-                    <input id="" type="text" class="validate">
+                    <input id="" type="text" class="validate" name="q" value="<? echo $q; ?>">
                     <label for="keyword">검색어를 입력하세요.</label>
                 </div>
                 <div class="input-field col s4 right-align">
-                    <a class="waves-effect waves-light btn">검색</a>
+                    <button type="submit" class="waves-effect waves-light btn">검색</a>
                 </div>
             </div>
         </form>
