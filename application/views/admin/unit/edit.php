@@ -15,8 +15,8 @@ if ( $response['data']['category_out'] ) {
 ?>
 <div class="section">
     <div class="row">
-        <h4>챕터(상세)</h4>
         <form class="col s12" method="post" enctype="application/x-www-form-urlencoded">
+            <h4>챕터(상세)</h4>
             <div class="row">
                 <div class="input-field col s12">
                     <input type="text" class="validate" name="unit_num" value="<? if ( isset($row['unit_num']) ) { echo $row['unit_num']; } else { echo set_value('unit_num'); }; ?>">
