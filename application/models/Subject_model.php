@@ -165,6 +165,8 @@ class Subject_model extends CI_Model{
             $select = "          
             subject.subject_id as subject_id,
             subject.category_id as category_id,
+            category.category_name as category_name,
+            subject.subject_num as subject_num,
             subject.subject_state as subject_state,
             subject.subject_name as subject_name,
             subject.subject_price as subject_price,
@@ -179,6 +181,9 @@ class Subject_model extends CI_Model{
                 ".$select."
             FROM
                 subject AS subject
+                left outer join category as category
+                on
+                (subject.category_id = category.category_id)                
             WHERE
                 subject.subject_id = ".$data['subject_id']."
             ".$limit."
@@ -189,6 +194,9 @@ class Subject_model extends CI_Model{
                 ".$select."
             FROM
                 subject AS subject
+                left outer join category as category
+                on
+                (subject.category_id = category.category_id)
             order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
             ".$limit."
             ";  
