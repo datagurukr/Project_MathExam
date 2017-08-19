@@ -30,7 +30,7 @@
                                         if ( 0 < strlen(trim($row['user_name'])) ) {
                                             echo $row['user_name'];
                                         } else { 
-                                            echo '입력안함'; 
+                                            echo '-'; 
                                         }; 
                                         ?>
                                     </a>
@@ -40,14 +40,14 @@
                                     if ( 0 < strlen(trim($row['user_email'])) ) {
                                         echo $row['user_email'];
                                     } else { 
-                                        echo '입력안함'; 
+                                        echo '-'; 
                                     }; 
                                     ?>                                    
                                 </td>
                                 <td>
                                     <?
                                     if ( $row['user_gender'] == 0 ) {
-                                        echo '입력안함';
+                                        echo '-';
                                     } elseif ( $row['user_gender'] == 1 ) { 
                                         echo '남';
                                     } elseif ( $row['user_gender'] == 2 ) {                                         
@@ -60,7 +60,7 @@
                                     if ( $row['user_birthday'] != '0000-00-00' ) {
                                         echo $row['user_birthday'];
                                     } else { 
-                                        echo '입력안함'; 
+                                        echo '-'; 
                                     }; 
                                     ?>                                    
                                 </td>

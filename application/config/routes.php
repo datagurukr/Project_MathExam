@@ -94,6 +94,7 @@ $route['admin/category'] = "admin/category/index/1";
 $route['admin/category/(:num)'] = "admin/category/index/$1";
 $route['admin/category/edit'] = "admin/category/edit/0";
 $route['admin/category/edit/(:num)'] = "admin/category/edit/$1";
+$route['admin/category/(:num)/delete'] = "admin/category/edit/$1/delete";
 
 // Admin/Subject
 $route['admin/subject'] = "admin/subject/index/1";
