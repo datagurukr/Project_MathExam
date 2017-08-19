@@ -18,7 +18,7 @@
     </head>
     <body>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <div class="nav-wrapper container"><a id="logo-container" href="/admin/user" class="brand-logo">Administrator</a>
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <a href="/admin/user">회원정보</a>
@@ -96,7 +96,7 @@
             <!-- container -->
             <? echo $container; ?>            
         </div>
-        <footer class="page-footer orange">
+        <footer class="page-footer orange center-align">
             <div class="container">
                 <div>
                     <a class="orange-text text-lighten-3" href="/terms">이용약관</a> | 
