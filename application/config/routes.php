@@ -49,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+/* Front */
 $route['default_controller'] = "home/index";
 
 // home
@@ -77,6 +78,31 @@ $route['terms'] = "page/terms";
 $route['qna'] = "qna/index/1";
 $route['qna/(:num)'] = "qna/index/$1";
 $route['qna/detail/(:num)'] = "qna/detail/$1";
+
+/* Admin */
+// Admin/User
+$route['admin/user'] = "admin/user/index/1";
+$route['admin/user/(:num)'] = "admin/user/index/$1";
+$route['admin/user/derail/(:num)'] = "admin/user/derail/$1";
+
+// Admin/Page
+$route['admin/privacy'] = "admin/page/privacy";
+$route['admin/terms'] = "admin/page/terms";
+
+// Admin/Book
+$route['admin/category'] = "admin/category/index/1";
+$route['admin/category/(:num)'] = "admin/category/index/$1";
+$route['admin/category/edit/(:num)'] = "admin/category/edit/$1";
+
+// Admin/Subject
+$route['admin/subject'] = "admin/subject/index/1";
+$route['admin/subject/(:num)'] = "admin/subject/index/$1";
+$route['admin/subject/edit/(:num)'] = "admin/subject/edit/$1";
+
+// Admin/Unit
+$route['admin/unit'] = "admin/unit/index/1";
+$route['admin/unit/(:num)'] = "admin/unit/index/$1";
+$route['admin/unit/edit/(:num)'] = "admin/unit/edit/$1";
 
 /* api/1.0 
 $route['api/app/code'] = "api/app/code";

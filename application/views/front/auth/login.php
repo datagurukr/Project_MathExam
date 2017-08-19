@@ -10,37 +10,37 @@
                                 <div class="input-field col s12">
                                     <input id="email" type="email" name="user_email" class="validate" value="<? echo set_value('user_email'); ?>">
                                     <label for="email" data-error="wrong" data-success="right">Email</label>
-																		<p class="light red-text">
-																			<?
-																				// validation
-																				if ( isset($response) ) {
-																						if ( $response['status'] == 400 ) {
-																								if ( isset($response['error']['validation']['user_email']) ) {
-																										echo $response['error']['validation']['user_email'];
-																								};
-																						};
-																				};
-																			?>
-																		</p>
-																</div>                                
+                                    <p class="light red-text">
+                                        <?
+                                        // validation
+                                        if ( isset($response) ) {
+                                            if ( $response['status'] == 400 ) {
+                                                if ( isset($response['error']['validation']['user_email']) ) {
+                                                        echo $response['error']['validation']['user_email'];
+                                                };
+                                            };
+                                        };
+                                        ?>
+                                    </p>
+                                </div>                                
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="password" type="password" name="user_pass" class="validate">
                                     <label for="password">Password</label>
-                                		<p class="light red-text">
-																			<?
-																			// validation
-																			if ( isset($response) ) {
-																					if ( $response['status'] == 400 ) {
-																							if ( isset($response['error']['validation']['user_pass']) ) {
-																									echo $response['error']['validation']['user_pass'];
-																							};
-																					};
-																			};
-																			?>                     
-																		</p>
-																</div>
+                                    <p class="light red-text">
+                                        <?
+                                        // validation
+                                        if ( isset($response) ) {
+                                            if ( $response['status'] == 400 ) {
+                                                if ( isset($response['error']['validation']['user_pass']) ) {
+                                                        echo $response['error']['validation']['user_pass'];
+                                                };
+                                            };
+                                        };
+                                        ?>                     
+                                    </p>
+                                </div>
                             </div>
 <!--
                             <div class="row">
