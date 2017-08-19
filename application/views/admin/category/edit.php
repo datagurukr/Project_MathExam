@@ -17,7 +17,7 @@ if ( $response['status'] == 200 ) {
                         <?
                         // validation
                         if ( isset($response) ) {
-                            if ( $response['status'] == 400 || $response['status'] == 200 ) {
+                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
                                 if ( isset($response['error']['validation']['category_num']) ) {
                                         echo $response['error']['validation']['category_num'];
                                 };
@@ -35,7 +35,7 @@ if ( $response['status'] == 200 ) {
                         <?
                         // validation
                         if ( isset($response) ) {
-                            if ( $response['status'] == 400 || $response['status'] == 200 ) {
+                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
                                 if ( isset($response['error']['validation']['category_name']) ) {
                                         echo $response['error']['validation']['category_name'];
                                 };

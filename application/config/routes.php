@@ -101,6 +101,7 @@ $route['admin/subject'] = "admin/subject/index/1";
 $route['admin/subject/(:num)'] = "admin/subject/index/$1";
 $route['admin/subject/edit'] = "admin/subject/edit/0";
 $route['admin/subject/edit/(:num)'] = "admin/subject/edit/$1";
+$route['admin/subject/(:num)/delete'] = "admin/subject/edit/$1/delete";
 
 // Admin/Unit
 $route['admin/unit'] = "admin/unit/index/1";
