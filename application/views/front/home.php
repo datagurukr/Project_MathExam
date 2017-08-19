@@ -1,7 +1,7 @@
 <div class="section">
     <div class="collection">
         <a href="/category/0" class="collection-item">
-            고등학교(수학)
+            서브코스1
         </a>
         <!--
         <a href="subCourse.html" class="collection-item active">서브코스2</a>
@@ -9,9 +9,7 @@
         <a href="subCourse.html" class="collection-item">서브코스4</a>
         -->
     </div>
-</div>
-<div class="section">
-	<ul class="collapsible collection with-header" data-collapsible="accordion">
+    <ul class="collapsible collection with-header" data-collapsible="accordion">
         <li class="collection-item">
             <div>
                 Q&A

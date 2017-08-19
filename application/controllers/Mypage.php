@@ -95,7 +95,7 @@ class Mypage extends CI_Controller {
                 $set_data['user_birthday'] = array (
                     'key' => 'user_birthday',
                     'type' => 'string',
-                    'value' => $this->input->post('user_birthday_submit',TRUE)
+                    'value' => $this->input->post('user_birthday',TRUE)
                 );
             };    
             
