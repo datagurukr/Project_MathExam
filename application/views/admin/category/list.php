@@ -28,9 +28,9 @@
                 </div>
             </div>
             <div class="row">
-            <div class="input-field col s12 right-align">
-            <a href="admCourseEdit.html" class="waves-effect waves-light btn">생성</a>
-            </div>
+                <div class="input-field col s12 right-align">
+                    <a href="/admin/category/edit" class="waves-effect waves-light btn">생성</a>
+                </div>
             </div>
         </form>
     </div>
