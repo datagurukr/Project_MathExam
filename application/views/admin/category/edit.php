@@ -9,6 +9,7 @@ if ( $response['status'] == 200 ) {
 <div class="section">
     <div class="row">
         <form class="col s12" method="post" enctype="application/x-www-form-urlencoded">
+            <h4>코스(상세)</h4>
             <div class="row">
                 <div class="input-field col s12">
                     <input type="text" class="validate" name="category_num" value="<? if ( isset($row['category_num']) ) { echo $row['category_num']; } else { echo set_value('category_num'); }; ?>">

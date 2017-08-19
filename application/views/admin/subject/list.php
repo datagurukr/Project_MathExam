@@ -1,9 +1,9 @@
 <div class="section">
     <div class="row">
         <form class="col s12">
+            <h4>서브코스</h4>
             <div class="row">
                 <div class="col s12">
-                    <h4>서브코스</h4>
                     <table class="striped centered">
                         <thead>
                             <tr>

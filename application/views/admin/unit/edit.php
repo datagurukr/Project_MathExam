@@ -1,6 +1,7 @@
 <div class="section">
     <div class="row">
         <form class="col s12">
+            <h4>챕터(상세)</h4>
             <div class="row">
                 <div class="input-field col s12">
                     <input type="text" class="validate">
