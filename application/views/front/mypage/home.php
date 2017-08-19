@@ -71,21 +71,35 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                                 <div class="input-field col s12">
                                     <input id="password" name="user_pass_re" type="password" class="validate">
                                     <label for="password">Re-Password</label>
-                              			<?
-																		// validation
-																		if ( isset($response) ) {
-																				if ( $response['status'] == 400 || $response['status'] == 200 ) {
-																						if ( isset($response['error']['validation']['user_pass_re']) ) {
-																								echo $response['error']['validation']['user_pass_re'];
-																						};
-																				};
-																		};
-																		?>  
-															</div>                                
+                                    <p class="light red-text">
+                                    <?
+                                    // validation
+                                    if ( isset($response) ) {
+                                            if ( $response['status'] == 400 || $response['status'] == 200 ) {
+                                                    if ( isset($response['error']['validation']['user_pass_re']) ) {
+                                                            echo $response['error']['validation']['user_pass_re'];
+                                                    };
+                                            };
+                                    };
+                                    ?>
+                                    </p>
+                                </div>                                
                             </div>
                             <div class="row">
                                 <div class="col s12">
-                                    <button type="submit" class="waves-effect waves-light btn">적용</button>
+                                    <!-- Modal Trigger -->
+                                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">적용</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal1" class="modal">
+                                        <div class="modal-content">
+                                            <h4>프로필 수정</h4>
+                                            <p>프로필을 수정하시겠습니까?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="modal-action modal-close waves-effect waves-red btn-flat">최소</button>
+                                            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -101,13 +115,23 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
     });
 </script>
 <script>
-  $('.datepicker').pickadate({
-            formatSubmit: 'yyyy-mm-dd',
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
-            today: 'Today',
-            clear: 'Clear',
-            close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
-        });
+$('.datepicker').pickadate({
+    formatSubmit: 'yyyy-mm-dd',
+    selectMonths: false, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+});
+    
+    
+//      $('.datepicker').pickadate({
+//    selectMonths: true, // Creates a dropdown to control month
+//    selectYears: 15, // Creates a dropdown of 15 years to control year,
+//    today: 'Today',
+//    clear: 'Clear',
+//    close: 'Ok',
+//    closeOnSelect: false // Close upon selecting a date,
+//  });
 </script>
