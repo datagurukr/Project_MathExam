@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="password" name="user_pass" type="password" class="validate">
-                                    <label for="password">Password</label>ㅇ
+                                    <label for="password">Password</label>
                                 </div>                            
                             </div>
                             <div class="row">
@@ -60,7 +60,7 @@
                                             <p>Just Think에 가입하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="modal-action modal-close waves-effect waves-red btn-flat">최소</button>
+                                            <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
                                             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
 
                                         </div>
@@ -78,3 +78,9 @@
         </form>
     </div>
 </div>
+<script>
+ $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>
