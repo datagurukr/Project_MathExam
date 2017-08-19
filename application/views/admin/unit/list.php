@@ -15,27 +15,68 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?
+                            if ( $response['status'] == 200 ) {
+                                if ( 0 < $response['data']['count'] ) {
+                                    $num = $response['data']['out_cnt'] - $p; 
+                                    foreach ( $response['data']['out'] as $row ) {
+                                        ?>                            
                             <tr>
-                                <td>1</td>
-                                <td>코스</td>
-                                <td>서브코스</td>
-                                <td><a href="/admin/unit/edit/0">챕터</a></td>
-                                <td><a class="red-text">삭제</a></td>
+                                <td>
+                                    <?
+                                        echo $row['unit_num'];
+                                    ?>
+                                </td>
+                                <td>
+                                    <?
+                                    if ( 0 < strlen(trim($row['category_name'])) ) {
+                                        echo $row['category_name'];
+                                    } else { 
+                                        echo '-'; 
+                                    }; 
+                                    ?>                                                                             
+                                </td>
+                                <td>
+                                    <?
+                                    if ( 0 < strlen(trim($row['subject_name'])) ) {
+                                        echo $row['subject_name'];
+                                    } else { 
+                                        echo '-'; 
+                                    }; 
+                                    ?>                                                                             
+                                </td>
+                                <td>
+                                    <a href="/admin/unit/edit/<? echo $row['unit_id']; ?>">
+                                        <?
+                                        if ( 0 < strlen(trim($row['unit_name'])) ) {
+                                            echo $row['unit_name'];
+                                        } else { 
+                                            echo '-'; 
+                                        }; 
+                                        ?>                                                                             
+                                    </a>
+                                </td>
+                                <td>
+                                    
+                                    <a class="red-text modal-trigger" href="#modal<? echo $row['unit_id']; ?>">삭제</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal<? echo $row['unit_id']; ?>" class="modal">
+                                        <div class="modal-content">
+                                            <h4>챕터 삭제</h4>
+                                            <p>챕터를 삭제하시겠습니까?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
+                                            <a class="modal-action modal-close waves-effect waves-green btn-flat" onclick="location.href='/admin/unit/<? echo $row['unit_id']; ?>/delete?referer=/admin/unit?p=<? echo $p; ?>'">승인</a>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>코스</td>
-                                <td>서브코스</td>
-                                <td><a href="/admin/unit/edit/0">챕터</a></td>
-                                <td><a class="red-text">삭제</a></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>코스</td>
-                                <td>서브코스</td>
-                                <td><a href="/admin/unit/edit/0">챕터</a></td>
-                                <td><a class="red-text">삭제</a></td>
-                            </tr>
+                                        <?
+                                    };
+                                };
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -47,4 +88,24 @@
             </div>
         </form>
     </div>
+    <div class="row">
+        <? echo $this->pagination->create_links(); ?>
+        <!--
+        <ul class="pagination center">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+        -->
+    </div>    
 </div>
+<script>
+$(document).ready(function(){
+// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+$('.modal').modal();
+});
+</script>

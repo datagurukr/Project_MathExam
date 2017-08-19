@@ -78,6 +78,11 @@ class Category extends CI_Controller {
         $data['key'] = 'home';
         
         /*******************
+        response
+        *******************/
+        $response = array();        
+        
+        /*******************
         ajax 통신 체크
         *******************/
         $ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])

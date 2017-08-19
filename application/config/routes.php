@@ -108,6 +108,7 @@ $route['admin/unit'] = "admin/unit/index/1";
 $route['admin/unit/(:num)'] = "admin/unit/index/$1";
 $route['admin/unit/edit'] = "admin/unit/edit/0";
 $route['admin/unit/edit/(:num)'] = "admin/unit/edit/$1";
+$route['admin/unit/(:num)/delete'] = "admin/unit/edit/$1/delete";
 
 // Admin/Exam
 $route['admin/exam'] = "admin/exam/index/1";
