@@ -45,7 +45,8 @@ class Auth extends CI_Controller {
             if ( strpos( $http_referer, 'login' ) ) {
                 redirect('/', 'refresh');
             } else {
-                redirect($http_referer, 'refresh');                
+                redirect('/', 'refresh');                
+                //redirect($http_referer, 'refresh');                
             }
         };  
     }
