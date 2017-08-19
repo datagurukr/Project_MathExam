@@ -8,7 +8,7 @@ if ( $response['status'] == 200 ) {
 };
 if ( $response['data']['category_out'] ) {
     $category_out = $response['data']['category_out'];                    
-}
+};
 ?>
 <div class="section">
     <div class="row">
@@ -45,7 +45,7 @@ if ( $response['data']['category_out'] ) {
                                     $category_id = set_value('category_id'); }
                                 ;
                                 ?>
-                        <option value="<? echo $category_row['category_id']; ?>" <? if ( $category_row['category_id'] = $category_id ) { echo 'selected'; }; ?> >
+                        <option value="<? echo $category_row['category_id']; ?>" <? if ( $category_row['category_id'] == $category_id ) { echo 'selected'; }; ?> >
                             <? echo $category_row['category_name']; ?>
                         </option>
                                 <?

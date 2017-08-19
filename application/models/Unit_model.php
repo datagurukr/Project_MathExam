@@ -10,7 +10,7 @@
 함수명명규칙
 -> 앞에 클래스 명을 붙이지 않는다. (함수명)
 ************************************/
-class Subject_model extends CI_Model{
+class Unit_model extends CI_Model{
 	
 	function __construct() {
         parent::__construct();
@@ -19,38 +19,32 @@ class Subject_model extends CI_Model{
     function update ($type, $data) {
         
         $sql = FALSE;
-
-        if ( !array_key_exists('subject_price',$data) ) {
-            $data['subject_price'] = 0;
-        };        
-            
-        if ( !array_key_exists('subject_name',$data) ) {
+        
+        if ( !array_key_exists('unit_name',$data) ) {
             $data['subject_name'] = 0;
         };        
 
-        if ( !array_key_exists('subject_state',$data) ) {
+        if ( !array_key_exists('unit_state',$data) ) {
             $data['subject_state'] = 0;
         };        
         
         if ( $type == 'create' ) {
             $sql = "
-                INSERT INTO  subject (                
+                INSERT INTO unit (                
+                    unit_id,
                     subject_id,
-                    category_id,
-                    subject_num,
-                    subject_state,
-                    subject_name,
-                    subject_price,
-                    subject_register_date,
-                    subject_update_date
+                    unit_num,
+                    unit_name,
+                    unit_state,
+                    unit_register_date,
+                    unit_update_date
                 )
                 VALUES (
-                    ".$data['subject_id'].",
-                    ".$data['category_id'].",    
-                    ".$data['subject_num'].",                                                            
-                    ".$data['subject_state'].",                                        
-                    '".$data['subject_name']."',
-                    ".$data['subject_price'].",                                                            
+                    ".$data['unit_id'].",
+                    ".$data['subject_id'].",    
+                    ".$data['unit_num'].",                                                            
+                    '".$data['unit_name']."',                                        
+                    ".$data['unit_state'].",
                     now(),
                     now()
                 );            
@@ -73,17 +67,17 @@ class Subject_model extends CI_Model{
             };
             if ( $add ) {
                 $sql = "
-                update subject
+                update unit
                 set
                     ".$add."
-                    subject_update_date = now()
+                    unit_update_date = now()
                 where
-                    subject_id = ".$data['subject_id']."
+                    unit_id = ".$data['unit_id']."
                 ";
             };
         } elseif ( $type == 'delete' ) {            
             $sql = "
-            delete from subject where subject_id = ".$data['subject_id']."
+            delete from unit where unit_id = ".$data['unit_id']."
             ";            
         };
         
@@ -106,6 +100,9 @@ class Subject_model extends CI_Model{
         
         $sql = FALSE;
         
+        if ( !array_key_exists('unit_id',$data) ) {
+            $data['unit_id'] = 0;
+        };                        
         if ( !array_key_exists('subject_id',$data) ) {
             $data['subject_id'] = 0;
         };                        
@@ -165,15 +162,17 @@ class Subject_model extends CI_Model{
             
             
             $select = "          
-            subject.subject_id as subject_id,
-            subject.category_id as category_id,
-            category.category_name as category_name,
-            subject.subject_num as subject_num,
-            subject.subject_state as subject_state,
+            
+            unit.unit_id as unit_id,
+            unit.subject_id as subject_id,
             subject.subject_name as subject_name,
-            subject.subject_price as subject_price,
-            subject.subject_register_date as subject_register_date,
-            subject.subject_update_date as subject_update_date
+            category.category_id as category_id,                        
+            category.category_name as category_name,            
+            unit.unit_num as unit_num,
+            unit.unit_name as unit_name,
+            unit.unit_state as unit_state,
+            unit.unit_register_date as unit_register_date,
+            unit.unit_update_date as unit_update_date            
             ";
         };        
         
@@ -182,24 +181,15 @@ class Subject_model extends CI_Model{
             select
                 ".$select."
             FROM
-                subject AS subject
+                unit AS unit
+                left outer join subject as subject
+                on
+                (unit.subject_id = subject.subject_id)                
                 left outer join category as category
                 on
-                (subject.category_id = category.category_id)                
+                (subject.category_id = category.category_id)                                
             WHERE
-                subject.subject_id = ".$data['subject_id']."
-            ".$limit."
-            ";  
-        } elseif ( $type == 'all' ) {            
-            $sql = "
-            select
-                ".$select."
-            FROM
-                subject AS subject
-                left outer join category as category
-                on
-                (subject.category_id = category.category_id)
-            order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
+                unit.unit_id = ".$data['unit_id']."
             ".$limit."
             ";  
         } else {
@@ -207,11 +197,14 @@ class Subject_model extends CI_Model{
             select
                 ".$select."
             FROM
-                subject AS subject
+                unit AS unit
+                left outer join subject as subject
+                on
+                (unit.subject_id = subject.subject_id)                
                 left outer join category as category
                 on
-                (subject.category_id = category.category_id)
-            order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
+                (subject.category_id = category.category_id)                                
+            order by unit.unit_num ".$data['order'].", unit.unit_register_date ".$data['order']."        
             ".$limit."
             ";  
         }
