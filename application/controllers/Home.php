@@ -24,6 +24,11 @@ class Home extends CI_Controller {
         $data = array();         
         
         /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
         page key
         *******************/
         $data['key'] = 'home';
@@ -47,6 +52,7 @@ class Home extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/home', $data, TRUE);

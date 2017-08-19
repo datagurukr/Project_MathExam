@@ -33,9 +33,16 @@
                         <a href="/mypage/purchase">구매내역</a>
                     </li>
                     <li>
-                        <a href="logout">로그아웃</a>
+                        <a href="/logout">로그아웃</a>
                     </li>                    
                         <?
+                        if ( isset($session['admin']) ) {
+                            ?>
+                    <li>
+                        <a href="/admin">관리자</a>
+                    </li>                                        
+                            <?
+                        };
                     } else {
                         ?>
                     <li>
@@ -60,9 +67,16 @@
                         <a href="/mypage/purchase">구매내역</a>
                     </li>
                     <li>
-                        <a href="logout">로그아웃</a>
+                        <a href="/logout">로그아웃</a>
                     </li>                    
                         <?
+                        if ( isset($data['session']['admin']) ) {
+                            ?>
+                    <li>
+                        <a href="/admin">관리자</a>
+                    </li>                                        
+                            <?
+                        };
                     } else {
                         ?>
                     <li>

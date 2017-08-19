@@ -80,6 +80,7 @@ $route['qna/(:num)'] = "qna/index/$1";
 $route['qna/detail/(:num)'] = "qna/detail/$1";
 
 /* Admin */
+$route['admin'] = "admin/user/index/1";
 // Admin/User
 $route['admin/user'] = "admin/user/index/1";
 $route['admin/user/(:num)'] = "admin/user/index/$1";
@@ -92,17 +93,38 @@ $route['admin/terms'] = "admin/page/terms";
 // Admin/Book
 $route['admin/category'] = "admin/category/index/1";
 $route['admin/category/(:num)'] = "admin/category/index/$1";
+$route['admin/category/edit'] = "admin/category/edit/0";
 $route['admin/category/edit/(:num)'] = "admin/category/edit/$1";
 
 // Admin/Subject
 $route['admin/subject'] = "admin/subject/index/1";
 $route['admin/subject/(:num)'] = "admin/subject/index/$1";
+$route['admin/subject/edit'] = "admin/subject/edit/0";
 $route['admin/subject/edit/(:num)'] = "admin/subject/edit/$1";
 
 // Admin/Unit
 $route['admin/unit'] = "admin/unit/index/1";
 $route['admin/unit/(:num)'] = "admin/unit/index/$1";
+$route['admin/unit/edit'] = "admin/unit/edit/0";
 $route['admin/unit/edit/(:num)'] = "admin/unit/edit/$1";
+
+// Admin/Exam
+$route['admin/exam'] = "admin/exam/index/1";
+$route['admin/exam/(:num)'] = "admin/exam/index/$1";
+$route['admin/exam/edit'] = "admin/exam/edit/0";
+$route['admin/exam/edit/(:num)'] = "admin/exam/edit/$1";
+$route['admin/exam/question/(:num)'] = "admin/exam/question/$1";
+
+// Admin/Purchase
+$route['admin/purchase'] = "admin/purchase/index/1";
+$route['admin/purchase/(:num)'] = "admin/purchase/index/$1";
+
+// Admin/Qna
+$route['admin/qna'] = "admin/qna/index/1";
+$route['admin/qna/(:num)'] = "admin/qna/index/$1";
+$route['admin/qna/edit'] = "admin/qna/edit/0";
+$route['admin/qna/edit/(:num)'] = "admin/qna/edit/$1";
+
 
 /* api/1.0 
 $route['api/app/code'] = "api/app/code";

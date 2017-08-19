@@ -10,7 +10,7 @@ Var 1.0
 ************************************/
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Exam extends CI_Controller {
     
     function __construct()
 	{
@@ -56,12 +56,12 @@ class Category extends CI_Controller {
         
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/category/list', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/exam/list', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
     }
     
-    function edit ( $category_id = 0 ) {        
+    function question ( $exam_id = 0 ) {        
         /*******************
         data
         *******************/
@@ -100,7 +100,51 @@ class Category extends CI_Controller {
         
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/category/edit', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/exam/question', $data, TRUE);
+            $this->load->view('/admin/body', $data, FALSE);            
+        };
+    }    
+    
+    function edit ( $exam_id = 0 ) {        
+        /*******************
+        data
+        *******************/
+        $data = array();         
+        
+        /*******************
+        page key
+        *******************/
+        $data['key'] = 'home';
+        
+        /*******************
+        ajax 통신 체크
+        *******************/
+        $ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+                || 
+                (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['REQUEST_METHOD'] == 'GET');
+        
+        /*******************
+        session
+        *******************/
+        $data['session'] = $this->session->all_userdata();  
+        $data['session_id'] = 0;
+        if ( isset($data['session']['logged_in']) && isset($data['session']['admin']) ) {
+            if ( $data['session']['admin'] ) {
+                $session_id = $data['session']['users_id'];                
+            } else {
+                $session_id = 0;
+            };
+        } else {
+            $session_id = 0;
+        };
+        if ( $session_id == 0 ) {
+            show_404();
+        };
+        $data['session_id'] = $session_id;
+        
+        if ( $ajax ) {
+        } else {
+            $data['container'] = $this->load->view('/admin/exam/edit', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
     }    

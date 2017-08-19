@@ -10,7 +10,7 @@ Var 1.0
 ************************************/
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Qna extends CI_Controller {
     
     function __construct()
 	{
@@ -56,12 +56,12 @@ class Category extends CI_Controller {
         
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/category/list', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/qna/list', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
     }
     
-    function edit ( $category_id = 0 ) {        
+    function edit ( $qna_id = 0 ) {        
         /*******************
         data
         *******************/
@@ -100,7 +100,7 @@ class Category extends CI_Controller {
         
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/category/edit', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/qna/edit', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
     }    

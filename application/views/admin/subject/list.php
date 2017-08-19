@@ -35,7 +35,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 right-align">
-                    <a href="/admin/subject/edit/0" class="waves-effect waves-light btn">생성</a>
+                    <a href="/admin/subject/edit" class="waves-effect waves-light btn">생성</a>
                 </div>
             </div>
         </form>

@@ -40,10 +40,17 @@ class Subject extends CI_Controller {
         *******************/
         $data['session'] = $this->session->all_userdata();  
         $data['session_id'] = 0;
-        if ( isset($data['session']['logged_in']) ) {
-            $session_id = $data['session']['users_id'];
+        if ( isset($data['session']['logged_in']) && isset($data['session']['admin']) ) {
+            if ( $data['session']['admin'] ) {
+                $session_id = $data['session']['users_id'];                
+            } else {
+                $session_id = 0;
+            };
         } else {
             $session_id = 0;
+        };
+        if ( $session_id == 0 ) {
+            show_404();
         };
         $data['session_id'] = $session_id;
         
@@ -77,10 +84,17 @@ class Subject extends CI_Controller {
         *******************/
         $data['session'] = $this->session->all_userdata();  
         $data['session_id'] = 0;
-        if ( isset($data['session']['logged_in']) ) {
-            $session_id = $data['session']['users_id'];
+        if ( isset($data['session']['logged_in']) && isset($data['session']['admin']) ) {
+            if ( $data['session']['admin'] ) {
+                $session_id = $data['session']['users_id'];                
+            } else {
+                $session_id = 0;
+            };
         } else {
             $session_id = 0;
+        };
+        if ( $session_id == 0 ) {
+            show_404();
         };
         $data['session_id'] = $session_id;
         

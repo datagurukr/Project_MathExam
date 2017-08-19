@@ -17,14 +17,23 @@ class Auth extends CI_Controller {
 		parent::__construct();
 	}
     
-    function loggedin ( $user_id = 0 ) {
+    function loggedin ( $user_id = 0, $user_status = 0 ) {
         if ( 0 < $user_id ) {
             // 로그인 세션 처리 시작
-            $session_data = array(
-                             'users_id'  => $user_id,
-                             'logged_in' => TRUE,
-                             'admin'  => FALSE
-                            );
+            if ( $user_status == 9 ) {
+                // 관리자
+                $session_data = array(
+                    'users_id'  => $user_id,
+                    'logged_in' => TRUE,
+                    'admin'  => TRUE
+                );
+            } else {
+                // 일반회원
+                $session_data = array(
+                    'users_id'  => $user_id,
+                    'logged_in' => TRUE
+                );                
+            };
             $this->session->set_userdata($session_data);   
         } else {
             $this->session->sess_destroy();            
@@ -99,26 +108,17 @@ class Auth extends CI_Controller {
         *******************/     
         if ($this->form_validation->run() == TRUE ) {
             
-            $this->load->model('user_model');        
-            $row = $this->user_model->update('create',array(
-                'user_id' => mt_rand(),
-                'user_email' => $this->input->post('user_email',TRUE),
+            $row = $this->user_model->out('pass',array(
+                'user_email' => $this->input->post('user_email',TRUE),           
                 'user_pass' => $this->input->post('user_pass',TRUE)
             ));
-            
-            if ( $row ) {
-                $row = $this->user_model->out('pass',array(
-                    'user_email' => $this->input->post('user_email',TRUE),           
-                    'user_pass' => $this->input->post('user_pass',TRUE)
-                ));
-            };
             
             /*******************
             Log write
             *******************/
             
             if ( $row ) {
-                $this->loggedin($row[0]['user_id']);
+                $this->loggedin($row[0]['user_id'],$row[0]['user_status']);
                 $response['status'] = 200;
                 $response['data'] = array(
                     'out' => $row,
@@ -237,7 +237,7 @@ class Auth extends CI_Controller {
             *******************/
             
             if ( $row ) {
-                $this->loggedin($row[0]['user_id']);                
+                $this->loggedin($row[0]['user_id'],$row[0]['user_status']);
                 $response['status'] = 200;
                 $response['data'] = array(
                     'out' => $row,
@@ -326,6 +326,7 @@ class Auth extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/auth/recover', $data, TRUE);
@@ -366,7 +367,7 @@ class Auth extends CI_Controller {
         if( $row = $this->user_model->out('pass',array(
             'user_email' => $this->input->post('user_email',TRUE),           
             'user_pass' => $user_pass                        
-        )) ) {            
+        )) ) {
             if ( $row[0]['user_state'] == 9 ) {
                 $this->form_validation->set_message('user_pass_check', '탈퇴 처리된 계정입니다.');
                 return FALSE;

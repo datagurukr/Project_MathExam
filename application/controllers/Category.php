@@ -21,7 +21,12 @@ class Category extends CI_Controller {
         /*******************
         data
         *******************/
-        $data = array();         
+        $data = array();    
+        
+        /*******************
+        response
+        *******************/
+        $response = array();                
         
         /*******************
         page key
@@ -47,6 +52,7 @@ class Category extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/category/subject', $data, TRUE);
@@ -61,6 +67,11 @@ class Category extends CI_Controller {
         $data = array();         
         
         /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
         page key
         *******************/
         $data['key'] = 'home';
@@ -84,6 +95,7 @@ class Category extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/category/unit', $data, TRUE);
@@ -98,6 +110,11 @@ class Category extends CI_Controller {
         $data = array();         
         
         /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
         page key
         *******************/
         $data['key'] = 'home';
@@ -121,6 +138,7 @@ class Category extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;        
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/category/exam', $data, TRUE);

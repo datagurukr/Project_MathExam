@@ -156,6 +156,7 @@ class Mypage extends CI_Controller {
         } else {
             $response['status'] = 401;
         }
+        
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
@@ -169,6 +170,11 @@ class Mypage extends CI_Controller {
         data
         *******************/
         $data = array();         
+        
+        /*******************
+        response
+        *******************/
+        $response = array();                
         
         /*******************
         page key
@@ -201,6 +207,7 @@ class Mypage extends CI_Controller {
         
         $data['session_id'] = $session_id;
         
+        $data['response'] = $response;
         if ( $ajax ) {
         } else {
             $data['container'] = $this->load->view('/front/mypage/purchase', $data, TRUE);
