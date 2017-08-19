@@ -160,6 +160,12 @@ class User_model extends CI_Model{
         if ( !array_key_exists('order',$data) ) {
             $data['order'] = 'desc';
         };
+        if ( !array_key_exists('q',$data) ) {
+            $data['q'] = '';
+        };        
+        if ( !array_key_exists('target',$data) ) {
+            $data['target'] = '';
+        };                
         if ( !array_key_exists('user_status',$data) ) {
             $data['user_status'] = 0;
         };
@@ -274,16 +280,40 @@ class User_model extends CI_Model{
             WHERE
                 user.user_id = ".$data['user_id']."
             ".$limit."
-            ";      
+            ";  
+        } elseif ( $type == 'all' ) {   
+            $where = '';
+            if ( strlen(trim($data['q'])) != 0 ) {
+                if ( $data['target'] == 'name' ) {
+                    $where = "and user.user_name like '%".$data['q']."%'";
+                } elseif ( $data['target'] == 'email' ) {
+                    $where = "and user.user_email like '%".$data['q']."%'";
+                } else {
+                    $where = "and ( user.user_name like '%".$data['q']."%' or user.user_email like '%".$data['q']."%' )";
+                }
+            };
+            
+            $sql = "
+            select
+                ".$select."
+            FROM
+                user AS user
+            where
+                0 <= user.user_state
+                ".$where."                
+            order by user.user_register_date ".$data['order']."
+            ".$limit."
+            ";   
         } else {
             $sql = "
             select
                 ".$select."
             FROM
                 user AS user
-            order by user.user_register_date ".$data['order']."
+            WHERE
+                user.user_id = ".$data['user_id']."
             ".$limit."
-            ";   
+            ";  
         }
         
         if ( $sql ) {

@@ -1,6 +1,3 @@
-<?
-print_r($response);
-?>
 <div class="section">
     <div class="row">
         <form class="col s12" method="get" enctype="application/x-www-form-urlencoded">
@@ -28,7 +25,7 @@ print_r($response);
                             <tr>
                                 <td><? echo $num; $num--; ?></td>
                                 <td>
-                                    <a href="/admin/user/detail/0">
+                                    <a href="/admin/user/<? echo $row['user_id']; ?>">
                                         <? 
                                         if ( 0 < strlen(trim($row['user_name'])) ) {
                                             echo $row['user_name'];
@@ -84,10 +81,10 @@ print_r($response);
             </div>
             <div class="row">
                 <div class="input-field col s2">
-                    <select>
-                        <option value="" disabled selected>전체</option>
-                        <option value="1">유저명</option>
-                        <option value="2">Email</option>
+                    <select name="target">
+                        <option value="" <? if ( $target == '' ) { echo 'selected'; }; ?> disabled selected>전체</option>
+                        <option value="name" <? if ( $target == 'name' ) { echo 'selected'; }; ?>>이름</option>
+                        <option value="email" <? if ( $target == 'email' ) { echo 'selected'; }; ?>>이메일</option>
                     </select>
                 </div>
                 <div class="input-field col s6">
@@ -101,6 +98,8 @@ print_r($response);
         </form>
     </div>
     <div class="row">
+        <? echo $this->pagination->create_links(); ?>
+        <!--
         <ul class="pagination center">
             <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
             <li class="active"><a href="#!">1</a></li>
@@ -110,5 +109,11 @@ print_r($response);
             <li class="waves-effect"><a href="#!">5</a></li>
             <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
         </ul>
+        -->
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('select').material_select();
+});
+</script>

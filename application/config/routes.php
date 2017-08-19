@@ -82,9 +82,8 @@ $route['qna/detail/(:num)'] = "qna/detail/$1";
 /* Admin */
 $route['admin'] = "admin/user/index/1";
 // Admin/User
-$route['admin/user'] = "admin/user/index/1";
-$route['admin/user/(:num)'] = "admin/user/index/$1";
-$route['admin/user/derail/(:num)'] = "admin/user/derail/$1";
+$route['admin/user'] = "admin/user/index";
+$route['admin/user/(:num)'] = "admin/user/detail/$1";
 
 // Admin/Page
 $route['admin/privacy'] = "admin/page/privacy";
