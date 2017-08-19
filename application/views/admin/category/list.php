@@ -38,7 +38,20 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" class="red-text" onclick="if (confirm('삭제하시겠습니까?') == true){ location.href='/admin/category/<? echo $row['category_id']; ?>/delete?referer=/admin/category?p=<? echo $p; ?>' }">삭제</a>
+                                    
+                                    <a class="red-text modal-trigger" href="#modal<? echo $row['category_id']; ?>">삭제</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal<? echo $row['category_id']; ?>" class="modal">
+                                        <div class="modal-content">
+                                            <h4>코스 삭제</h4>
+                                            <p>코스를 삭제하시겠습니까?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
+                                            <a class="modal-action modal-close waves-effect waves-green btn-flat" onclick="location.href='/admin/category/<? echo $row['category_id']; ?>/delete?referer=/admin/category?p=<? echo $p; ?>'">승인</a>
+                                        </div>
+                                    </div>
+                                    
                                 </td>
                             </tr>
                                         <?
@@ -72,3 +85,9 @@
         -->
     </div>
 </div>
+<script>
+$(document).ready(function(){
+// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+$('.modal').modal();
+});
+</script>

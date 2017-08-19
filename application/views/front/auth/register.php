@@ -39,8 +39,8 @@
                                             // validation
                                             if ( isset($response) ) {
                                                     if ( $response['status'] == 400 ) {
-                                                            if ( isset($response['error']['validation']['user_pass_re']) ) {
-                                                                    echo $response['error']['validation']['user_pass_re'];
+                                                            if ( isset($response['error']['validation']['user_pass']) ) {
+                                                                    echo $response['error']['validation']['user_pass'];
                                                             };
                                                     };
                                             };
