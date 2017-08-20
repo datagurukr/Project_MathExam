@@ -131,13 +131,14 @@
         });
         $('.datepicker').pickadate({
             formatSubmit: 'yyyy-mm-dd',
-            selectYears: true, // Creates a dropdown of 15 years to control year,
             selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
             today: 'Today',
             clear: 'Clear',
             close: 'Ok',
             closeOnSelect: false // Close upon selecting a date,
         });
+        
     </script>    
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
