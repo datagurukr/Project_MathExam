@@ -16,7 +16,7 @@ if ( !$row ) {
 <div class="section row">
     <nav>
         <div class="nav-wrapper">
-            <div class="col s12">
+            <div class="col s12 truncate">
                 <a href="/category/<? echo $row['category_id']; ?>" class="breadcrumb">
                     <? echo $row['category_name']; ?>
                 </a>
@@ -34,42 +34,39 @@ if ( !$row ) {
     </nav>
 </div>
 <div class="section">
-    <p class="flow-text">
         <? echo $row['exam_description']; ?>
-    </p>
 </div>
-<div class="divider"></div>
+
 <?
 if ( $question_out ) {
     foreach ( $question_out as $out_row ) {
         ?>
-<div class="section">
-    <p class="flow-text">
-        <!--ckEdit 영역_문제보기(이미지, 텍스트, 링크)-->
-        <? echo $out_row['question_content_title']; ?>
-    </p>
-</div>
-<div class="divider"></div>
-<div class="section">
-    <p class="flow-text">
-        <!--ckEdit 영역_보기-->
-        <? echo $out_row['question_content_article']; ?>        
-    </p>
-</div>
-<div class="divider"></div>
-<div class="section">
-    <p class="flow-text">
-        <!--ckEdit 영역_답안-->
-        <? echo $out_row['question_content_answer']; ?>        
-    </p>
-</div>
-<div class="divider"></div>
-<div class="section">
-    <p class="flow-text">
-        <!--ckEdit 영역_해설-->
-        <? echo $out_row['question_content_explanation']; ?>                
-    </p>
-</div>
+        <div class="divider"></div>
+        <div class="section">
+            <!--ckEdit 영역_문제보기(이미지, 텍스트, 링크)-->
+            <? echo $out_row['question_content_title']; ?>
+
+            <!--ckEdit 영역_보기-->
+            <? echo $out_row['question_content_article']; ?>        
+
+            <!--ckEdit 영역_답안-->
+            <? echo $out_row['question_content_answer']; ?>        
+
+            <!--ckEdit 영역_해설-->
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                  <div class="collapsible-header">
+                      <i class="material-icons">priority_high</i>해설
+                  </div>
+                  <div class="collapsible-body">
+                      <span>
+                        <? echo $out_row['question_content_explanation']; ?>
+                      </span>
+                  </div>
+                </li>
+
+              </ul>           
+        </div>
         <?
     };
 };

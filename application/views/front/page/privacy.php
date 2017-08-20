@@ -14,8 +14,6 @@ if ( $response['status'] == 200 ) {
         </div>
     </nav>		
 </div>
-<div class="section">
-    <p class="flow-text">
-        <? if ( isset($content) ) { echo $content; } else { echo set_value('content'); }; ?>
-    </p>
+<div class="row">
+    <? if ( isset($content) ) { echo $content; } else { echo set_value('content'); }; ?>
 </div>

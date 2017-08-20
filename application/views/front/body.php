@@ -126,7 +126,9 @@
         $(document).ready(function() {
             $('select').material_select();
         });
-
+        $(document).ready(function(){
+        $('.collapsible').collapsible();
+        });
         $('.datepicker').pickadate({
             formatSubmit: 'yyyy-mm-dd',
             selectYears: true, // Creates a dropdown of 15 years to control year,
