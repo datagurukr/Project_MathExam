@@ -12,7 +12,7 @@
                                 <th>서브코스</th>
                                 <th>챕터</th>
                                 <th>유닛</th>
-                                <th>문제등록</th>
+                                <th>문제항목</th>
                                 <th>삭제</th>
                             </tr>
                         </thead>
@@ -76,7 +76,7 @@
                                     <div id="modal<? echo $row['exam_id']; ?>" class="modal">
                                         <div class="modal-content">
                                             <h4>유닛 삭제</h4>
-                                            <p>유닛을 삭제하시겠습니까?</p>
+                                            <p>하위 메뉴들도 함께 삭제됩니다.<br> 삭제하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
@@ -116,9 +116,3 @@
         -->
     </div>     
 </div>
-<script>
-$(document).ready(function(){
-// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-$('.modal').modal();
-});
-</script>

@@ -63,7 +63,7 @@
                                     <div id="modal<? echo $row['unit_id']; ?>" class="modal">
                                         <div class="modal-content">
                                             <h4>챕터 삭제</h4>
-                                            <p>챕터를 삭제하시겠습니까?</p>
+                                            <p>하위 메뉴들도 함께 삭제됩니다.<br> 삭제하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
@@ -104,9 +104,3 @@
         -->
     </div>    
 </div>
-<script>
-$(document).ready(function(){
-// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-$('.modal').modal();
-});
-</script>

@@ -21,6 +21,7 @@ if ( $response['data']['category_out'] ) {
 <div class="section">
     <div class="row">
         <form class="col s12" method="post" enctype="application/x-www-form-urlencoded">
+            <h4>유닛(상세)</h4>
             <div class="row">
                 <div class="input-field col s12">
                     <input type="text" class="validate" name="exam_num" value="<? if ( isset($row['exam_num']) ) { echo $row['exam_num']; } else { echo set_value('exam_num'); }; ?>">
@@ -189,7 +190,22 @@ if ( $response['data']['category_out'] ) {
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <button type="submit" class="waves-effect waves-light btn right">적용</a>
+                    
+                    <!-- Modal Trigger -->
+                    <a class="waves-effect waves-light btn modal-trigger right" href="#modal1">적용</a>
+
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <h4>수정 검토</h4>
+                            <p>유닛 정보를 변경하시겠습니까?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
+                            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="input-field col s6">
                     <?
@@ -198,15 +214,10 @@ if ( $response['data']['category_out'] ) {
                         $referer = $_GET['referer'];
                     };
                     ?>
-                    <button type="button" class="waves-effect waves-light btn left" onclick="location.replace('<? echo $referer; ?>');">취소</a>
+                    <button type="button" class="waves-effect waves-light btn left" onclick="location.replace('<? echo $referer; ?>');">취소</button>
                     
                 </div>
             </div>
         </form>
     </div>
 </div>
-<script>
-$(document).ready(function() {
-    $('select').material_select();
-});
-</script>
