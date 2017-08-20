@@ -1,6 +1,8 @@
 <?
 $row = FALSE;
+$unit_out = FALSE;
 $subject_out = FALSE;
+$category_out = FALSE;
 if ( $response['status'] == 200 ) {
     if ( 0 < $response['data']['count'] ) {
         $row = $response['data']['out'][0];
@@ -171,7 +173,7 @@ if ( $response['data']['category_out'] ) {
             <div class="row">
                 <div class="input-field col s12">
                     <h6>유닛설명</h6>
-                    <textarea id="editor1" name="editor1"></textarea>
+                    <textarea id="editor1" name="exam_description"><? if ( isset($row['exam_description']) ) { echo $row['exam_description']; } else { echo set_value('exam_description'); }; ?></textarea>
                     <script>
                         CKEDITOR.replace( 'editor1', {
                             extraPlugins: 'mathjax',

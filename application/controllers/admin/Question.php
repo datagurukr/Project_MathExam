@@ -10,7 +10,7 @@ Var 1.0
 ************************************/
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Exam extends CI_Controller {
+class Question extends CI_Controller {
     
     function __construct()
 	{
@@ -66,11 +66,12 @@ class Exam extends CI_Controller {
         $this->pagination->initialize($config);
     }      
     
-    function index ( $p = 0 ) {        
+    function index ( $exam_id = 0 ) {        
         /*******************
         data
         *******************/
         $data = array();         
+        $data['exam_id'] = $exam_id;
         
         /*******************
         page key
@@ -80,7 +81,7 @@ class Exam extends CI_Controller {
         /*******************
         response
         *******************/
-        $response = array();        
+        $response = array();           
         
         /*******************
         ajax 통신 체크
@@ -111,7 +112,7 @@ class Exam extends CI_Controller {
         /*******************
         data query
         *******************/             
-		$this->load->model('exam_model');                
+		$this->load->model('question_model');                
         
         if ( isset($_GET['p']) ) {
             $p = $_GET['p'];
@@ -137,14 +138,16 @@ class Exam extends CI_Controller {
         };        
         $data['target'] = $target;
         
-        $result = $this->exam_model->out('all',array(
+        $result = $this->question_model->out('exam_id',array(
+            'exam_id' => $exam_id,
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,
             'order' => 'asc',
             'target' => $target
         ));
-        $result_count = $this->exam_model->out('all',array(
+        $result_count = $this->question_model->out('exam_id',array(
+            'exam_id' => $exam_id,            
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,
@@ -156,7 +159,7 @@ class Exam extends CI_Controller {
         if ( $result_count ) {
             $pagination_count = $result_count[0]['cnt'];            
         };
-        $this->global_pagination($pagination_count,'/admin/exam/?',$pagination_url);                        
+        $this->global_pagination($pagination_count,'/admin/question/'.$exam_id.'/?',$pagination_url);                        
         
         if ( $result ) {
             $response['status'] = 200;                    
@@ -167,17 +170,17 @@ class Exam extends CI_Controller {
             );        
         } else {
             $response['status'] = 401;
-        };                 
+        };          
         
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/exam/list', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/question/list', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
-    } 
+    }
     
-    function edit ( $exam_id = 0, $action = '' ) {        
+    function edit ( $exam_id = 0, $question_id = 0, $action = '' ) {        
         /*******************
         data
         *******************/
@@ -225,9 +228,9 @@ class Exam extends CI_Controller {
         $data['session_id'] = $session_id;
         
         if ( $action == 'delete' ) {
-            $this->load->model('exam_model');                                    
-            $result = $this->exam_model->update('delete',array(
-                'exam_id' => $exam_id
+            $this->load->model('question_model');                                    
+            $result = $this->question_model->update('delete',array(
+                'question_id' => $question_id
             ));
             if ( $result ) {
                 $response['delete'] = TRUE;                
@@ -241,74 +244,77 @@ class Exam extends CI_Controller {
             };            
             redirect($referer, 'refresh');
         } else {
-            if ( isset($_POST['unit_id']) && isset($_POST['category_id']) && isset($_POST['subject_id']) && isset($_POST['exam_name']) && isset($_POST['exam_num']) ) {
+            if ( isset($_POST['question_num']) && isset($_POST['question_content_title']) && isset($_POST['question_content_article']) && isset($_POST['question_content_answer']) && isset($_POST['question_content_explanation']) ) {
                 
-                $this->form_validation->set_rules('category_id','코스','trim|required|numeric');                                
-                $this->form_validation->set_rules('subject_id','서브코스','trim|required|numeric');                
-                $this->form_validation->set_rules('unit_id','챕터','trim|required|numeric');                                                
-                $this->form_validation->set_rules('exam_name','유닛','trim|required');
-                $this->form_validation->set_rules('exam_num','순번','trim|required|numeric');                
-                
-                if ( isset($_POST['exam_description']) ) {
-                    $exam_description = $this->input->post('exam_description',TRUE);
-                } else {
-                    $exam_description = '';
-                }
+                $this->form_validation->set_rules('question_num','순번','trim|required|numeric');                                
+                $this->form_validation->set_rules('question_content_title','제목','trim|required');
+                $this->form_validation->set_rules('question_content_article','보기','trim|required');
+                $this->form_validation->set_rules('question_content_answer','답안','trim|required');
+                $this->form_validation->set_rules('question_content_explanation','해설','trim|required');
                 
                 /*******************
                 data query
                 *******************/     
                 if ($this->form_validation->run() == TRUE ) {
-                    $this->load->model('exam_model');                        
-                    if ( $exam_id == 0 ) {
-                        $exam_id = mt_rand();                    
-                        $result = $this->exam_model->update('create',array(
-                            'exam_id' => $exam_id,                            
-                            'unit_id' => $this->input->post('unit_id',TRUE),                           
-                            'exam_name' => $this->input->post('exam_name',TRUE),
-                            'exam_num' => $this->input->post('exam_num',TRUE),                            
-                            'exam_description' => $exam_description,
-                            'exam_state' => 1
+                    $this->load->model('question_model');                        
+                    if ( $question_id == 0 ) {
+                        $question_id = mt_rand();                    
+                        $result = $this->question_model->update('create',array(
+                            'question_id' => $question_id,
+                            'exam_id' => $exam_id,
+                            'question_num' => $this->input->post('question_num',TRUE),
+                            'question_content_title' => $this->input->post('question_content_title',TRUE),
+                            'question_content_article' => $this->input->post('question_content_article',TRUE),
+                            'question_content_answer' => $this->input->post('question_content_answer',TRUE),
+                            'question_content_explanation' => $this->input->post('question_content_explanation',TRUE),
+                            'question_state' => 1
                         ));
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/exam/edit/'.$exam_id, 'refresh');                        
+                            redirect('/admin/question/edit/'.$exam_id.'/'.$question_id, 'refresh');                        
                         } else {
                             $response['update'] = FALSE;
                         }
                     } else {
                         $set_data = array ();
-                        $set_data['exam_id'] = $exam_id; 
-                        if ( isset($_POST['unit_id']) ) {
-                            $set_data['unit_id'] = array (
-                                'key' => 'unit_id',
-                                'type' => 'int',
-                                'value' => $this->input->post('unit_id',TRUE)
-                            );
-                        };                                        
-                        if ( isset($_POST['exam_name']) ) {
-                            $set_data['exam_name'] = array (
-                                'key' => 'exam_name',
+                        $set_data['question_id'] = $question_id; 
+                        if ( isset($_POST['question_content_title']) ) {
+                            $set_data['question_content_title'] = array (
+                                'key' => 'question_content_title',
                                 'type' => 'string',
-                                'value' => $this->input->post('exam_name',TRUE)
+                                'value' => $this->input->post('question_content_title',TRUE)
                             );
                         };                
-                        if ( isset($_POST['exam_description']) ) {
-                            $set_data['exam_description'] = array (
-                                'key' => 'exam_description',
+                        if ( isset($_POST['question_content_article']) ) {
+                            $set_data['question_content_article'] = array (
+                                'key' => 'question_content_article',
                                 'type' => 'string',
-                                'value' => $this->input->post('exam_description',TRUE)
+                                'value' => $this->input->post('question_content_article',TRUE)
                             );
                         };                
-                        if ( isset($_POST['exam_num']) ) {
-                            $set_data['exam_num'] = array (
-                                'key' => 'exam_num',
+                        if ( isset($_POST['question_content_answer']) ) {
+                            $set_data['question_content_answer'] = array (
+                                'key' => 'question_content_answer',
+                                'type' => 'string',
+                                'value' => $this->input->post('question_content_answer',TRUE)
+                            );
+                        };                
+                        if ( isset($_POST['question_content_explanation']) ) {
+                            $set_data['question_content_explanation'] = array (
+                                'key' => 'question_content_explanation',
+                                'type' => 'string',
+                                'value' => $this->input->post('question_content_explanation',TRUE)
+                            );
+                        };                
+                        if ( isset($_POST['question_num']) ) {
+                            $set_data['question_num'] = array (
+                                'key' => 'question_num',
                                 'type' => 'int',
-                                'value' => $this->input->post('exam_num',TRUE)
+                                'value' => $this->input->post('question_num',TRUE)
                             );
                         };      
-                        if ( $this->exam_model->update('update',$set_data) ) {
+                        if ( $this->question_model->update('update',$set_data) ) {
                             $response['update'] = TRUE;
                         } else {
                             $response['update'] = FALSE;
@@ -341,36 +347,31 @@ class Exam extends CI_Controller {
                     validation
                     *******************/
                     $validation = array();
-                    if ( isset($_POST['category_id']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('category_id'))) ) {
-                            $validation['category_id'] = strip_tags(form_error('category_id'));
+                    if ( isset($_POST['question_num']) ) {
+                        if ( 0 < strlen(strip_tags(form_error('question_num'))) ) {
+                            $validation['question_num'] = strip_tags(form_error('question_num'));
                         };
                     };                                
-                    if ( isset($_POST['subject_id']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('subject_id'))) ) {
-                            $validation['subject_id'] = strip_tags(form_error('subject_id'));
+                    if ( isset($_POST['question_content_title']) ) {
+                        if ( 0 < strlen(strip_tags(form_error('question_content_title'))) ) {
+                            $validation['question_content_title'] = strip_tags(form_error('question_content_title'));
                         };
                     };            
-                    if ( isset($_POST['unit_id']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('unit_id'))) ) {
-                            $validation['unit_id'] = strip_tags(form_error('unit_id'));
+                    if ( isset($_POST['question_content_article']) ) {
+                        if ( 0 < strlen(strip_tags(form_error('question_content_article'))) ) {
+                            $validation['question_content_article'] = strip_tags(form_error('question_content_article'));
                         };
                     };                                
-                    if ( isset($_POST['exam_name']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('exam_name'))) ) {
-                            $validation['exam_name'] = strip_tags(form_error('exam_name'));
+                    if ( isset($_POST['question_content_answer']) ) {
+                        if ( 0 < strlen(strip_tags(form_error('question_content_answer'))) ) {
+                            $validation['question_content_answer'] = strip_tags(form_error('question_content_answer'));
                         };
                     };
-                    if ( isset($_POST['exam_description']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('exam_description'))) ) {
-                            $validation['exam_description'] = strip_tags(form_error('exam_description'));
+                    if ( isset($_POST['question_content_explanation']) ) {
+                        if ( 0 < strlen(strip_tags(form_error('question_content_explanation'))) ) {
+                            $validation['question_content_explanation'] = strip_tags(form_error('question_content_explanation'));
                         };
                     };                    
-                    if ( isset($_POST['exam_num']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('exam_num'))) ) {
-                            $validation['exam_num'] = strip_tags(form_error('exam_num'));
-                        };
-                    };
 
                     if ( count($validation) ) {
                         $response['status'] = 400;
@@ -386,53 +387,26 @@ class Exam extends CI_Controller {
                 };            
             };            
         }
-
         
-		$this->load->model('exam_model');
-        $result = $this->exam_model->out('id',array(
-            'exam_id' => $exam_id
-        ));
-		$this->load->model('unit_model');
-        $unit_out = $this->unit_model->out('all',array(
-            'p' => 0,
-            'limit' => 1000,
-            'order' => 'asc'
-        ));                
-		$this->load->model('subject_model');        
-        $subject_out = $this->subject_model->out('all',array(
-            'p' => 0,
-            'limit' => 1000,
-            'order' => 'asc'
-        ));        
-		$this->load->model('category_model');        
-        $category_out = $this->category_model->out('all',array(
-            'p' => 0,
-            'limit' => 1000,
-            'order' => 'asc'
+		$this->load->model('question_model');
+        $result = $this->question_model->out('id',array(
+            'question_id' => $question_id
         ));
         
         if ( $result ) {
             $response['status'] = 200;                    
             $response['data'] = array(
                 'out' => $result,
-                'unit_out' => $unit_out,
-                'subject_out' => $subject_out,
-                'category_out' => $category_out,
                 'count' => count($result)
             );        
         } else {
             $response['status'] = 401;
-            $response['data'] = array(
-                'unit_out' => $unit_out,                
-                'subject_out' => $subject_out,
-                'category_out' => $category_out                
-            );                    
         };        
         
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/exam/edit', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/question/edit', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
     }    

@@ -21,11 +21,11 @@ class Unit_model extends CI_Model{
         $sql = FALSE;
         
         if ( !array_key_exists('unit_name',$data) ) {
-            $data['subject_name'] = 0;
+            $data['unit_name'] = 0;
         };        
 
         if ( !array_key_exists('unit_state',$data) ) {
-            $data['subject_state'] = 0;
+            $data['unit_state'] = 0;
         };        
         
         if ( $type == 'create' ) {

@@ -1,6 +1,7 @@
 <?
 $row = FALSE;
 $subject_out = FALSE;
+$category_out = FALSE;
 if ( $response['status'] == 200 ) {
     if ( 0 < $response['data']['count'] ) {
         $row = $response['data']['out'][0];

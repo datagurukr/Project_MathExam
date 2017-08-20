@@ -116,7 +116,13 @@ $route['admin/exam/(:num)'] = "admin/exam/index/$1";
 $route['admin/exam/edit'] = "admin/exam/edit/0";
 $route['admin/exam/edit/(:num)'] = "admin/exam/edit/$1";
 $route['admin/exam/(:num)/delete'] = "admin/exam/edit/$1/delete";
-$route['admin/exam/question/(:num)'] = "admin/exam/question/$1";
+
+
+// Admin/Question
+$route['admin/question/(:num)'] = "admin/question/index/$1";
+$route['admin/question/(:num)/edit'] = "admin/question/edit/$1/0";
+$route['admin/question/(:num)/edit/(:num)'] = "admin/question/edit/$1/$2";
+$route['admin/question/(:num)/delete'] = "admin/question/edit/0/$1/delete";
 
 // Admin/Purchase
 $route['admin/purchase'] = "admin/purchase/index/1";

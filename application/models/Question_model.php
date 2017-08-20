@@ -10,7 +10,7 @@
 함수명명규칙
 -> 앞에 클래스 명을 붙이지 않는다. (함수명)
 ************************************/
-class Exam_model extends CI_Model{
+class Question_model extends CI_Model{
 	
 	function __construct() {
         parent::__construct();
@@ -20,33 +20,37 @@ class Exam_model extends CI_Model{
         
         $sql = FALSE;
         
-        if ( !array_key_exists('unit_name',$data) ) {
-            $data['subject_name'] = 0;
+        if ( !array_key_exists('question_content',$data) ) {
+            $data['question_content'] = 0;
         };        
 
-        if ( !array_key_exists('unit_state',$data) ) {
-            $data['subject_state'] = 0;
+        if ( !array_key_exists('question_state',$data) ) {
+            $data['question_state'] = 0;
         };        
         
         if ( $type == 'create' ) {
             $sql = "
-                INSERT INTO exam (     
+                INSERT INTO question (    
+                    question_id,
                     exam_id,
-                    unit_id,
-                    exam_num,
-                    exam_name,
-                    exam_description,
-                    exam_state,
-                    exam_register_date,
-                    exam_update_date
+                    question_state,
+                    question_num,
+                    question_content_title,
+                    question_content_article,
+                    question_content_answer,
+                    question_content_explanation,
+                    question_register_date,
+                    question_update_date
                 )
                 VALUES (
-                    ".$data['exam_id'].",                    
-                    ".$data['unit_id'].",
-                    ".$data['exam_num'].",                                                            
-                    '".$data['exam_name']."',                                        
-                    '".$data['exam_description']."',                                                            
-                    ".$data['exam_state'].",
+                    ".$data['question_id'].",                    
+                    ".$data['exam_id'].",
+                    ".$data['question_state'].",                                                            
+                    ".$data['question_num'].",                                                                                
+                    '".$data['question_content_title']."',
+                    '".$data['question_content_article']."',
+                    '".$data['question_content_answer']."',
+                    '".$data['question_content_explanation']."',                    
                     now(),
                     now()
                 );            
@@ -69,17 +73,17 @@ class Exam_model extends CI_Model{
             };
             if ( $add ) {
                 $sql = "
-                update exam
+                update question
                 set
                     ".$add."
-                    exam_update_date = now()
+                    question_update_date = now()
                 where
-                    exam_id = ".$data['exam_id']."
+                    question_id = ".$data['question_id']."
                 ";
             };
         } elseif ( $type == 'delete' ) {            
             $sql = "
-            delete from exam where exam_id = ".$data['exam_id']."
+            delete from question where question_id = ".$data['question_id']."
             ";            
         };
         
@@ -101,7 +105,9 @@ class Exam_model extends CI_Model{
     function out ($type, $data) {
         
         $sql = FALSE;
-        
+        if ( !array_key_exists('question_id',$data) ) {
+            $data['question_id'] = 0;
+        };                                        
         if ( !array_key_exists('exam_id',$data) ) {
             $data['exam_id'] = 0;
         };                                
@@ -165,21 +171,23 @@ class Exam_model extends CI_Model{
             현재알선입찰 : bidding_mediation_now_cnt
             */
             
-            
-            $select = "          
+            $select = "        
+            question.question_id as question_id,
             exam.exam_id as exam_id,
-            unit.unit_id as unit_id,
+            exam.unit_id as unit_id,
             unit.unit_name as unit_name,            
             subject.subject_id as subject_id,
             subject.subject_name as subject_name,
             category.category_id as category_id,                        
             category.category_name as category_name,            
-            exam.exam_num as exam_num,
-            exam.exam_name as exam_name,
-            exam.exam_description as exam_description,
-            exam.exam_state as exam_state,
-            exam.exam_register_date as exam_register_date,
-            exam.exam_update_date as exam_update_date
+            question.question_state as question_state,
+            question.question_num as question_num,
+            question.question_content_title as question_content_title,
+            question.question_content_article as question_content_article,
+            question.question_content_answer as question_content_answer,
+            question.question_content_explanation as question_content_explanation,
+            question.question_register_date as question_register_date,
+            question.question_update_date as question_update_date
             ";
         };        
         
@@ -188,7 +196,10 @@ class Exam_model extends CI_Model{
             select
                 ".$select."
             FROM
-                exam as exam
+                question as question
+                left outer join exam as exam
+                on
+                (question.exam_id = exam.exam_id)
                 left outer join unit AS unit
                 on
                 (exam.unit_id = unit.unit_id)
@@ -199,7 +210,7 @@ class Exam_model extends CI_Model{
                 on
                 (subject.category_id = category.category_id)                                
             WHERE
-                exam.exam_id = ".$data['exam_id']."
+                question.question_id = ".$data['question_id']."
             ".$limit."
             ";  
         } else {
@@ -207,7 +218,10 @@ class Exam_model extends CI_Model{
             select
                 ".$select."
             FROM
-                exam as exam
+                question as question
+                left outer join exam as exam
+                on
+                (question.exam_id = exam.exam_id)
                 left outer join unit AS unit
                 on
                 (exam.unit_id = unit.unit_id)
@@ -217,7 +231,7 @@ class Exam_model extends CI_Model{
                 left outer join category as category
                 on
                 (subject.category_id = category.category_id)                                
-            order by exam.exam_num ".$data['order'].", exam.exam_register_date ".$data['order']."        
+            order by question.question_num ".$data['order'].", question.question_register_date ".$data['order']."        
             ".$limit."
             ";  
         }
