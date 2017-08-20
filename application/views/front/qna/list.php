@@ -69,7 +69,7 @@
                                 </td>
                                 <td>
                                     <?
-                                    if ( $seesion_id == $row['user_id'] ) {
+                                    if ( $session_id == $row['user_id'] ) {
                                         ?>
                                     <a class="red-text modal-trigger" href="#modal<? echo $row['post_id']; ?>">삭제</a>
                                     <!-- Modal Structure -->
