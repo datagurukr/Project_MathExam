@@ -114,12 +114,24 @@ class Unit extends CI_Controller {
 		$this->load->model('unit_model');                
         
         if ( isset($_GET['p']) ) {
-            $p = $_GET['p'];
+            $p = (int)$_GET['p'];
+            if ( $p <= 0 ) {
+                $p = 1;
+            };
         } else {
             $p = 1;
         };
         $data['p'] = $p;        
         $p = (($p * 2) * 10) - 20;  
+        $pagination_url = '';        
+        if ( isset($_GET['q']) ) {
+            $q = $_GET['q'];
+            $pagination_url = $pagination_url.'&q='.$q;
+        } else {
+            $q = '';
+        };        
+        $data['q'] = $q;
+
         $pagination_url = '';        
         if ( isset($_GET['q']) ) {
             $q = $_GET['q'];

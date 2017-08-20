@@ -109,12 +109,15 @@ class User extends CI_Controller {
 		$this->load->model('user_model');                
         
         if ( isset($_GET['p']) ) {
-            $p = $_GET['p'];
+            $p = (int)$_GET['p'];
+            if ( $p <= 0 ) {
+                $p = 1;
+            };
         } else {
             $p = 1;
         };
+        $data['p'] = $p;        
         $p = (($p * 2) * 10) - 20;  
-        $data['p'] = $p;
         $pagination_url = '';        
         if ( isset($_GET['q']) ) {
             $q = $_GET['q'];

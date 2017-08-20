@@ -115,7 +115,10 @@ class Question extends CI_Controller {
 		$this->load->model('question_model');                
         
         if ( isset($_GET['p']) ) {
-            $p = $_GET['p'];
+            $p = (int)$_GET['p'];
+            if ( $p <= 0 ) {
+                $p = 1;
+            };
         } else {
             $p = 1;
         };
