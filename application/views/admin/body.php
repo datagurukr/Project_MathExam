@@ -20,7 +20,7 @@
     </head>
     <body>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="/admin/user" class="brand-logo">Administrator</a>
+            <div class="nav-wrapper container"><a id="logo-container" href="/admin/user" class="brand-logo">Just Think Adm</a>
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <a href="/admin/user">회원정보</a>

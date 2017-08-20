@@ -62,7 +62,7 @@
                                     <div id="modal<? echo $row['subject_id']; ?>" class="modal">
                                         <div class="modal-content">
                                             <h4>서브코스 삭제</h4>
-                                            <p>서브코스를 삭제하시겠습니까?</p>
+                                            <p>하위 메뉴들도 함께 삭제됩니다.<br> 삭제하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
