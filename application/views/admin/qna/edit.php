@@ -35,13 +35,6 @@ if ( $response['status'] == 200 ) {
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <div><? if ( isset($row['post_content_article']) ) { echo $row['post_content_article']; } else { echo '-'; }; ?></div>
-                    <!--<textarea disabled id="textarea1" class="materialize-textarea"></textarea>-->
-                    <label for="textarea1">내용</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
                     <h6>답글</h6>
                     <textarea id="editor1" name="post_content_reply"><? if ( isset($row['post_content_reply']) ) { echo $row['post_content_reply']; } else { echo set_value('post_content_reply'); }; ?></textarea>
                     <script>

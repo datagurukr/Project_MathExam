@@ -71,7 +71,6 @@ if ( $response['status'] == 200 ) {
                     };
                     ?>
                     <button type="button" class="waves-effect waves-light btn left" onclick="location.replace('<? echo $referer; ?>');">취소</button>
-                    
                 </div>
             </div>
         </form>
