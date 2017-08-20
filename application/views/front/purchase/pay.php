@@ -26,9 +26,9 @@ if ( $response['status'] == 200 ) {
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">                    
+                <div class="input-field col s6 center-right">                    
                     <!-- Modal Trigger -->
-                    <a class="waves-effect waves-light btn modal-trigger right" href="#modal1">구매</a>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">구매</a>
 
                     <!-- Modal Structure -->
                     <div id="modal1" class="modal">
@@ -42,7 +42,7 @@ if ( $response['status'] == 200 ) {
                         </div>
                     </div>                    
                 </div>
-                <div class="input-field col s12 center-align">
+                <div class="input-field col s6 center-left">
                     <?
                     $referer = @$_SERVER['HTTP_REFERER'];
                     if ( isset($_GET['referer']) ) {
