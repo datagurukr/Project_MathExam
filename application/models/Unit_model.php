@@ -192,6 +192,23 @@ class Unit_model extends CI_Model{
                 unit.unit_id = ".$data['unit_id']."
             ".$limit."
             ";  
+        } elseif ( $type == 'subject_id' ) {            
+            $sql = "
+            select
+                ".$select."
+            FROM
+                unit AS unit
+                left outer join subject as subject
+                on
+                (unit.subject_id = subject.subject_id)                
+                left outer join category as category
+                on
+                (subject.category_id = category.category_id)    
+            where
+                unit.subject_id = ".$data['subject_id']."
+            order by unit.unit_num ".$data['order'].", unit.unit_register_date ".$data['order']."        
+            ".$limit."
+            ";              
         } else {
             $sql = "
             select

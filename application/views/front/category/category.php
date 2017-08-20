@@ -1,11 +1,11 @@
 <?
 $row = FALSE;
-$exam_out = FALSE;
+$subject_out = FALSE;
 if ( $response['status'] == 200 ) {
     if ( 0 < $response['data']['count'] ) {
         $row = $response['data']['out'][0];
-        if ( $response['data']['exam_out'] ) {
-            $exam_out = $response['data']['exam_out'];                    
+        if ( $response['data']['subject_out'] ) {
+            $subject_out = $response['data']['subject_out'];                    
         };
     };
 };
@@ -20,24 +20,18 @@ if ( !$row ) {
                 <a href="/category/<? echo $row['category_id']; ?>" class="breadcrumb">
                     <? echo $row['category_name']; ?>
                 </a>
-                <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>" class="breadcrumb">
-                    <? echo $row['subject_name']; ?>
-                </a>                
-                <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>/<? echo $row['unit_id']; ?>" class="breadcrumb">
-                    <? echo $row['unit_name']; ?>
-                </a>                                
             </div>
         </div>
     </nav>
     <ul class="collection with-header">
         <?
-        if ( $exam_out ) {
-            foreach ( $exam_out as $out_row ) {
+        if ( $subject_out ) {
+            foreach ( $subject_out as $out_row ) {
                 ?>
-        <a href="/category/<? echo $out_row['category_id']; ?>/<? echo $out_row['subject_id']; ?>/<? echo $out_row['unit_id']; ?>/<? echo $out_row['exam_id']; ?>" class="collection-item">
+        <a href="/category/<? echo $out_row['category_id']; ?>/<? echo $out_row['subject_id']; ?>" class="collection-item">
             <?
-            if ( 0 < strlen(trim($out_row['exam_name'])) ) {
-                echo $out_row['exam_name'];
+            if ( 0 < strlen(trim($out_row['subject_name'])) ) {
+                echo $out_row['subject_name'];
             } else { 
                 echo '-'; 
             }; 
