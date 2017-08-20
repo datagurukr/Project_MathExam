@@ -17,33 +17,79 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?
+                            if ( $response['status'] == 200 ) {
+                                if ( 0 < $response['data']['count'] ) {
+                                    $num = $response['data']['out_cnt'] - $p; 
+                                    foreach ( $response['data']['out'] as $row ) {
+                                        ?>                            
                             <tr>
-                                <td>1</td>
-                                <td>코스</td>
-                                <td>서브코스</td>
-                                <td>챕터</td>
-                                <td><a href="/admin/exam/edit/0">유닛</a></td>
-                                <td><a href="/admin/exam/question/0">문제등록</a></td>
-                                <td><a class="red-text">삭제</a></td>
+                                <td>
+                                    <?
+                                        echo $row['exam_num'];
+                                    ?>
+                                </td>
+                                <td>
+                                    <?
+                                    if ( 0 < strlen(trim($row['category_name'])) ) {
+                                        echo $row['category_name'];
+                                    } else { 
+                                        echo '-'; 
+                                    }; 
+                                    ?>                                                                             
+                                </td>
+                                <td>
+                                    <?
+                                    if ( 0 < strlen(trim($row['subject_name'])) ) {
+                                        echo $row['subject_name'];
+                                    } else { 
+                                        echo '-'; 
+                                    }; 
+                                    ?>                                                                             
+                                </td>
+                                <td>
+                                    <?
+                                    if ( 0 < strlen(trim($row['unit_name'])) ) {
+                                        echo $row['unit_name'];
+                                    } else { 
+                                        echo '-'; 
+                                    }; 
+                                    ?>                                                                             
+                                </td>
+                                <td>
+                                    <a href="/admin/exam/edit/<? echo $row['exam_id']; ?>">
+                                        <?
+                                        if ( 0 < strlen(trim($row['exam_name'])) ) {
+                                            echo $row['exam_name'];
+                                        } else { 
+                                            echo '-'; 
+                                        }; 
+                                        ?>                                                                             
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="/admin/exam/question/<? echo $row['exam_id']; ?>">문제등록</a>
+                                </td>
+                                <td>
+                                    <a class="red-text modal-trigger" href="#modal<? echo $row['exam_id']; ?>">삭제</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal<? echo $row['exam_id']; ?>" class="modal">
+                                        <div class="modal-content">
+                                            <h4>유닛 삭제</h4>
+                                            <p>유닛을 삭제하시겠습니까?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
+                                            <a class="modal-action modal-close waves-effect waves-green btn-flat" onclick="location.href='/admin/exam/<? echo $row['exam_id']; ?>/delete?referer=/admin/exam?p=<? echo $p; ?>'">승인</a>
+                                        </div>
+                                    </div>                                    
+                                </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>코스</td>
-                                <td>서브코스</td>
-                                <td>챕터</td>
-                                <td><a href="/admin/exam/edit/0">유닛</a></td>
-                                <td><a href="/admin/exam/question/0">문제등록</a></td>
-                                <td><a class="red-text">삭제</a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>코스</td>
-                                <td>서브코스</td>
-                                <td>챕터</td>
-                                <td><a href="/admin/exam/edit/0">유닛</a></td>
-                                <td><a href="/admin/exam/question/0">문제등록</a></td>
-                                <td><a class="red-text">삭제</a></td>
-                            </tr>
+                                        <?
+                                    };
+                                };
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -55,4 +101,24 @@
             </div>
         </form>
     </div>
+    <div class="row">
+        <? echo $this->pagination->create_links(); ?>
+        <!--
+        <ul class="pagination center">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+        -->
+    </div>     
 </div>
+<script>
+$(document).ready(function(){
+// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+$('.modal').modal();
+});
+</script>

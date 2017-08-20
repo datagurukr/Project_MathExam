@@ -115,6 +115,7 @@ $route['admin/exam'] = "admin/exam/index/1";
 $route['admin/exam/(:num)'] = "admin/exam/index/$1";
 $route['admin/exam/edit'] = "admin/exam/edit/0";
 $route['admin/exam/edit/(:num)'] = "admin/exam/edit/$1";
+$route['admin/exam/(:num)/delete'] = "admin/exam/edit/$1/delete";
 $route['admin/exam/question/(:num)'] = "admin/exam/question/$1";
 
 // Admin/Purchase

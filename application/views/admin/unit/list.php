@@ -70,6 +70,7 @@
                                             <a class="modal-action modal-close waves-effect waves-green btn-flat" onclick="location.href='/admin/unit/<? echo $row['unit_id']; ?>/delete?referer=/admin/unit?p=<? echo $p; ?>'">승인</a>
                                         </div>
                                     </div>
+                                    
                                 </td>
                             </tr>
                                         <?
