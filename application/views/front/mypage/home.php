@@ -117,8 +117,8 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
 <script>
 $('.datepicker').pickadate({
     formatSubmit: 'yyyy-mm-dd',
-    selectMonths: false, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    selectYears: true, // Creates a dropdown of 15 years to control year,
+    selectMonths: true, // Creates a dropdown to control month
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
