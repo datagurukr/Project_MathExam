@@ -19,7 +19,8 @@
                             <?
                             if ( $response['status'] == 200 ) {
                                 if ( 0 < $response['data']['count'] ) {
-                                    $num = $response['data']['out_cnt'] - $p; 
+                                    $temp = ((($p * 2) * 10) - 20 ); 
+                                    $num = $response['data']['out_cnt'] - $temp; 
                                     foreach ( $response['data']['out'] as $row ) {
                                         ?>
                             <tr>

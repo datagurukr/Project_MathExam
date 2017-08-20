@@ -111,10 +111,13 @@ class Subject extends CI_Controller {
         /*******************
         data query
         *******************/             
-		$this->load->model('subject_model');                
+		$this->load->model('subject_model');
         
         if ( isset($_GET['p']) ) {
-            $p = $_GET['p'];
+            $p = (int)$_GET['p'];
+            if ( $p <= 0 ) {
+                $p = 1;
+            };
         } else {
             $p = 1;
         };

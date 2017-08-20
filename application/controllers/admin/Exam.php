@@ -114,7 +114,10 @@ class Exam extends CI_Controller {
 		$this->load->model('exam_model');                
         
         if ( isset($_GET['p']) ) {
-            $p = $_GET['p'];
+            $p = (int)$_GET['p'];
+            if ( $p <= 0 ) {
+                $p = 1;
+            };
         } else {
             $p = 1;
         };
