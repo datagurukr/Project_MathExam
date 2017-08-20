@@ -288,7 +288,8 @@ class Purchase extends CI_Controller {
             $session_id = 0;
         };
         if ( $session_id == 0 ) {
-            show_404();
+            $this->load->helper('url');
+            redirect('/login', 'refresh');            
         };
         $data['session_id'] = $session_id;
         

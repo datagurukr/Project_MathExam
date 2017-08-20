@@ -100,6 +100,7 @@ class Auth extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         if ( $session_id != 0 ) {
+            $this->load->helper('url');
             redirect('/', 'refresh');
         }
         
@@ -211,6 +212,7 @@ class Auth extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         if ( $session_id != 0 ) {
+            $this->load->helper('url');            
             redirect('/', 'refresh');
         }        
         
