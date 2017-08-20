@@ -1,3 +1,10 @@
+<?
+$row = FALSE;
+$content = '';
+if ( $response['status'] == 200 ) {
+    $content = $response['data']['out'];
+};
+?>
 <div class="section row">
     <nav>
         <div class="nav-wrapper">
@@ -9,6 +16,6 @@
 </div>
 <div class="section">
     <p class="flow-text">
-        ckEdit 영역_개인정보취급방침
+        <? if ( isset($content) ) { echo $content; } else { echo set_value('content'); }; ?>
     </p>
 </div>
