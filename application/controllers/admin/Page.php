@@ -24,6 +24,11 @@ class Page extends CI_Controller {
         $data = array();         
         
         /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
         page key
         *******************/
         $data['key'] = 'privacy';
@@ -54,10 +59,36 @@ class Page extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        /*******************
+        data query
+        *******************/
+        $result = FALSE;
+        $filename = './assets/file/privacy.txt';
+        if ( isset($_POST['content']) ) {
+            $content = $this->input->post('content',TRUE);
+            $file = fopen($filename, "w") or die("Unable to open file!");
+            fwrite($file, $content);
+            fclose($file);
+        }
+        
+        if (file_exists($filename)) {
+            $file = fopen($filename,"r"); 
+            $result = fread($file, filesize($filename)); fclose($file);
+        }      
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result
+            );        
+        } else {
+            $response['status'] = 401;
+        };         
+        
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/front/page/privacy', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/page/privacy', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
     }
@@ -69,6 +100,11 @@ class Page extends CI_Controller {
         $data = array();         
         
         /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
         page key
         *******************/
         $data['key'] = 'privacy';
@@ -99,10 +135,36 @@ class Page extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        /*******************
+        data query
+        *******************/
+        $result = FALSE;
+        $filename = './assets/file/terms.txt';
+        if ( isset($_POST['content']) ) {
+            $content = $this->input->post('content',TRUE);
+            $file = fopen($filename, "w") or die("Unable to open file!");
+            fwrite($file, $content);
+            fclose($file);
+        }
+        
+        if (file_exists($filename)) {
+            $file = fopen($filename,"r"); 
+            $result = fread($file, filesize($filename)); fclose($file);
+        }
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result
+            );        
+        } else {
+            $response['status'] = 401;
+        };        
+        
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/front/page/terms', $data, TRUE);
+            $data['container'] = $this->load->view('/admin/page/terms', $data, TRUE);
             $this->load->view('/admin/body', $data, FALSE);            
         };
     }    
