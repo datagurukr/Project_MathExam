@@ -54,9 +54,7 @@ if ( $response['data']['category_out'] ) {
                                     $category_id = set_value('category_id'); }
                                 ;
                                 ?>
-                        <option value="<? echo $category_row['category_id']; ?>" <? if ( $category_row['category_id'] == $category_id ) { echo 'selected'; }; ?> >
-                            <? echo $category_row['category_name']; ?>
-                        </option>
+                        <option value="<? echo $category_row['category_id']; ?>" <? if ( $category_row['category_id'] == $category_id ) { echo 'selected'; }; ?> ><? echo $category_row['category_name']; ?></option>
                                 <?
                             };
                         };
@@ -91,9 +89,7 @@ if ( $response['data']['category_out'] ) {
                                     $subject_id = set_value('subject_id'); 
                                 };
                                 ?>
-                        <option value="<? echo $subject_row['subject_id']; ?>" <? if ( $subject_row['subject_id'] == $subject_id ) { echo 'selected'; }; ?> >
-                            <? echo $subject_row['subject_name']; ?>
-                        </option>
+                        <option value="<? echo $subject_row['subject_id']; ?>" <? if ( $subject_row['subject_id'] == $subject_id ) { echo 'selected'; }; ?> ><? echo $subject_row['subject_name']; ?></option>
                                 <?
                             };
                         };
@@ -129,9 +125,7 @@ if ( $response['data']['category_out'] ) {
                                     $unit_id = set_value('unit_id'); }
                                 ;
                                 ?>
-                        <option value="<? echo $unit_row['unit_id']; ?>" <? if ( $unit_row['unit_id'] == $unit_id ) { echo 'selected'; }; ?> >
-                            <? echo $unit_row['unit_name']; ?>
-                        </option>
+                        <option value="<? echo $unit_row['unit_id']; ?>" <? if ( $unit_row['unit_id'] == $unit_id ) { echo 'selected'; }; ?> ><? echo $unit_row['unit_name']; ?></option>
                                 <?
                             };
                         };

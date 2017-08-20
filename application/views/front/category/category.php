@@ -27,24 +27,26 @@ if ( !$row ) {
         <?
         if ( $subject_out ) {
             foreach ( $subject_out as $out_row ) {
+
+                if ( $out_row['user_subject_purchase'] == 0 ) {
+                    $link = '/purchase/'.$out_row['subject_id'];                    
+                } else {
+                    $link = '/category/'.$out_row['category_id'].'/'.$out_row['subject_id'];                    
+                };
+                
                 ?>
-        <a href="/category/<? echo $out_row['category_id']; ?>/<? echo $out_row['subject_id']; ?>" class="collection-item">
+        <a href="<? echo $link; ?>" class="collection-item">
             <?
             if ( 0 < strlen(trim($out_row['subject_name'])) ) {
                 echo $out_row['subject_name'];
+                if ( $out_row['user_subject_purchase'] == 0 ) { echo ' (구매하기)'; };
             } else { 
                 echo '-'; 
+                if ( $out_row['user_subject_purchase'] == 0 ) { echo ' (구매하기)'; };                
             }; 
             ?>   
         </a>
             <?
-                if ( $out_row['user_subject_purchase'] == 0 ) {
-                ?>
-        <a class="collection-item" href="/purchase/<? echo $out_row['subject_id']; ?>"><i class="material-icons">attach_money</i></a>  
-
-<!--                            <i class="material-icons">send</i> -->
-                <?
-                };
             };
         };
         ?>
