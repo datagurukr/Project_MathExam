@@ -167,6 +167,11 @@ class Subject_model extends CI_Model{
             $select = "          
             subject.subject_id as subject_id,
             subject.category_id as category_id,
+            ( select count(*) from user_subject_relation as inside_user_subject_relation 
+            where 
+            inside_user_subject_relation.subject_id = subject.subject_id
+            and
+            inside_user_subject_relation.user_id = ".$data['session_id']." ) as user_subject_purchase,
             category.category_name as category_name,
             subject.subject_num as subject_num,
             subject.subject_state as subject_state,

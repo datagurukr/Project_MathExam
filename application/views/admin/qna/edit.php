@@ -29,13 +29,13 @@ if ( $response['status'] == 200 ) {
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input disabled value="<? if ( isset($row['post_content_title ']) ) { echo $row['post_content_title ']; } else { echo '-'; }; ?>" type="text" class="validate">
+                    <input disabled value="<? if ( isset($row['post_content_title']) ) { echo $row['post_content_title']; } else { echo '-'; }; ?>" type="text" class="validate">
                     <label for="no">제목</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <div><? if ( isset($row['post_content_article ']) ) { echo $row['post_content_article ']; } else { echo '-'; }; ?></div>
+                    <div><? if ( isset($row['post_content_article']) ) { echo $row['post_content_article']; } else { echo '-'; }; ?></div>
                     <!--<textarea disabled id="textarea1" class="materialize-textarea"></textarea>-->
                     <label for="textarea1">내용</label>
                 </div>

@@ -62,6 +62,7 @@ class Category extends CI_Controller {
         
         $this->load->model('subject_model');        
         $subject_out = $this->subject_model->out('category_id',array(
+            'session_id' => $session_id,
             'category_id' => $category_id,
             'p' => 0,
             'limit' => 1000,
