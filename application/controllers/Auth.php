@@ -99,6 +99,9 @@ class Auth extends CI_Controller {
             $session_id = 0;
         };
         $data['session_id'] = $session_id;
+        if ( $session_id != 0 ) {
+            redirect('/', 'refresh');
+        }
         
         $this->form_validation->set_rules('user_email','Email','trim|required|valid_email|callback_user_email_check');
         $this->form_validation->set_rules('user_pass','Password','trim|required|callback_user_pass_check');        
@@ -207,6 +210,9 @@ class Auth extends CI_Controller {
             $session_id = 0;
         };
         $data['session_id'] = $session_id;
+        if ( $session_id != 0 ) {
+            redirect('/', 'refresh');
+        }        
         
         $this->form_validation->set_rules('user_email','Email','trim|required|valid_email|callback_user_email_overlap_check');
         $this->form_validation->set_rules('user_pass','Password','trim|required');        
