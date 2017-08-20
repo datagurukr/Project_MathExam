@@ -110,11 +110,11 @@
                     <label for="keyword">검색어를 입력하세요.</label>
                 </div>
                 <div class="input-field col s4 right-align">
-                    <button type="submit" class="waves-effect waves-light btn">검색</button>
+                    <button type="submit" class="waves-effect waves-light btn validate">검색</button>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 right-align">
+                <div class="col s12 right-align">
                     <a href="/qna/edit" class="waves-effect waves-teal btn">작성</a>
                 </div>
             </div>
