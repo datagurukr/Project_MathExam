@@ -109,19 +109,3 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
         </form>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('select').material_select();
-    });
-</script>
-<script>
-$('.datepicker').pickadate({
-    formatSubmit: 'yyyy-mm-dd',
-    selectYears: true, // Creates a dropdown of 15 years to control year,
-    selectMonths: true, // Creates a dropdown to control month
-    today: 'Today',
-    clear: 'Clear',
-    close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
-});
-</script>
