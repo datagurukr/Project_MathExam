@@ -15,9 +15,9 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
     <?
     if ( isset($response['update']) ) {
         if ( $response['update'] ) {
-            echo '수정 했습니다.';
+            //echo '수정 했습니다.';
         } else {
-            echo '수정에 실패했습니다.';            
+            //echo '수정에 실패했습니다.';            
         };
     };
     ?>

@@ -10,8 +10,8 @@ if ( $response['status'] == 200 ) {
     <nav>
         <div class="nav-wrapper">
             <div class="col s12">
-                <a href="#!" class="breadcrumb">Q&A</a>
-                <a href="#!" class="breadcrumb">
+                <a href="/qna" class="breadcrumb">Q&A</a>
+                <a href="/qna/detail/<? echo $row['post_id']; ?>" class="breadcrumb">
                     <? 
                     if ( isset($row['post_content_title']) ) { 
                         echo $row['post_content_title']; 
