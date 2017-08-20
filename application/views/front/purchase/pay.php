@@ -42,14 +42,14 @@ if ( $response['status'] == 200 ) {
                         </div>
                     </div>                    
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 center-align">
                     <?
                     $referer = @$_SERVER['HTTP_REFERER'];
                     if ( isset($_GET['referer']) ) {
                         $referer = $_GET['referer'];
                     };
                     ?>
-                    <button type="button" class="waves-effect waves-light btn left" onclick="location.replace('<? echo $referer; ?>');">취소</button>
+                    <button type="button" class="waves-effect waves-light btn" onclick="location.replace('<? echo $referer; ?>');">취소</button>
                     
                 </div>
             </div>

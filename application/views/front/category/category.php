@@ -40,7 +40,9 @@ if ( !$row ) {
             <?
                 if ( $out_row['user_subject_purchase'] == 0 ) {
                 ?>
-        <a href="/purchase/<? echo $out_row['subject_id']; ?>">구매하기</a>        
+        <a class="collection-item" href="/purchase/<? echo $out_row['subject_id']; ?>"><i class="material-icons">attach_money</i></a>  
+
+<!--                            <i class="material-icons">send</i> -->
                 <?
                 };
             };

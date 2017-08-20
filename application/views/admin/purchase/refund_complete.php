@@ -39,8 +39,8 @@ if ( $response['status'] == 200 ) {
             </div>
         </div>        
         <div class="row">
-            <div class="input-field col s6">                    
-                <a href="/admin/purchase" class="waves-effect waves-light btn modal-trigger right">확인</a>
+            <div class="input-field col s12 center-align">
+                <a href="/admin/purchase" class="waves-effect waves-light btn modal-trigger">확인</a>
             </div>
         </div>
     </div>
