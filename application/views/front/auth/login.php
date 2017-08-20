@@ -59,6 +59,7 @@
                             </div>
                         </div>
                         <div class="card-action">
+                            <a href="">페이스북으로 로그인</a>
                             <a href="/register">회원가입</a>
                             <a href="/recover">비밀번호 찾기</a>
                         </div>

@@ -14,35 +14,121 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">마이페이지</a></li>
+		<ul class="right hide-on-med-and-down">
+        <li><a href="admUserInfo.html">회원정보</a></li>
+				<li><a href="#">이용약관</a></li>
+				<li><a href="#">개인정보처리방침</a></li>
+				<li><a href="admCourse.html">코스</a></li>
+				<li><a href="admSubCourse.html">서브코스</a></li>
+				<li><a href="admChapter.html">챕터</a></li>
+				<li><a href="admUnit.html">유닛</a></li>
 				<li><a href="#">구매내역</a></li>
-				<li><a href="#">로그아웃</a></li>
+				<li><a href="">통계</a></li>
+				<li><a href="admQna.html">Q&A</a></li>
+				<li><a href="logIn.html">로그아웃</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="admUserInfo.html">회원정보</a></li>
+				<li><a href="#">이용약관</a></li>
+				<li><a href="#">개인정보처리방침</a></li>
+				<li><a href="admCourse.html">코스</a></li>
+				<li><a href="admSubCourse.html">서브코스</a></li>
+				<li><a href="admChapter.html">챕터</a></li>
+				<li><a href="admUnit.html">유닛</a></li>
+				<li><a href="#">구매내역</a></li>
+				<li><a href="#">통계</a></li>
+				<li><a href="admQna.html">Q&A</a></li>
+				<li><a href="admLogIn.html">로그아웃</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
   <div class="container">
     <div class="section row">
-			<nav>
-				<div class="nav-wrapper">
-      		<div class="col s12">
-							<a href="#!" class="breadcrumb">Q&A</a>				
+        <nav>
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="#!" class="breadcrumb">Q&A</a>
+                </div>
+            </div>
+        </nav>		
+    </div>
+    <div class="section">
+			<div class="row">
+				<form class="col s12">
+					<div class="row">
+						<div class="col s12">
+							<table class="responsive-table striped centered">
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>등록일</th>
+										<th>답변유무</th>
+										<th>삭제</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td><a href="qnaDetail.html">결재는 어떻게 하나요</a></td>
+										<td>강동원</td>
+										<td>2017-02-23</td>
+										<td>O</td>
+										<td><a class="red-text">삭제</a></td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td><a href="qnaDetail.html">결재는 어떻게 하나요</a></td>
+										<td>강동원</td>
+										<td>2017-02-23</td>
+										<td>O</td>
+										<td><a class="red-text">삭제</a></td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td><a href="qnaDetail.html">결재는 어떻게 하나요</a></td>
+										<td>강동원</td>
+										<td>2017-02-23</td>
+										<td>O</td>
+										<td><a class="red-text">삭제</a></td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td><a href="qnaDetail.html">결재는 어떻게 하나요</a></td>
+										<td>강동원</td>
+										<td>2017-02-23</td>
+										<td>O</td>
+										<td><a class="red-text">삭제</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-				</div>
-			</nav>
-			<ul class="collection with-header">
-				<a href="#!" class="collection-item active">Q&A_1</a>
-				<a href="#!" class="collection-item">Q&A_2</a>
-				<a href="#!" class="collection-item">Q&A_3</a>
-				<a href="#!" class="collection-item">Q&A_4</a>
-      </ul>		
-		</div>
-		<div class="fixed-action-btn" style="bottom: 150px; right: 24px;">
-			<a href="qnaWrite.html" class="btn-floating btn-large waves-effect waves-light red">
-				<i class="material-icons">mode_edit</i>
-			</a>
+                    <div class="row">
+                        <div class="input-field col s12 right-align">
+							<a class="waves-effect waves-teal btn">작성</a>
+						</div>
+                    </div>
+                    <div class="row">
+						<div class="input-field col s2">
+							<select>
+								<option value="" disabled selected>전체</option>
+								<option value="1">유저명</option>
+								<option value="2">Email</option>
+							</select>
+						</div>
+						<div class="input-field col s6">
+							<input id="" type="text" class="validate">
+							<label for="keyword">검색어를 입력하세요.</label>
+						</div>
+						<div class="input-field col s4">
+							<a class="waves-effect waves-teal btn-flat">검색</a>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
   </div>
 
@@ -65,6 +151,11 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+	<script>
+	$(document).ready(function() {
+    $('select').material_select();
+  });
+	</script>
 
   </body>
 </html>
