@@ -62,7 +62,6 @@
                                         <div class="modal-footer">
                                             <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
                                             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
-
                                         </div>
                                     </div>
                                 </div>
