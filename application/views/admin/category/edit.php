@@ -47,9 +47,7 @@ if ( $response['status'] == 200 ) {
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
-<!--                    <button type="submit" class="waves-effect waves-light btn right">적용</button>-->
-                    
+                <div class="input-field col s6">                    
                     <!-- Modal Trigger -->
                     <a class="waves-effect waves-light btn modal-trigger right" href="#modal1">적용</a>
 
@@ -63,9 +61,7 @@ if ( $response['status'] == 200 ) {
                             <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
                             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
                         </div>
-                    </div>
-                    
-                    
+                    </div>                    
                 </div>
                 <div class="input-field col s6">
                     <?
