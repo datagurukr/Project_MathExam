@@ -68,7 +68,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/admin/exam/question/<? echo $row['exam_id']; ?>">문제등록</a>
+                                    <a href="/admin/exam/question/<? echo $row['exam_id']; ?>">문제보기</a>
                                 </td>
                                 <td>
                                     <a class="red-text modal-trigger" href="#modal<? echo $row['exam_id']; ?>">삭제</a>
