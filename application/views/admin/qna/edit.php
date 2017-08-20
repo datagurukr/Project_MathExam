@@ -11,13 +11,13 @@ if ( $response['status'] == 200 ) {
         <form class="col s12" method="post" enctype="application/x-www-form-urlencoded">
             <div class="row">
                 <div class="input-field col s12">
-                    <input disabled value="1" type="text" class="validate">
-                    <label for="no">순번</label>
+                    <input disabled value="<? if ( isset($row['post_id']) ) { echo $row['post_id']; } else { echo '-'; }; ?>" type="text" class="validate">
+                    <label for="no">문의번호</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input disabled value="강동원" type="text" class="validate">
+                    <input disabled value="<? if ( isset($row['user_name']) ) { echo $row['user_name']; } else { echo '-'; }; ?>" type="text" class="validate">
                     <label for="no">작성자</label>
                 </div>
             </div>
@@ -29,13 +29,14 @@ if ( $response['status'] == 200 ) {
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input disabled value="한달 이용가가 어떻게 되나요?" type="text" class="validate">
+                    <input disabled value="<? if ( isset($row['post_content_title ']) ) { echo $row['post_content_title ']; } else { echo '-'; }; ?>" type="text" class="validate">
                     <label for="no">제목</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea disabled id="textarea1" class="materialize-textarea"></textarea>
+                    <div><? if ( isset($row['post_content_article ']) ) { echo $row['post_content_article ']; } else { echo '-'; }; ?></div>
+                    <!--<textarea disabled id="textarea1" class="materialize-textarea"></textarea>-->
                     <label for="textarea1">내용</label>
                 </div>
             </div>

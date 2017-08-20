@@ -78,7 +78,10 @@ $route['terms'] = "page/terms";
 // Qna
 $route['qna'] = "qna/index/1";
 $route['qna/(:num)'] = "qna/index/$1";
+$route['qna/edit'] = "qna/edit/0";
+$route['qna/edit/(:num)'] = "qna/edit/$1";
 $route['qna/detail/(:num)'] = "qna/detail/$1";
+$route['qna/(:num)/delete'] = "qna/edit/$1/delete";
 
 /* Admin */
 $route['admin'] = "admin/user/index/1";

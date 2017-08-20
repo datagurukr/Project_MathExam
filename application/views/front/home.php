@@ -1,7 +1,9 @@
 <?
 $category_out = FALSE;
+$post_out = FALSE;
 if ( $response['data']['category_out'] ) {
-    $category_out = $response['data']['category_out'];                    
+    $category_out = $response['data']['category_out'];
+    $post_out = $response['data']['post_out'];
 };
 ?>
 <div class="section">
@@ -40,29 +42,45 @@ if ( $response['data']['category_out'] ) {
                 </a>
             </div>
         </li>
+        <?
+        if ( $post_out ) {
+            foreach ( $post_out as $row ) {
+                ?>
+        
         <li>
             <div class="collapsible-header">
-                이용문의1
+                <?
+                if ( 0 < strlen(trim($row['post_content_title'])) ) {
+                    echo $row['post_content_title'];
+                } else { 
+                    echo '-'; 
+                };
+                ?>
             </div>
             <div class="collapsible-body">
-                <span>답변1</span>
+                <span>
+                <?
+                if ( 0 < strlen(trim($row['post_content_article'])) ) {
+                    echo $row['post_content_article'];
+                } else { 
+                    echo '-'; 
+                };
+                ?>                    
+                </span>                
+                <span>
+                <?
+                if ( 0 < strlen(trim($row['post_content_reply'])) ) {
+                    echo $row['post_content_reply'];
+                } else { 
+                    echo '-'; 
+                };
+                ?>                    
+                </span>
             </div>
         </li>
-        <li>
-            <div class="collapsible-header">
-                이용문의2
-            </div>
-            <div class="collapsible-body">
-                <span>답변2</span>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header">
-                이용문의3
-            </div>
-            <div class="collapsible-body">
-                <span>답변3</span>
-            </div>
-        </li>
+                <?
+            }
+        }
+        ?>        
     </ul>
 </div>

@@ -190,6 +190,45 @@ class Post_model extends CI_Model{
                 post.post_id = ".$data['post_id']."
             ".$limit."
             ";  
+        } elseif ( $type == 'answer' ) {
+            $sql = "
+            select
+                ".$select."
+            FROM
+                post AS post
+                left outer join user as user
+                on
+                (post.user_id = user.user_id)                
+            where
+                post.post_content_reply != ''
+            order by post.post_register_date ".$data['order']."        
+            ".$limit."
+            ";  
+        } elseif ( $type == 'all' ) {            
+            $where = '';
+            if ( strlen(trim($data['q'])) != 0 ) {
+                if ( $data['target'] == 'name' ) {
+                    $where = "and user.user_name like '%".$data['q']."%'";
+                } elseif ( $data['target'] == 'email' ) {
+                    $where = "and user.user_email like '%".$data['q']."%'";
+                } else {
+                    $where = "and ( user.user_name like '%".$data['q']."%' or user.user_email like '%".$data['q']."%' )";
+                }
+            };
+            $sql = "
+            select
+                ".$select."
+            FROM
+                post AS post
+                left outer join user as user
+                on
+                (post.user_id = user.user_id)  
+            where
+                0 <= post.post_state
+                ".$where."                
+            order by post.post_register_date ".$data['order']."        
+            ".$limit."
+            ";              
         } else {
             $sql = "
             select
@@ -201,7 +240,7 @@ class Post_model extends CI_Model{
                 (post.user_id = user.user_id)                
             order by post.post_register_date ".$data['order']."        
             ".$limit."
-            ";  
+            ";              
         }
         
         if ( $sql ) {

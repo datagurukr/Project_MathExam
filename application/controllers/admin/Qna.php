@@ -82,7 +82,6 @@ class Qna extends CI_Controller {
         *******************/
         $response = array();        
         
-        
         /*******************
         ajax 통신 체크
         *******************/
@@ -145,14 +144,14 @@ class Qna extends CI_Controller {
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,
-            'order' => 'asc',
+            'order' => 'desc',
             'target' => $target
         ));
         $result_count = $this->post_model->out('all',array(
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,
-            'order' => 'asc',            
+            'order' => 'desc',            
             'target' => $target,            
             'count' => TRUE
         ));    

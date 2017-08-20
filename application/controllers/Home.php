@@ -57,12 +57,21 @@ class Home extends CI_Controller {
             'p' => 0,
             'limit' => 1000,
             'order' => 'asc'
-        ));        
+        ));
+        
+        $this->load->model('post_model');                
+        $post_out = $this->post_model->out('answer',array(
+            'user_id' => $session_id,
+            'p' => 0,
+            'limit' => 5,
+            'order' => 'desc'
+        ));
         
         $response['status'] = 200;                    
         $response['data'] = array(
-            'category_out' => $category_out
-        );                
+            'category_out' => $category_out,
+            'post_out' => $post_out
+        );
         
         $data['response'] = $response;        
         if ( $ajax ) {
