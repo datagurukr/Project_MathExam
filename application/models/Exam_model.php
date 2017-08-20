@@ -202,6 +202,26 @@ class Exam_model extends CI_Model{
                 exam.exam_id = ".$data['exam_id']."
             ".$limit."
             ";  
+        } elseif ( $type == 'unit_id' ) {   
+            $sql = "
+            select
+                ".$select."
+            FROM
+                exam as exam
+                left outer join unit AS unit
+                on
+                (exam.unit_id = unit.unit_id)
+                left outer join subject as subject
+                on
+                (unit.subject_id = subject.subject_id)                
+                left outer join category as category
+                on
+                (subject.category_id = category.category_id)   
+            where
+                exam.unit_id = ".$data['unit_id']."
+            order by exam.exam_num ".$data['order'].", exam.exam_register_date ".$data['order']."        
+            ".$limit."
+            ";              
         } else {
             $sql = "
             select

@@ -52,6 +52,22 @@ class Page extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $result = FALSE;
+        $filename = './assets/file/privacy.txt';        
+        if (file_exists($filename)) {
+            $file = fopen($filename,"r"); 
+            $result = fread($file, filesize($filename)); fclose($file);
+        }      
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result
+            );        
+        } else {
+            $response['status'] = 401;
+        };                 
+        
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
@@ -94,6 +110,22 @@ class Page extends CI_Controller {
             $session_id = 0;
         };
         $data['session_id'] = $session_id;
+        
+        $result = FALSE;
+        $filename = './assets/file/terms.txt';        
+        if (file_exists($filename)) {
+            $file = fopen($filename,"r"); 
+            $result = fread($file, filesize($filename)); fclose($file);
+        }      
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result
+            );        
+        } else {
+            $response['status'] = 401;
+        };                 
         
         $data['response'] = $response;        
         if ( $ajax ) {

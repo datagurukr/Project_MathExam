@@ -1,8 +1,28 @@
+<?
+$category_out = FALSE;
+if ( $response['data']['category_out'] ) {
+    $category_out = $response['data']['category_out'];                    
+};
+?>
 <div class="section">
     <div class="collection">
-        <a href="/category/0" class="collection-item">
-            고등학교(수학)
+        <?
+        if ( $category_out ) {
+            foreach ( $category_out as $row ) {
+                ?>
+        <a href="/category/<? echo $row['category_id']; ?>" class="collection-item">
+            <?
+            if ( 0 < strlen(trim($row['category_name'])) ) {
+                echo $row['category_name'];
+            } else { 
+                echo '-'; 
+            };
+            ?>
         </a>
+                <?
+            }
+        }
+        ?>
         <!--
         <a href="subCourse.html" class="collection-item active">서브코스2</a>
         <a href="subCourse.html" class="collection-item">서브코스3</a>

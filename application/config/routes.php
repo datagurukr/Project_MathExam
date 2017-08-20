@@ -56,9 +56,10 @@ $route['default_controller'] = "home/index";
 $route['home'] = "home/index";
 
 // category
-$route['category/(:num)'] = "category/subject/$1";
-$route['category/(:num)/(:num)'] = "category/unit/$1/$2";
-$route['category/(:num)/(:num)/(:num)'] = "category/exam/$1/$2/$3";
+$route['category/(:num)'] = "category/category/$1";
+$route['category/(:num)/(:num)'] = "category/subject/$1/$2";
+$route['category/(:num)/(:num)/(:num)'] = "category/unit/$1/$2/$3";
+$route['category/(:num)/(:num)/(:num)/(:num)'] = "category/exam/$1/$2/$3/$4";
 
 // Auth
 $route['login'] = "auth/login";

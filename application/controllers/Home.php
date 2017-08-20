@@ -52,6 +52,18 @@ class Home extends CI_Controller {
         };
         $data['session_id'] = $session_id;
         
+        $this->load->model('category_model');        
+        $category_out = $this->category_model->out('all',array(
+            'p' => 0,
+            'limit' => 1000,
+            'order' => 'asc'
+        ));        
+        
+        $response['status'] = 200;                    
+        $response['data'] = array(
+            'category_out' => $category_out
+        );                
+        
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {

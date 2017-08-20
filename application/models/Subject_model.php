@@ -190,6 +190,20 @@ class Subject_model extends CI_Model{
                 subject.subject_id = ".$data['subject_id']."
             ".$limit."
             ";  
+        } elseif ( $type == 'category_id' ) {      
+            $sql = "
+            select
+                ".$select."
+            FROM
+                subject AS subject
+                left outer join category as category
+                on
+                (subject.category_id = category.category_id)
+            where
+                subject.category_id = ".$data['category_id']."
+            order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
+            ".$limit."
+            ";              
         } elseif ( $type == 'all' ) {            
             $sql = "
             select
