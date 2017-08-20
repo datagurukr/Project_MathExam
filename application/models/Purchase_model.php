@@ -10,121 +10,57 @@
 함수명명규칙
 -> 앞에 클래스 명을 붙이지 않는다. (함수명)
 ************************************/
-class Subject_model extends CI_Model{
+class Purchase_model extends CI_Model{
 	
 	function __construct() {
         parent::__construct();
     }
     
-    function pay ($type, $data) {
-        
-        $sql = FALSE;
-        
-        if ( !array_key_exists('relation_ip_address',$data) ) {
-            $data['relation_ip_address'] = $_SERVER['REMOTE_ADDR'];
-        };                        
-        
-        if ( $type == 'create' || $type == 'automatic' ) {
-            $sql = "
-            select
-                *
-            from
-                user_subject_relation  
-            where
-                user_id = ".$data['user_id']." and subject_id = ".$data['subject_id']."
-            ";
-            $query = $this->db->query($sql);
-            if( 0 < $query->num_rows() ){
-                $row = $query->result_array();
-                if ( $type == 'automatic' ) {
-                    $sql = "
-                    delete from user_subject_relation where user_id = ".$data['user_id']." and subject_id = ".$data['subject_id']."
-                    ";            
-                } else {
-                    return FALSE;
-                };
-            } else {
-                $sql = "
-                insert into user_subject_relation
-                (
-                    relation_id,
-                    user_id, 
-                    subject_id,
-                    relation_ip_address,
-                    relation_register_date,
-                    relation_update_date
-                )
-                values
-                (
-                    ".$data['relation_id'].",
-                    ".$data['user_id'].",
-                    ".$data['subject_id'].",
-                    '".$data['relation_ip_address']."',
-                    now(),
-                    now()
-                )                
-                ";
-            };
-        } else {
-            $sql = "
-            delete from user_subject_relation where user_id = ".$data['user_id']." and subject_id = ".$data['subject_id']."
-            ";                            
-        };
-        if ( $sql ) {
-            $this->db->trans_begin();
-            $this->db->query($sql);
-            if ($this->db->trans_status() === FALSE) {
-                $this->db->trans_rollback();
-                return FALSE;
-            } else {
-                $this->db->trans_commit();
-                if ( $type == 'automatic' || $type == 'create' ) {
-                    return array();
-                } else {
-                    return TRUE;
-                };
-            };
-        } else {
-            return FALSE;
-        };        
-        
-    }     
-    
     function update ($type, $data) {
         
         $sql = FALSE;
 
-        if ( !array_key_exists('subject_price',$data) ) {
-            $data['subject_price'] = 0;
+        if ( !array_key_exists('purchase_state',$data) ) {
+            $data['purchase_state'] = 0;
         };        
             
-        if ( !array_key_exists('subject_name',$data) ) {
-            $data['subject_name'] = 0;
+        if ( !array_key_exists('purchase_name',$data) ) {
+            $data['purchase_name'] = '';
         };        
 
-        if ( !array_key_exists('subject_state',$data) ) {
-            $data['subject_state'] = 0;
+        if ( !array_key_exists('purchase_price',$data) ) {
+            $data['purchase_price'] = 0;
         };        
+
+        if ( !array_key_exists('subject_id',$data) ) {
+            $data['subject_id'] = 0;
+        };        
+        
+        if ( !array_key_exists('purchase_refund_reason',$data) ) {
+            $data['purchase_refund_reason'] = '';
+        };                
         
         if ( $type == 'create' ) {
             $sql = "
-                INSERT INTO  subject (                
+                INSERT INTO  purchase (                
+                    purchase_id,
+                    user_id,
                     subject_id,
-                    category_id,
-                    subject_num,
-                    subject_state,
-                    subject_name,
-                    subject_price,
-                    subject_register_date,
-                    subject_update_date
+                    purchase_state,
+                    purchase_refund_reason,
+                    purchase_name,
+                    purchase_price,
+                    purchase_register_date,
+                    purchase_update_date
                 )
                 VALUES (
-                    ".$data['subject_id'].",
-                    ".$data['category_id'].",    
-                    ".$data['subject_num'].",                                                            
-                    ".$data['subject_state'].",                                        
-                    '".$data['subject_name']."',
-                    ".$data['subject_price'].",                                                            
+                    ".$data['purchase_id'].",
+                    ".$data['user_id'].",                    
+                    ".$data['subject_id'].",    
+                    ".$data['purchase_state'].",                                                            
+                    '".$data['purchase_refund_reason']."',                                        
+                    '".$data['purchase_name']."',
+                    ".$data['purchase_price'].",                                                            
                     now(),
                     now()
                 );            
@@ -147,17 +83,17 @@ class Subject_model extends CI_Model{
             };
             if ( $add ) {
                 $sql = "
-                update subject
+                update purchase
                 set
                     ".$add."
-                    subject_update_date = now()
+                    purchase_update_date = now()
                 where
-                    subject_id = ".$data['subject_id']."
+                    purchase_id = ".$data['purchase_id']."
                 ";
             };
         } elseif ( $type == 'delete' ) {            
             $sql = "
-            delete from subject where subject_id = ".$data['subject_id']."
+            delete from purchase where purchase_id = ".$data['purchase_id']."
             ";            
         };
         
@@ -237,22 +173,24 @@ class Subject_model extends CI_Model{
             현재알선입찰 : bidding_mediation_now_cnt
             */
             
-            
-            $select = "          
+            $select = "        
+            purchase.purchase_id,
+            purchase.user_id,
+            user.user_name as user_name,
+            purchase.subject_id,
             subject.subject_id as subject_id,
-            subject.category_id as category_id,
-            ( select count(*) from user_subject_relation as inside_user_subject_relation 
-            where 
-            inside_user_subject_relation.subject_id = subject.subject_id
-            and
-            inside_user_subject_relation.user_id = ".$data['session_id']." ) as user_subject_purchase,
-            category.category_name as category_name,
             subject.subject_num as subject_num,
             subject.subject_state as subject_state,
             subject.subject_name as subject_name,
             subject.subject_price as subject_price,
             subject.subject_register_date as subject_register_date,
-            subject.subject_update_date as subject_update_date
+            subject.subject_update_date as subject_update_date, 
+            purchase.purchase_state,
+            purchase.purchase_refund_reason,
+            purchase.purchase_name,
+            purchase.purchase_price,
+            purchase.purchase_register_date,
+            purchase.purchase_update_date            
             ";
         };        
         
@@ -261,45 +199,32 @@ class Subject_model extends CI_Model{
             select
                 ".$select."
             FROM
-                subject AS subject
-                left outer join category as category
+                purchase AS purchase
+                left outer join user as user
                 on
-                (subject.category_id = category.category_id)                
+                (purchase.user_id = user.user_id)                
+                left outer join subject as subject
+                on
+                (purchase.subject_id = subject.subject_id)
             WHERE
-                subject.subject_id = ".$data['subject_id']."
+                purchase.purchase_id = ".$data['purchase_id']."
             ".$limit."
             ";  
-        } elseif ( $type == 'user_subject' ) {   
+        } elseif ( $type == 'user_id' ) {      
             $sql = "
             select
                 ".$select."
             FROM
-                user_subject_relation as user_subject_relation 
-                left outer join subject AS subject
+                purchase AS purchase
+                left outer join user as user
                 on
-                (user_subject_relation.subject_id = subject.subject_id)                
-                left outer join category as category
+                (purchase.user_id = user.user_id)                
+                left outer join subject as subject
                 on
-                (subject.category_id = category.category_id)
+                (purchase.subject_id = subject.subject_id)
             where
-                user_subject_relation.user_id = ".$data['user_id']."
-                and
-                user_subject_relation.subject_id = ".$data['subject_id']."
-            order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
-            ".$limit."
-            ";              
-        } elseif ( $type == 'category_id' ) {      
-            $sql = "
-            select
-                ".$select."
-            FROM
-                subject AS subject
-                left outer join category as category
-                on
-                (subject.category_id = category.category_id)
-            where
-                subject.category_id = ".$data['category_id']."
-            order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
+                purchase.user_id = ".$data['user_id']."
+            order by purchase.purchase_register_date ".$data['order']."        
             ".$limit."
             ";              
         } elseif ( $type == 'all' ) {            
@@ -307,11 +232,14 @@ class Subject_model extends CI_Model{
             select
                 ".$select."
             FROM
-                subject AS subject
-                left outer join category as category
+                purchase AS purchase
+                left outer join user as user
                 on
-                (subject.category_id = category.category_id)
-            order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
+                (purchase.user_id = user.user_id)                
+                left outer join subject as subject
+                on
+                (purchase.subject_id = subject.subject_id)
+            order by purchase.purchase_register_date ".$data['order']."        
             ".$limit."
             ";  
         } else {
@@ -319,11 +247,11 @@ class Subject_model extends CI_Model{
             select
                 ".$select."
             FROM
-                subject AS subject
-                left outer join category as category
+                purchase AS purchase
+                left outer join user as user
                 on
-                (subject.category_id = category.category_id)
-            order by subject.subject_num ".$data['order'].", subject.subject_register_date ".$data['order']."        
+                (purchase.user_id = user.user_id)                
+            order by purchase.purchase_register_date ".$data['order']."        
             ".$limit."
             ";  
         }

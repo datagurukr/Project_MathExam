@@ -128,7 +128,8 @@ class Category extends CI_Controller {
         *******************/     
 		$this->load->model('subject_model');
         $result = $this->subject_model->out('id',array(
-            'subject_id' => $subject_id
+            'subject_id' => $subject_id,
+            'session_id' => $session_id
         ));
         
         $this->load->model('unit_model');        
@@ -141,6 +142,12 @@ class Category extends CI_Controller {
         
         if ( $result ) {
             $response['status'] = 200;                    
+            if ( $result ) {
+                if ( $result[0]['user_subject_purchase'] == 0 ) {
+                    $this->load->helper('url');
+                    redirect('/purchase/'.$subject_id, 'refresh');
+                };
+            };
             $response['data'] = array(
                 'out' => $result,
                 'unit_out' => $unit_out,

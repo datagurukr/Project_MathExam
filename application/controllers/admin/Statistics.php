@@ -29,6 +29,11 @@ class Statistics extends CI_Controller {
         $data['key'] = 'privacy';
         
         /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
         ajax 통신 체크
         *******************/
         $ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])

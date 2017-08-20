@@ -72,7 +72,7 @@
                         <a href="/logout">로그아웃</a>
                     </li>                    
                         <?
-                        if ( isset($data['session']['admin']) ) {
+                        if ( isset($session['admin']) ) {
                             ?>
                     <li>
                         <a href="/admin">관리자</a>

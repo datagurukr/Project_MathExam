@@ -55,18 +55,21 @@ if ( $response['status'] == 200 ) {
                             document.getElementById( 'ie8-warning' ).className = 'tip alert';
                         }
                     </script>     
-                    <p class="light red-text">
-                        <?
-                        // validation
-                        if ( isset($response) ) {
-                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
-                                if ( isset($response['error']['validation']['post_content_reply']) ) {
-                                        echo $response['error']['validation']['post_content_reply'];
-                                };
+
+                    <?
+                    // validation
+                    if ( isset($response) ) {
+                        if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
+                            if ( isset($response['error']['validation']['post_content_reply']) ) {
+                                ?>
+                                    <p class="light red-text">
+                                    <? echo $response['error']['validation']['post_content_reply']; ?>
+                                    </p>                                                                
+                                <?
                             };
                         };
-                        ?>                     
-                    </p>                    
+                    };
+                    ?>                     
                 </div>
             </div>
             <div class="row">
