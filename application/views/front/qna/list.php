@@ -98,11 +98,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 right-align">
-                    <a href="/qna/edit" class="waves-effect waves-teal btn">작성</a>
-                </div>
-            </div>
-            <div class="row">
                 <div class="input-field col s2">
                     <select name="target">
                         <option value="" <? if ( $target == '' ) { echo 'selected'; }; ?> disabled selected>전체</option>
@@ -115,7 +110,12 @@
                     <label for="keyword">검색어를 입력하세요.</label>
                 </div>
                 <div class="input-field col s4 right-align">
-                    <button type="submit" class="waves-effect waves-light btn">검색</a>
+                    <button type="submit" class="waves-effect waves-light btn">검색</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 right-align">
+                    <a href="/qna/edit" class="waves-effect waves-teal btn">작성</a>
                 </div>
             </div>
         </form>

@@ -58,7 +58,7 @@ if ( $response['data']['category_out'] ) {
                 ?>
             </div>
             <div class="collapsible-body">
-                <span>
+                <div>
                 <?
                 if ( 0 < strlen(trim($row['post_content_article'])) ) {
                     echo $row['post_content_article'];
@@ -66,8 +66,9 @@ if ( $response['data']['category_out'] ) {
                     echo '-'; 
                 };
                 ?>                    
-                </span>                
-                <span>
+                </div>
+                <div class="divider"></div>
+                <div>
                 <?
                 if ( 0 < strlen(trim($row['post_content_reply'])) ) {
                     echo $row['post_content_reply'];
@@ -75,7 +76,7 @@ if ( $response['data']['category_out'] ) {
                     echo '-'; 
                 };
                 ?>                    
-                </span>
+                </div>
             </div>
         </li>
                 <?

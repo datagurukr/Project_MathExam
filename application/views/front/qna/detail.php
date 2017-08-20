@@ -25,13 +25,13 @@ if ( $response['status'] == 200 ) {
     </nav>		
 </div>
 <div class="section">
-    <p class="flow-text">
+    <p>
         <? if ( isset($row['post_content_article']) ) { echo $row['post_content_article']; } else { echo '-'; }; ?>
     </p>    
 </div>
 <div class="divider"></div>
 <div class="section">
-    <p class="flow-text">
+    <p>
         <? 
         if ( isset($row['post_content_reply']) ) {
             if ( strlen(trim($row['post_content_reply'])) != 0 ) { 
@@ -44,7 +44,7 @@ if ( $response['status'] == 200 ) {
     </p>
 </div>
 <div class="divider"></div>
-<div class="section">
+<div class="section right-align">
 
     <?
     $referer = @$_SERVER['HTTP_REFERER'];
@@ -52,6 +52,6 @@ if ( $response['status'] == 200 ) {
         $referer = $_GET['referer'];
     };
     ?>
-    <button type="button" class="waves-effect waves-light btn left" onclick="location.replace('<? echo $referer; ?>');">확인</button>    
+    <button type="button" class="waves-effect waves-light btn" onclick="location.replace('<? echo $referer; ?>');">확인</button>    
 
 </div>
