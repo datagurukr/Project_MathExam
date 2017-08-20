@@ -26,7 +26,7 @@
                             <tr>
                                 <td><? echo $num; $num--; ?></td>
                                 <td>
-                                    <a href="/admin/user/<? echo $row['user_id']; ?>">
+                                    <a href="/admin/user/<? echo $row['user_id']; ?>?referer=/admin/user?p=<? echo $p; ?>">
                                         <? 
                                         if ( 0 < strlen(trim($row['user_name'])) ) {
                                             echo $row['user_name'];

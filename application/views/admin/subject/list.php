@@ -38,7 +38,7 @@
                                     ?>                                         
                                 </td>
                                 <td>
-                                    <a href="/admin/subject/edit/<? echo $row['subject_id']; ?>">
+                                    <a href="/admin/subject/edit/<? echo $row['subject_id']; ?>?referer=/admin/subject?p=<? echo $p; ?>">
                                         <?
                                         if ( 0 < strlen(trim($row['subject_name'])) ) {
                                             echo $row['subject_name'];
@@ -83,7 +83,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 right-align">
-                    <a href="/admin/subject/edit" class="waves-effect waves-light btn">생성</a>
+                    <a href="/admin/subject/edit?referer=/admin/subject?p=<? echo $p; ?>" class="waves-effect waves-light btn">생성</a>
                 </div>
             </div>
         </form>

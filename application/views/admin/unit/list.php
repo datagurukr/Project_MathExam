@@ -47,7 +47,7 @@
                                     ?>                                                                             
                                 </td>
                                 <td>
-                                    <a href="/admin/unit/edit/<? echo $row['unit_id']; ?>">
+                                    <a href="/admin/unit/edit/<? echo $row['unit_id']; ?>?referer=/admin/unit?p=<? echo $p; ?>">
                                         <?
                                         if ( 0 < strlen(trim($row['unit_name'])) ) {
                                             echo $row['unit_name'];
@@ -85,7 +85,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 right-align">
-                    <a href="/admin/unit/edit" class="waves-effect waves-light btn">생성</a>
+                    <a href="/admin/unit/edit?referer=/admin/unit?p=<? echo $p; ?>" class="waves-effect waves-light btn">생성</a>
                 </div>
             </div>
         </form>

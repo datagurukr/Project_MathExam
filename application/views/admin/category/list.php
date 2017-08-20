@@ -28,7 +28,7 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="/admin/category/edit/<? echo $row['category_id']; ?>">
+                                    <a href="/admin/category/edit/<? echo $row['category_id']; ?>?referer=/admin/category?p=<? echo $p; ?>">
                                         <?
                                         if ( 0 < strlen(trim($row['category_name'])) ) {
                                             echo $row['category_name'];
@@ -66,7 +66,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 right-align">
-                    <a href="/admin/category/edit" class="waves-effect waves-light btn">생성</a>
+                    <a href="/admin/category/edit?referer=/admin/category?p=<? echo $p; ?>" class="waves-effect waves-light btn">생성</a>
                 </div>
             </div>
         </form>

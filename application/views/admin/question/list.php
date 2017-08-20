@@ -28,7 +28,7 @@
                                     ?>                                    
                                 </td>
                                 <td class="center-align" style="max-width:100px">   
-                                    <a href="/admin/question/<? echo $row['exam_id']; ?>/edit/<? echo $row['question_id']; ?>" class="tooltipped truncate" data-position="bottom" data-delay="50" data-tooltip="<? echo $question_content_title; ?>">
+                                    <a href="/admin/question/<? echo $row['exam_id']; ?>/edit/<? echo $row['question_id']; ?>?referer=/admin/question?p=<? echo $p; ?>" class="tooltipped truncate" data-position="bottom" data-delay="50" data-tooltip="<? echo $question_content_title; ?>">
                                         <? echo $question_content_title; ?>
                                     </a>
                                 </td>
@@ -58,7 +58,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 right-align">
-                    <a href="/admin/question/<? echo $exam_id; ?>/edit" class="waves-effect waves-light btn">생성</a>
+                    <a href="/admin/question/<? echo $exam_id; ?>/edit?referer=/admin/question?p=<? echo $p; ?>" class="waves-effect waves-light btn">생성</a>
                 </div>
             </div>
         </form>

@@ -26,7 +26,7 @@
                             <tr>
                                 <td><? echo $num; $num--; ?></td>
                                 <td>
-                                    <a href="/admin/qna/edit/<? echo $row['post_id']; ?>">
+                                    <a href="/admin/qna/edit/<? echo $row['post_id']; ?>?referer=/admin/qna?p=<? echo $p; ?>">
                                         <?
                                         if ( 0 < strlen(trim($row['post_content_title'])) ) {
                                             echo $row['post_content_title'];
@@ -86,7 +86,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 right-align">
-                    <a href="/admin/qna/edit" class="waves-effect waves-light btn">생성</a>
+                    <a href="/admin/qna/edit?referer=/admin/qna?p=<? echo $p; ?>" class="waves-effect waves-light btn">생성</a>
                 </div>
             </div>
         </form>
