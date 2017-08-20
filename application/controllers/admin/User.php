@@ -58,8 +58,8 @@ class User extends CI_Controller {
         $config['prev_tag_open'] = '<li>';
         $config['prev_tag_close'] = '</li>';		
         /*현제페이지*/
-        $config['cur_tag_open'] = '<li class="active">';
-        $config['cur_tag_close'] = '</li>';		
+        $config['cur_tag_open'] = '<li class="active"><a>';
+        $config['cur_tag_close'] = '</a></li>';		
         /*다음링크번호*/
         $config['num_tag_open'] = '<li class="waves-effect">';
         $config['num_tag_close'] = '</li>';    

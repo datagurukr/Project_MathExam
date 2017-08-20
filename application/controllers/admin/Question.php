@@ -58,8 +58,8 @@ class Question extends CI_Controller {
         $config['prev_tag_open'] = '<li>';
         $config['prev_tag_close'] = '</li>';		
         /*현제페이지*/
-        $config['cur_tag_open'] = '<li class="active">';
-        $config['cur_tag_close'] = '</li>';		
+        $config['cur_tag_open'] = '<li class="active"><a>';
+        $config['cur_tag_close'] = '</a></li>';		
         /*다음링크번호*/
         $config['num_tag_open'] = '<li class="waves-effect">';
         $config['num_tag_close'] = '</li>';    
@@ -266,10 +266,10 @@ class Question extends CI_Controller {
                             'question_id' => $question_id,
                             'exam_id' => $exam_id,
                             'question_num' => $this->input->post('question_num',TRUE),
-                            'question_content_title' => $this->input->post('question_content_title',TRUE),
-                            'question_content_article' => $this->input->post('question_content_article',TRUE),
-                            'question_content_answer' => $this->input->post('question_content_answer',TRUE),
-                            'question_content_explanation' => $this->input->post('question_content_explanation',TRUE),
+                            'question_content_title' => $this->input->post('question_content_title',FALSE),
+                            'question_content_article' => $this->input->post('question_content_article',FALSE),
+                            'question_content_answer' => $this->input->post('question_content_answer',FALSE),
+                            'question_content_explanation' => $this->input->post('question_content_explanation',FALSE),
                             'question_state' => 1
                         ));
                         if ( $result ) {
