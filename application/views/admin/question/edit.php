@@ -88,13 +88,13 @@ if ( $response['status'] == 200 ) {
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <h6>답안</h6>
-                    <textarea id="editor3" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <h6>답안1</h6>
+                    <textarea id="editor3-1" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
                     <script>
-                    CKEDITOR.replace( 'editor3', {
+                    CKEDITOR.replace( 'editor3-1', {
                         extraPlugins: 'mathjax',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
-                        height: 150
+                        height: 100
                     } );
 
                     if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
@@ -114,6 +114,120 @@ if ( $response['status'] == 200 ) {
                         ?>                                         
                     </p>    
                 </div>
+                
+                <div class="input-field col s12">
+                    <h6>답안2</h6>
+                    <textarea id="editor3-2" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <script>
+                    CKEDITOR.replace( 'editor3-2', {
+                        extraPlugins: 'mathjax',
+                        mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
+                        height: 100
+                    } );
+
+                    if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
+                        document.getElementById( 'ie8-warning' ).className = 'tip alert';
+                    }
+                    </script>
+                    <p class="light red-text">                    
+                        <?
+                        // validation
+                        if ( isset($response) ) {
+                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
+                                if ( isset($response['error']['validation']['question_content_answer']) ) {
+                                        echo $response['error']['validation']['question_content_answer'];
+                                };
+                            };
+                        };
+                        ?>                                         
+                    </p>    
+                </div>
+                
+                <div class="input-field col s12">
+                    <h6>답안3</h6>
+                    <textarea id="editor3-3" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <script>
+                    CKEDITOR.replace( 'editor3-3', {
+                        extraPlugins: 'mathjax',
+                        mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
+                        height: 100
+                    } );
+
+                    if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
+                        document.getElementById( 'ie8-warning' ).className = 'tip alert';
+                    }
+                    </script>
+                    <p class="light red-text">                    
+                        <?
+                        // validation
+                        if ( isset($response) ) {
+                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
+                                if ( isset($response['error']['validation']['question_content_answer']) ) {
+                                        echo $response['error']['validation']['question_content_answer'];
+                                };
+                            };
+                        };
+                        ?>                                         
+                    </p>    
+                </div>
+                
+                <div class="input-field col s12">
+                    <h6>답안4</h6>
+                    <textarea id="editor3-4" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <script>
+                    CKEDITOR.replace( 'editor3-4', {
+                        extraPlugins: 'mathjax',
+                        mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
+                        height: 100
+                    } );
+
+                    if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
+                        document.getElementById( 'ie8-warning' ).className = 'tip alert';
+                    }
+                    </script>
+                    <p class="light red-text">                    
+                        <?
+                        // validation
+                        if ( isset($response) ) {
+                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
+                                if ( isset($response['error']['validation']['question_content_answer']) ) {
+                                        echo $response['error']['validation']['question_content_answer'];
+                                };
+                            };
+                        };
+                        ?>                                         
+                    </p>    
+                </div>
+                
+                <div class="input-field col s12">
+                    <h6>답안5</h6>
+                    <textarea id="editor3-5" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <script>
+                    CKEDITOR.replace( 'editor3-5', {
+                        extraPlugins: 'mathjax',
+                        mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
+                        height: 100
+                    } );
+
+                    if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
+                        document.getElementById( 'ie8-warning' ).className = 'tip alert';
+                    }
+                    </script>
+                    <p class="light red-text">                    
+                        <?
+                        // validation
+                        if ( isset($response) ) {
+                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
+                                if ( isset($response['error']['validation']['question_content_answer']) ) {
+                                        echo $response['error']['validation']['question_content_answer'];
+                                };
+                            };
+                        };
+                        ?>                                         
+                    </p>    
+                </div>
+                
+                
             </div>
             <div class="row">
                 <div class="input-field col s12">
