@@ -50,7 +50,13 @@ if ( $question_out ) {
             <? echo $out_row['question_content_article']; ?>        
 
             <!--ckEdit 영역_답안-->
-            <? echo $out_row['question_content_answer']; ?>        
+            <p>
+              <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+              <label for="filled-in-box">
+                <? echo $out_row['question_content_answer']; ?>
+              </label>
+            </p>
+                    
 
             <!--ckEdit 영역_해설-->
             <ul class="collapsible" data-collapsible="accordion">
