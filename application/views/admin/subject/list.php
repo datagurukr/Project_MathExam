@@ -66,7 +66,7 @@
                                             <p>하위 메뉴들도 함께 삭제됩니다.<br> 삭제하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
+                                            <a type="button" class="modal-close waves-effect waves-red btn-flat">취소</a>
                                             <a class="modal-action modal-close waves-effect waves-green btn-flat" onclick="location.href='/admin/subject/<? echo $row['subject_id']; ?>/delete?referer=/admin/subject?p=<? echo $p; ?>'">승인</a>
                                         </div>
                                     </div>                                    

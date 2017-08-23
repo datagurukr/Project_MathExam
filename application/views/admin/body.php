@@ -43,13 +43,13 @@
         </ul>
         
         <!-- Modal Structure -->
-        <div id="modal1" class="modal">
+        <div id="logout" class="modal">
             <div class="modal-content">
                 <h4>로그아웃</h4>
                 <p>로그아웃 하시겠습니까?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
+                <button type="button" class="modal-close waves-effect waves-red btn-flat">취소</button>
                 <a href="/logout" class="modal-action modal-close waves-effect waves-green btn-flat ">확인</a>
             </div>
         </div>
@@ -76,7 +76,7 @@
                         <a href="/admin/qna">Q&A</a>
                     </li>
                     <li>
-                        <a href="#modal1" class="modal-trigger">로그아웃</a>
+                        <a href="#logout" class="modal-trigger">로그아웃</a>
                     </li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
@@ -111,7 +111,7 @@
                         <a href="/admin/qna">Q&A</a>
                     </li>
                     <li>
-                        <a href="/logout">로그아웃</a>
+                        <a href="#logout" class="modal-trigger">로그아웃</a>
                     </li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

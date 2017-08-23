@@ -51,13 +51,25 @@ if ( $question_out ) {
 
             <!--ckEdit 영역_답안-->
             <p>
-              <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+              <input type="checkbox" class="filled-in modal-trigger" id="filled-in-box" checked="checked" href="#modal1"/>
               <label for="filled-in-box">
                 <? echo $out_row['question_content_answer']; ?>
               </label>
             </p>
-                    
+            <!-- Modal Trigger -->
 
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>정답 체크</h4>
+                    <p>정답입니다.</p>
+<!--                <p>오답입니다. 다시 풀어보세요^^</p>    -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="modal-close waves-effect waves-red btn-flat">확인</button>
+                </div>
+            </div>
+                    
             <!--ckEdit 영역_해설-->
             <ul class="collapsible" data-collapsible="accordion">
                 <li>

@@ -69,7 +69,7 @@
                                             <p>Q&A를 삭제하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a type="button" class="modal-close waves-effect waves-red btn-flat">최소</a>
+                                            <a type="button" class="modal-close waves-effect waves-red btn-flat">취소</a>
                                             <a class="modal-action modal-close waves-effect waves-green btn-flat" onclick="location.href='/admin/qna/<? echo $row['post_id']; ?>/delete?referer=/admin/qna?p=<? echo $p; ?>'">승인</a>
                                         </div>
                                     </div>                                    
