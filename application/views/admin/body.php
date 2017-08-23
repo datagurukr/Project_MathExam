@@ -19,29 +19,39 @@
 
     </head>
     <body>
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="/admin/user" class="brand-logo">Just Think Adm</a>
+        <ul id="dropdown1" class="dropdown-content">
+          <li>
+            <a href="/admin/terms">이용약관</a>
+          </li>
+          <li>
+            <a href="/admin/privacy">개인정보</a>
+          </li>
+        </ul>
+        <ul id="dropdown2" class="dropdown-content">
+          <li>
+            <a href="/admin/category">코스</a>
+          </li>
+          <li>
+            <a href="/admin/subject">서브 코스</a>
+          </li>   
+          <li>
+            <a href="/admin/unit">챕터</a>
+          </li>
+          <li>
+            <a href="/admin/exam">유닛</a>
+          </li>
+        </ul>
+        <nav class="deep-purple lighten-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="/admin/user" class="brand-logo">Just Think</a>
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <a href="/admin/user">회원정보</a>
                     </li>
                     <li>
-                        <a href="/admin/terms">이용약관</a>
+                        <a class="dropdown-button" href="#!" data-activates="dropdown1">약관<i class="material-icons right">arrow_drop_down</i></a>
                     </li>
                     <li>
-                        <a href="/admin/privacy">개인정보처리방침</a>
-                    </li>
-                    <li>
-                        <a href="/admin/category">코스</a>
-                    </li>
-                    <li>
-                        <a href="/admin/subject">서브 코스</a>
-                    </li>
-                    <li>
-                        <a href="/admin/unit">챕터</a>
-                    </li>
-                    <li>
-                        <a href="/admin/exam">유닛</a>
+                        <a class="dropdown-button" href="#!" data-activates="dropdown2">카테고리<i class="material-icons right">arrow_drop_down</i></a>
                     </li>
                     <li>
                         <a href="/admin/purchase">구매내역</a>
