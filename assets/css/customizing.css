@@ -7,6 +7,8 @@ main{flex: 1 0 auto}
     border: solid 1px;
 }
 
-.question-section table, th, td {
+.question-section table, 
+.question-section th, 
+.question-section td {
     border: solid 1px;
 }
