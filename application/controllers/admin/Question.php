@@ -265,9 +265,6 @@ class Question extends CI_Controller {
                 if ( isset($_POST['question_content_answer']) ) {
                     $question_content_answer = $this->input->post('question_content_answer',TRUE);
                 }
-                
-                echo $_POST['question_content_answer1'];
-                
                 if ( isset($_POST['question_content_answer1']) ) {
                     $question_content_answer1 = $this->input->post('question_content_answer1',TRUE);                    
                 }

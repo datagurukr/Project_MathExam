@@ -49,7 +49,7 @@ if ( $question_out ) {
     foreach ( $question_out as $out_row ) {
         ?>
         <div class="divider"></div>
-        <div class="section question-section">
+        <div class="section question-section cke_reset">
             <!--ckEdit 영역_문제보기(이미지, 텍스트, 링크)-->
             <? echo $out_row['question_content_title']; ?>
 
@@ -61,10 +61,11 @@ if ( $question_out ) {
             if ( 0 < strlen($out_row['question_content_answer1']) ) {
                 ?>
             <p>
-              <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 1 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_1"/>
-              <label for="answer_checkbox_<? echo $out_row['question_id']?>_1">
-                <? echo $out_row['question_content_answer1']; ?>
-              </label>
+                 <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 1 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_1"/>
+                <label for="answer_checkbox_<? echo $out_row['question_id']?>_1">
+                    1번 답안
+                </label>
+                <div><? echo $out_row['question_content_answer1']; ?></div>
             </p>
                 <?
             }
@@ -75,8 +76,9 @@ if ( $question_out ) {
             <p>
               <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 2 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_2"/>
               <label for="answer_checkbox_<? echo $out_row['question_id']?>_2">
-                <? echo $out_row['question_content_answer2']; ?>
-              </label>
+                    2번 답안
+                </label>
+                <div><? echo $out_row['question_content_answer2']; ?></div>
             </p>
                 <?
             }
@@ -87,8 +89,9 @@ if ( $question_out ) {
             <p>
               <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 3 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_3"/>
               <label for="answer_checkbox_<? echo $out_row['question_id']?>_3">
-                <? echo $out_row['question_content_answer3']; ?>
-              </label>
+                    3번 답안
+                </label>
+                <div><? echo $out_row['question_content_answer3']; ?></div>
             </p>
                 <?
             }
@@ -99,8 +102,9 @@ if ( $question_out ) {
             <p>
               <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 4 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_4"/>
               <label for="answer_checkbox_<? echo $out_row['question_id']?>_4">
-                <? echo $out_row['question_content_answer4']; ?>
-              </label>
+                    4번 답안
+                </label>
+                <div><? echo $out_row['question_content_answer4']; ?></div>
             </p>
                 <?
             }
@@ -111,8 +115,9 @@ if ( $question_out ) {
             <p>
               <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 5 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_5"/>
               <label for="answer_checkbox_<? echo $out_row['question_id']?>_5">
-                <? echo $out_row['question_content_answer5']; ?>
-              </label>
+                    5번 답안
+                </label>
+                <div><? echo $out_row['question_content_answer5']; ?></div>
             </p>
                 <?
             }
