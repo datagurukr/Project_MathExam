@@ -159,6 +159,26 @@ class Subject_model extends CI_Model{
             $sql = "
             delete from subject where subject_id = ".$data['subject_id']."
             ";            
+        } elseif ( $type == 'delete_category' ) {                        
+            $this->load->model('unit_model');
+            $temp_sql = "
+                select * from subject where category_id = ".$data['category_id']."
+            ";
+            if ( $temp_sql ) {
+                $temp_query = $this->db->query($temp_sql);
+                if( 0 < $temp_query->num_rows() ){
+                    $temp_data = $temp_query->result_array();
+                    foreach ( $temp_data as $temp_row ) {
+                        $this->unit_model->update('delete_subject',array(
+                            'subject_id' => $temp_row['subject_id']
+                        ));
+                    };
+                };
+            };
+            
+            $sql = "
+            delete from subject where category_id = ".$data['category_id']."
+            ";                        
         };
         
         if ( $sql ) {

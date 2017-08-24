@@ -78,9 +78,13 @@ class Category_model extends CI_Model{
                 ";
             };
         } elseif ( $type == 'delete' ) {            
+            $this->load->model('subject_model');
+            $this->subject_model->update('delete_category',array(
+                'category_id' => $data['category_id']
+            ));
             $sql = "
             delete from category where category_id = ".$data['category_id']."
-            ";            
+            ";
         };
         
         if ( $sql ) {

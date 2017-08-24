@@ -96,6 +96,10 @@ class Question_model extends CI_Model{
             $sql = "
             delete from question where question_id = ".$data['question_id']."
             ";            
+        } elseif ( $type == 'delete_exam' ) {            
+            $sql = "
+            delete from exam where exam_id = ".$data['exam_id']."
+            ";                        
         };
         
         if ( $sql ) {

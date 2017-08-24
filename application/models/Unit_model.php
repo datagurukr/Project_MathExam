@@ -79,6 +79,26 @@ class Unit_model extends CI_Model{
             $sql = "
             delete from unit where unit_id = ".$data['unit_id']."
             ";            
+        } elseif ( $type == 'delete_subject' ) {
+            $this->load->model('exam_model');
+            $temp_sql = "
+                select * from unit where subject_id = ".$data['subject_id']."
+            ";
+            if ( $temp_sql ) {
+                $temp_query = $this->db->query($temp_sql);
+                if( 0 < $temp_query->num_rows() ){
+                    $temp_data = $temp_query->result_array();
+                    foreach ( $temp_data as $temp_row ) {
+                        $this->exam_model->update('delete_unit',array(
+                            'unit_id' => $temp_row['unit_id']
+                        ));
+                    };
+                };
+            };
+            
+            $sql = "
+            delete from unit where subject_id = ".$data['subject_id']."
+            ";                        
         };
         
         if ( $sql ) {

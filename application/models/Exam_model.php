@@ -81,6 +81,26 @@ class Exam_model extends CI_Model{
             $sql = "
             delete from exam where exam_id = ".$data['exam_id']."
             ";            
+        } elseif ( $type == 'delete_unit' ) {    
+            $this->load->model('question_model');
+            $temp_sql = "
+                select * from exam where unit_id = ".$data['unit_id']."
+            ";
+            if ( $temp_sql ) {
+                $temp_query = $this->db->query($temp_sql);
+                if( 0 < $temp_query->num_rows() ){
+                    $temp_data = $temp_query->result_array();
+                    foreach ( $temp_data as $temp_row ) {
+                        $this->question_model->update('delete_exam',array(
+                            'exam_id' => $temp_row['exam_id']
+                        ));
+                    };
+                };
+            };
+            
+            $sql = "
+            delete from exam where unit_id = ".$data['unit_id']."
+            ";                        
         };
         
         if ( $sql ) {
