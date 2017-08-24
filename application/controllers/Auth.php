@@ -217,6 +217,8 @@ class Auth extends CI_Controller {
         }        
         
         $this->form_validation->set_rules('user_email','Email','trim|required|valid_email|callback_user_email_overlap_check');
+        $this->form_validation->set_rules('user_birthday','Birthday','trim|required');        
+        $this->form_validation->set_rules('user_name','Name','trim|required');                
         $this->form_validation->set_rules('user_pass','Password','trim|required');        
         $this->form_validation->set_rules('user_pass_re', 'Re-Password', 'required|matches[user_pass]');        
         
@@ -229,6 +231,8 @@ class Auth extends CI_Controller {
             $row = $this->user_model->update('create',array(
                 'user_id' => mt_rand(),
                 'user_email' => $this->input->post('user_email',TRUE),
+                'user_name' => $this->input->post('user_name',TRUE),
+                'user_birthday' => $this->input->post('user_birthday',TRUE),                
                 'user_pass' => $this->input->post('user_pass',TRUE),
                 'user_state' => 1
             ));
@@ -266,6 +270,16 @@ class Auth extends CI_Controller {
             if ( isset($_POST['user_email']) ) {
                 if ( 0 < strlen(strip_tags(form_error('user_email'))) ) {
                     $validation['user_email'] = strip_tags(form_error('user_email'));
+                };
+            };            
+            if ( isset($_POST['user_birthday']) ) {
+                if ( 0 < strlen(strip_tags(form_error('user_birthday'))) ) {
+                    $validation['user_birthday'] = strip_tags(form_error('user_birthday'));
+                };
+            };            
+            if ( isset($_POST['user_name']) ) {
+                if ( 0 < strlen(strip_tags(form_error('user_name'))) ) {
+                    $validation['user_name'] = strip_tags(form_error('user_name'));
                 };
             };            
             if ( isset($_POST['user_pass']) ) {

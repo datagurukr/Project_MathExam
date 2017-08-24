@@ -26,6 +26,42 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
+                                    <input id="name" name="user_name" type="text" class="validate" value="<? echo set_value('user_name'); ?>">
+                                    <label for="name" data-error="wrong" data-success="right">Name</label>
+                                    <p class="light red-text">
+                                        <?
+                                        // validation
+                                        if ( isset($response) ) {
+                                                if ( $response['status'] == 400 ) {
+                                                        if ( isset($response['error']['validation']['user_name']) ) {
+                                                                echo $response['error']['validation']['user_name'];
+                                                        };
+                                                };
+                                        };
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="birthday" name="user_birthday" type="text" class="datepicker" value="<? echo set_value('user_birthday'); ?>">
+                                    <label for="birthday" data-error="wrong" data-success="right">Birthday</label>
+                                    <p class="light red-text">
+                                        <?
+                                        // validation
+                                        if ( isset($response) ) {
+                                                if ( $response['status'] == 400 ) {
+                                                        if ( isset($response['error']['validation']['user_birthday']) ) {
+                                                                echo $response['error']['validation']['user_birthday'];
+                                                        };
+                                                };
+                                        };
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="input-field col s12">
                                     <input id="password" name="user_pass" type="password" class="validate">
                                     <label for="password">Password</label>
                                 </div>                            
