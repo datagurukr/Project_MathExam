@@ -121,6 +121,17 @@
         $(document).ready(function(){
             // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
             $('.modal').modal();
+            $('.answer_checkbox').each(function( index, element ) {
+                $(element).on('change', function () {
+                    var chk = $(this);
+                    if ( chk.is(":checked") ) {
+                        chk.parents('.question-section').find('.answer_checkbox').prop('checked', false);
+                        chk.prop('checked', true);
+                        Materialize.toast(chk.attr('data-toast'), 4000);
+                    } else {
+                    }
+                });
+            });
         });
         
         $(document).ready(function() {

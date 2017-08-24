@@ -49,17 +49,7 @@ if ( $question_out ) {
     foreach ( $question_out as $out_row ) {
         ?>
         <div class="divider"></div>
-
-
-<p>
-When $a \ne 0$, there are two solutions to \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\) and they are
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-    
-    \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\)
-</p>
-
-
-        <div class="section">
+        <div class="section question-section">
             <!--ckEdit 영역_문제보기(이미지, 텍스트, 링크)-->
             <? echo $out_row['question_content_title']; ?>
 
@@ -67,26 +57,85 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
             <? echo $out_row['question_content_article']; ?>        
 
             <!--ckEdit 영역_답안-->
+            <?
+            if ( 0 < strlen($out_row['question_content_answer1']) ) {
+                ?>
+            <p>
+              <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 1 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_1"/>
+              <label for="answer_checkbox_<? echo $out_row['question_id']?>_1">
+                <? echo $out_row['question_content_answer1']; ?>
+              </label>
+            </p>
+                <?
+            }
+            ?>
+            <?
+            if ( 0 < strlen($out_row['question_content_answer2']) ) {
+                ?>
+            <p>
+              <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 2 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_2"/>
+              <label for="answer_checkbox_<? echo $out_row['question_id']?>_2">
+                <? echo $out_row['question_content_answer2']; ?>
+              </label>
+            </p>
+                <?
+            }
+            ?>
+            <?
+            if ( 0 < strlen($out_row['question_content_answer3']) ) {
+                ?>
+            <p>
+              <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 3 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_3"/>
+              <label for="answer_checkbox_<? echo $out_row['question_id']?>_3">
+                <? echo $out_row['question_content_answer3']; ?>
+              </label>
+            </p>
+                <?
+            }
+            ?>
+            <?
+            if ( 0 < strlen($out_row['question_content_answer4']) ) {
+                ?>
+            <p>
+              <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 4 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_4"/>
+              <label for="answer_checkbox_<? echo $out_row['question_id']?>_4">
+                <? echo $out_row['question_content_answer4']; ?>
+              </label>
+            </p>
+                <?
+            }
+            ?>
+            <?
+            if ( 0 < strlen($out_row['question_content_answer5']) ) {
+                ?>
+            <p>
+              <input type="checkbox" class="answer_checkbox" data-toast="<? if ( $out_row['question_content_answer'] == 5 ) { echo '정답입니다.'; } else { echo '오답입니다. 다시 풀어보세요^^'; }; ?>" id="answer_checkbox_<? echo $out_row['question_id']?>_5"/>
+              <label for="answer_checkbox_<? echo $out_row['question_id']?>_5">
+                <? echo $out_row['question_content_answer5']; ?>
+              </label>
+            </p>
+                <?
+            }
+            ?>            
+            
+            <!--
             <p>
               <input type="checkbox" class="filled-in modal-trigger" id="filled-in-box" checked="checked" href="#modal1"/>
               <label for="filled-in-box">
                 <? echo $out_row['question_content_answer']; ?>
               </label>
             </p>
-            <!-- Modal Trigger -->
-
-            <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
                     <h4>정답 체크</h4>
                     <p>정답입니다.</p>
-<!--                <p>오답입니다. 다시 풀어보세요^^</p>    -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="modal-close waves-effect waves-red btn-flat">확인</button>
                 </div>
             </div>
-                    
+            -->
+            
             <!--ckEdit 영역_해설-->
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
@@ -95,8 +144,14 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
                   </div>
                   <div class="collapsible-body">
                       <span>
+                        정답 : <? echo $out_row['question_content_answer']; ?>번
+                      </span>                      
+                      <span>
                         <? echo $out_row['question_content_explanation']; ?>
                       </span>
+                      
+                      
+                      
                   </div>
                 </li>
 
