@@ -114,7 +114,6 @@ class Mypage extends CI_Controller {
         $data['session_id'] = $session_id;
         
         $this->form_validation->set_rules('user_pass','Password','trim|required|callback_user_pass_check');        
-        $this->form_validation->set_rules('user_pass_re', 'Re-Password', 'required|matches[user_pass]');        
         
         /*******************
         data query
@@ -172,11 +171,6 @@ class Mypage extends CI_Controller {
                     $validation['user_pass'] = strip_tags(form_error('user_pass'));
                 };
             };            
-            if ( isset($_POST['user_pass_re']) ) {
-                if ( 0 < strlen(strip_tags(form_error('user_pass_re'))) ) {
-                    $validation['user_pass_re'] = strip_tags(form_error('user_pass_re'));
-                };
-            };                        
             
             if ( count($validation) ) {
                 $response['status'] = 400;
@@ -213,6 +207,136 @@ class Mypage extends CI_Controller {
             $this->load->view('/front/body', $data, FALSE);            
         };
     }
+    
+    function password () {        
+        /*******************
+        data
+        *******************/
+        $data = array();         
+        
+        /*******************
+        response
+        *******************/
+        $response = array();        
+        
+        /*******************
+        library
+        *******************/        
+        $this->load->library('form_validation');                        
+        
+        /*******************
+        page key
+        *******************/
+        $data['key'] = 'home';
+        
+        /*******************
+        ajax 통신 체크
+        *******************/
+        $ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+                || 
+                (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['REQUEST_METHOD'] == 'GET');
+        
+        /*******************
+        session
+        *******************/
+        $data['session'] = $this->session->all_userdata();  
+        $data['session_id'] = 0;
+        if ( isset($data['session']['logged_in']) ) {
+            $session_id = $data['session']['users_id'];
+        } else {
+            $session_id = 0;
+        };
+        
+        // 로그인 화면으로 이동
+        if ( $session_id == 0 ) {
+            $this->load->helper('url');
+            redirect('/login', 'refresh');
+        }
+        
+        $data['session_id'] = $session_id;
+        
+        $this->form_validation->set_rules('user_new_pass','New Password','trim|required');        
+        $this->form_validation->set_rules('user_new_pass_re', 'New Re-Password', 'required|matches[user_new_pass]');        
+        $this->form_validation->set_rules('user_pass','Password','trim|required|callback_user_pass_check');
+        
+        /*******************
+        data query
+        *******************/   
+        if ($this->form_validation->run() == TRUE ) {
+            
+            $set_data = array ();
+            $set_data['user_id'] = $session_id;        
+            
+            if ( isset($_POST['user_new_pass']) ) {
+                $set_data['user_new_pass'] = array (
+                    'key' => 'user_pass',
+                    'type' => 'string',
+                    'value' => $this->input->post('user_new_pass',TRUE)
+                );
+            };                
+            
+            if ( $this->user_model->update('update',$set_data) ) {
+                $response['update'] = TRUE;
+            } else {
+                $response['update'] = FALSE;
+            };
+            
+        } else {
+            /*******************
+            validation
+            *******************/
+            $validation = array();
+            if ( isset($_POST['user_new_pass']) ) {
+                if ( 0 < strlen(strip_tags(form_error('user_new_pass'))) ) {
+                    $validation['user_new_pass'] = strip_tags(form_error('user_new_pass'));
+                };
+            };                        
+            if ( isset($_POST['user_new_pass_re']) ) {
+                if ( 0 < strlen(strip_tags(form_error('user_new_pass_re'))) ) {
+                    $validation['user_new_pass_re'] = strip_tags(form_error('user_new_pass_re'));
+                };
+            };            
+            if ( isset($_POST['user_pass']) ) {
+                if ( 0 < strlen(strip_tags(form_error('user_pass'))) ) {
+                    $validation['user_pass'] = strip_tags(form_error('user_pass'));
+                };
+            };                        
+            
+            if ( count($validation) ) {
+                $response['status'] = 400;
+                $response['error'] = array (
+                    'validation' => $validation
+                );
+            } else {
+                $response['status'] = 500;
+                $response['error'] = array (
+                    'message' => '재시도 해주세요.'
+                );
+            }            
+        }
+        
+		$this->load->model('user_model');                
+        $row = $this->user_model->out('id',array(
+            'user_id' => $session_id            
+            
+        ));
+        if ( $row ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $row,
+                'count' => count($row)
+            );        
+        } else {
+            $response['status'] = 401;
+        }
+        
+        $data['response'] = $response;        
+        if ( $ajax ) {
+        } else {
+            $data['container'] = $this->load->view('/front/mypage/password', $data, TRUE);
+            $this->load->view('/front/body', $data, FALSE);            
+        };
+    }    
     
     function purchase () {        
         /*******************

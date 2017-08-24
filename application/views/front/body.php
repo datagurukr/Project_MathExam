@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>Starter Template - Materialize</title>
+        <title>반응형 문제풀이 웹! - Just Think</title>
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -19,7 +19,6 @@
     </head>
     <body>
         
-        
         <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container">
                 
@@ -29,7 +28,18 @@
                     	if ( 0 < $session_id ) {
 										?>
                     <li>
-                        <a href="/mypage">마이페이지</a>
+                        <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                            마이페이지
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>                    
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li>
+                                <a href="/mypage">프로필</a>
+                            </li>
+                            <li>
+                                <a href="/mypage/password">비밀번호 변경</a>
+                            </li>
+                        </ul>    
                     </li>
                     <li>
                         <a href="/mypage/purchase">구매내역</a>
@@ -63,7 +73,18 @@
                     if ( 0 < $session_id ) {
                         ?>
                     <li>
-                        <a href="/mypage">마이페이지</a>
+                        <a class="dropdown-button" href="#!" data-activates="dropdown2">
+                            마이페이지
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>                    
+                        <ul id="dropdown2" class="dropdown-content">
+                            <li>
+                                <a href="/mypage">프로필</a>
+                            </li>
+                            <li>
+                                <a href="/mypage/password">비밀번호 변경</a>
+                            </li>
+                        </ul>    
                     </li>
                     <li>
                         <a href="/mypage/purchase">구매내역</a>

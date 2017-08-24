@@ -74,6 +74,7 @@ $route['recover'] = "auth/recover";
 
 // Mypage
 $route['mypage'] = "mypage/home";
+$route['mypage/password'] = "mypage/password";
 $route['mypage/purchase'] = "mypage/purchase";
 
 // Page

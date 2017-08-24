@@ -28,43 +28,51 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                 <div class="col s12">
                     <div class="card grey lighten-5">
                         <div class="card-content">
-                            <span class="card-title">프로필</span>
+                            <span class="card-title">비밀번호 변경</span>
+                            
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input disabled value="<? echo $user_out['user_email']; ?>" id="disabled" type="text" class="validate">
-                                    <label for="disabled">Email</label>
-                                </div>
+                                    <input id="new_password" name="user_new_pass" type="password" class="validate">
+                                    <label for="new_password">New Password</label>
+                                    <p class="light red-text">
+                                    <?
+                                    // validation
+                                    if ( isset($response) ) {
+                                            if ( $response['status'] == 400 || $response['status'] == 200 ) {
+                                                    if ( isset($response['error']['validation']['user_new_pass']) ) {
+                                                            echo $response['error']['validation']['user_new_pass'];
+                                                    };
+                                            };
+                                    };
+                                    ?>
+                                    </p>                                    
+                                </div>                                
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="first_name" name="user_name" type="text" value="<? echo $user_out['user_name']; ?>" class="validate">
-                                    <label for="first_name">이름</label>
-                                </div>
+                                    <input id="new_password_re" name="user_new_pass_re" type="password" class="validate">
+                                    <label for="new_password_re">New Re-Password</label>
+                                    <p class="light red-text">
+                                    <?
+                                    // validation
+                                    if ( isset($response) ) {
+                                            if ( $response['status'] == 400 || $response['status'] == 200 ) {
+                                                    if ( isset($response['error']['validation']['user_new_pass_re']) ) {
+                                                            echo $response['error']['validation']['user_new_pass_re'];
+                                                    };
+                                            };
+                                    };
+                                    ?>
+                                    </p>                                    
+                                </div>                                
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <select name="user_gender">
-                                        <option value="" disabled <? if ( $user_out['user_gender'] == 0 ) { echo 'selected'; } ?>>선택</option>
-                                        <option value="1" <? if ( $user_out['user_gender'] == 1 ) { echo 'selected'; } ?>>남</option>
-                                        <option value="2" <? if ( $user_out['user_gender'] == 2 ) { echo 'selected'; } ?>>여</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input placeholder="생년월일" name="user_birthday" type="text" value="<? echo $user_out['user_birthday']; ?>" class="datepicker">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea id="textarea1" name="user_introduction" class="materialize-textarea"><? echo $user_out['user_introduction']; ?></textarea>
-                                    <label for="textarea1">자기소개</label>
-                                </div>
-                            </div>
+                            
+                            
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="password" name="user_pass" type="password" class="validate">
                                     <label for="password">Password</label>
+                                    <p class="light red-text">
                                     <?
                                     // validation
                                     if ( isset($response) ) {
@@ -74,7 +82,8 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                                                     };
                                             };
                                     };
-                                    ?>                                    
+                                    ?>
+                                    </p>
                                 </div>                                
                             </div>
                             <div class="row">
