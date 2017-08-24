@@ -46,7 +46,7 @@ class Category_model extends CI_Model{
                     ".$data['category_id'].",
                     ".$data['category_num'].",                    
                     ".$data['category_state'].",                                        
-                    '".$data['category_name']."',
+                    '".$this->db->escape_str($data['category_name'])."',
                     now(),
                     now()
                 );            
@@ -61,7 +61,7 @@ class Category_model extends CI_Model{
                         if ( $row['key'] == 'user_pass' ) {
                             $query_string = $row['key']."='".sha1($row['value'])."'";
                         } else {
-                            $query_string = $row['key']."='".$row['value']."'";
+                            $query_string = $row['key']."='".$this->db->escape_str($row['value'])."'";
                         };
                     };
                     $add = $add.$query_string.',';

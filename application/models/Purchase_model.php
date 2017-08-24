@@ -58,8 +58,8 @@ class Purchase_model extends CI_Model{
                     ".$data['user_id'].",                    
                     ".$data['subject_id'].",    
                     ".$data['purchase_state'].",                                                            
-                    '".$data['purchase_refund_reason']."',                                        
-                    '".$data['purchase_name']."',
+                    '".$this->db->escape_str($data['purchase_refund_reason'])."',                                        
+                    '".$this->db->escape_str($data['purchase_name'])."',
                     ".$data['purchase_price'].",                                                            
                     now(),
                     now()
@@ -75,7 +75,7 @@ class Purchase_model extends CI_Model{
                         if ( $row['key'] == 'user_pass' ) {
                             $query_string = $row['key']."='".sha1($row['value'])."'";
                         } else {
-                            $query_string = $row['key']."='".$row['value']."'";
+                            $query_string = $row['key']."='".$this->db->escape_str($row['value'])."'";
                         };
                     };
                     $add = $add.$query_string.',';

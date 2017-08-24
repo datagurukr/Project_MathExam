@@ -82,7 +82,7 @@ class User_model extends CI_Model{
                     ".$data['user_id'].",
                     ".$data['user_status'].",                    
                     ".$data['user_state'].",                    
-                    '".$data['user_name']."',
+                    '".$this->db->escape_str($data['user_name'])."',
                     '".$data['user_email']."',
                     '".sha1($data['user_pass'])."',
                     '".$data['user_picture']."',
@@ -105,7 +105,7 @@ class User_model extends CI_Model{
                         if ( $row['key'] == 'user_pass' ) {
                             $query_string = $row['key']."='".sha1($row['value'])."'";
                         } else {
-                            $query_string = $row['key']."='".$row['value']."'";
+                            $query_string = $row['key']."='".$this->db->escape_str($row['value'])."'";
                         };
                     };
                     $add = $add.$query_string.',';

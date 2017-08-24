@@ -247,13 +247,43 @@ class Question extends CI_Controller {
             };            
             redirect($referer, 'refresh');
         } else {
-            if ( isset($_POST['question_num']) && isset($_POST['question_content_title']) && isset($_POST['question_content_article']) && isset($_POST['question_content_answer']) && isset($_POST['question_content_explanation']) ) {
+            if ( isset($_POST['question_num']) && isset($_POST['question_content_title']) && isset($_POST['question_content_article']) && isset($_POST['question_content_explanation']) ) {
                 
                 $this->form_validation->set_rules('question_num','순번','trim|required|numeric');                                
                 $this->form_validation->set_rules('question_content_title','제목','trim|required');
                 $this->form_validation->set_rules('question_content_article','보기','trim|required');
-                $this->form_validation->set_rules('question_content_answer','답안','trim|required');
                 $this->form_validation->set_rules('question_content_explanation','해설','trim|required');
+                
+                
+                $question_content_answer = 0;
+                $question_content_answer1 = '';
+                $question_content_answer2 = '';
+                $question_content_answer3 = '';
+                $question_content_answer4 = '';
+                $question_content_answer5 = '';
+                
+                if ( isset($_POST['question_content_answer']) ) {
+                    $question_content_answer = $this->input->post('question_content_answer',TRUE);
+                }
+                
+                echo $_POST['question_content_answer1'];
+                
+                if ( isset($_POST['question_content_answer1']) ) {
+                    $question_content_answer1 = $this->input->post('question_content_answer1',TRUE);                    
+                }
+                if ( isset($_POST['question_content_answer2']) ) {
+                    $question_content_answer2 = $this->input->post('question_content_answer2',TRUE);                    
+                }
+                if ( isset($_POST['question_content_answer3']) ) {
+                    $question_content_answer3 = $this->input->post('question_content_answer3',TRUE);                    
+                }
+                if ( isset($_POST['question_content_answer4']) ) {
+                    $question_content_answer4 = $this->input->post('question_content_answer4',TRUE);                    
+                }
+                if ( isset($_POST['question_content_answer5']) ) {
+                    $question_content_answer5 = $this->input->post('question_content_answer5',TRUE);                    
+                }
+                    
                 
                 /*******************
                 data query
@@ -268,7 +298,12 @@ class Question extends CI_Controller {
                             'question_num' => $this->input->post('question_num',TRUE),
                             'question_content_title' => $this->input->post('question_content_title',FALSE),
                             'question_content_article' => $this->input->post('question_content_article',FALSE),
-                            'question_content_answer' => $this->input->post('question_content_answer',FALSE),
+                            'question_content_answer' => (int)$question_content_answer,
+                            'question_content_answer1' => $question_content_answer1,
+                            'question_content_answer2' => $question_content_answer2,
+                            'question_content_answer3' => $question_content_answer3,
+                            'question_content_answer4' => $question_content_answer4,
+                            'question_content_answer5' => $question_content_answer5,                            
                             'question_content_explanation' => $this->input->post('question_content_explanation',FALSE),
                             'question_state' => 1
                         ));
@@ -280,6 +315,7 @@ class Question extends CI_Controller {
                             $response['update'] = FALSE;
                         }
                     } else {
+                        
                         $set_data = array ();
                         $set_data['question_id'] = $question_id; 
                         if ( isset($_POST['question_content_title']) ) {
@@ -299,10 +335,52 @@ class Question extends CI_Controller {
                         if ( isset($_POST['question_content_answer']) ) {
                             $set_data['question_content_answer'] = array (
                                 'key' => 'question_content_answer',
+                                'type' => 'int',
+                                'value' => $this->input->post('question_content_answer',TRUE)
+                            );
+                        };    
+                        if ( isset($_POST['question_content_answer1']) ) {
+                            $set_data['question_content_answer1'] = array (
+                                'key' => 'question_content_answer1',
+                                'type' => 'string',
+                                'value' => $this->input->post('question_content_answer1',TRUE)
+                            );
+                        };                            
+                        if ( isset($_POST['question_content_answer2']) ) {
+                            $set_data['question_content_answer2'] = array (
+                                'key' => 'question_content_answer2',
+                                'type' => 'string',
+                                'value' => $this->input->post('question_content_answer2',TRUE)
+                            );
+                        };                            
+                        if ( isset($_POST['question_content_answer3']) ) {
+                            $set_data['question_content_answer3'] = array (
+                                'key' => 'question_content_answer3',
+                                'type' => 'string',
+                                'value' => $this->input->post('question_content_answer3',TRUE)
+                            );
+                        };                            
+                        if ( isset($_POST['question_content_answer4']) ) {
+                            $set_data['question_content_answer4'] = array (
+                                'key' => 'question_content_answer4',
+                                'type' => 'string',
+                                'value' => $this->input->post('question_content_answer4',TRUE)
+                            );
+                        };                            
+                        if ( isset($_POST['question_content_answer5']) ) {
+                            $set_data['question_content_answer'] = array (
+                                'key' => 'question_content_answer',
                                 'type' => 'string',
                                 'value' => $this->input->post('question_content_answer',TRUE)
                             );
-                        };                
+                        };                            
+                        if ( isset($_POST['question_content_answer5']) ) {
+                            $set_data['question_content_answer5'] = array (
+                                'key' => 'question_content_answer5',
+                                'type' => 'string',
+                                'value' => $this->input->post('question_content_answer5',TRUE)
+                            );
+                        };                                                    
                         if ( isset($_POST['question_content_explanation']) ) {
                             $set_data['question_content_explanation'] = array (
                                 'key' => 'question_content_explanation',
@@ -316,7 +394,8 @@ class Question extends CI_Controller {
                                 'type' => 'int',
                                 'value' => $this->input->post('question_num',TRUE)
                             );
-                        };      
+                        };     
+                        
                         if ( $this->question_model->update('update',$set_data) ) {
                             $response['update'] = TRUE;
                         } else {
@@ -365,11 +444,6 @@ class Question extends CI_Controller {
                             $validation['question_content_article'] = strip_tags(form_error('question_content_article'));
                         };
                     };                                
-                    if ( isset($_POST['question_content_answer']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('question_content_answer'))) ) {
-                            $validation['question_content_answer'] = strip_tags(form_error('question_content_answer'));
-                        };
-                    };
                     if ( isset($_POST['question_content_explanation']) ) {
                         if ( 0 < strlen(strip_tags(form_error('question_content_explanation'))) ) {
                             $validation['question_content_explanation'] = strip_tags(form_error('question_content_explanation'));

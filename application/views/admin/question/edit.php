@@ -89,7 +89,7 @@ if ( $response['status'] == 200 ) {
             <div class="row">
                 <div class="input-field col s12">
                     <h6>답안1</h6>
-                    <textarea id="editor3-1" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <textarea id="editor3-1" name="question_content_answer1"><? if ( isset($row['question_content_answer1']) ) { echo $row['question_content_answer1']; } else { echo set_value('question_content_answer1'); }; ?></textarea>
                     <script>
                     CKEDITOR.replace( 'editor3-1', {
                         extraPlugins: 'mathjax',
@@ -106,8 +106,8 @@ if ( $response['status'] == 200 ) {
                         // validation
                         if ( isset($response) ) {
                             if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
-                                if ( isset($response['error']['validation']['question_content_answer']) ) {
-                                        echo $response['error']['validation']['question_content_answer'];
+                                if ( isset($response['error']['validation']['question_content_answer1']) ) {
+                                        echo $response['error']['validation']['question_content_answer1'];
                                 };
                             };
                         };
@@ -117,7 +117,7 @@ if ( $response['status'] == 200 ) {
                 
                 <div class="input-field col s12">
                     <h6>답안2</h6>
-                    <textarea id="editor3-2" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <textarea id="editor3-2" name="question_content_answer2"><? if ( isset($row['question_content_answer2']) ) { echo $row['question_content_answer2']; } else { echo set_value('question_content_answer2'); }; ?></textarea>
                     <script>
                     CKEDITOR.replace( 'editor3-2', {
                         extraPlugins: 'mathjax',
@@ -134,8 +134,8 @@ if ( $response['status'] == 200 ) {
                         // validation
                         if ( isset($response) ) {
                             if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
-                                if ( isset($response['error']['validation']['question_content_answer']) ) {
-                                        echo $response['error']['validation']['question_content_answer'];
+                                if ( isset($response['error']['validation']['question_content_answer2']) ) {
+                                        echo $response['error']['validation']['question_content_answer2'];
                                 };
                             };
                         };
@@ -145,7 +145,7 @@ if ( $response['status'] == 200 ) {
                 
                 <div class="input-field col s12">
                     <h6>답안3</h6>
-                    <textarea id="editor3-3" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <textarea id="editor3-3" name="question_content_answer3"><? if ( isset($row['question_content_answer3']) ) { echo $row['question_content_answer3']; } else { echo set_value('question_content_answer3'); }; ?></textarea>
                     <script>
                     CKEDITOR.replace( 'editor3-3', {
                         extraPlugins: 'mathjax',
@@ -162,8 +162,8 @@ if ( $response['status'] == 200 ) {
                         // validation
                         if ( isset($response) ) {
                             if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
-                                if ( isset($response['error']['validation']['question_content_answer']) ) {
-                                        echo $response['error']['validation']['question_content_answer'];
+                                if ( isset($response['error']['validation']['question_content_answer3']) ) {
+                                        echo $response['error']['validation']['question_content_answer3'];
                                 };
                             };
                         };
@@ -173,7 +173,7 @@ if ( $response['status'] == 200 ) {
                 
                 <div class="input-field col s12">
                     <h6>답안4</h6>
-                    <textarea id="editor3-4" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <textarea id="editor3-4" name="question_content_answer4"><? if ( isset($row['question_content_answer4']) ) { echo $row['question_content_answer4']; } else { echo set_value('question_content_answer4'); }; ?></textarea>
                     <script>
                     CKEDITOR.replace( 'editor3-4', {
                         extraPlugins: 'mathjax',
@@ -190,8 +190,8 @@ if ( $response['status'] == 200 ) {
                         // validation
                         if ( isset($response) ) {
                             if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
-                                if ( isset($response['error']['validation']['question_content_answer']) ) {
-                                        echo $response['error']['validation']['question_content_answer'];
+                                if ( isset($response['error']['validation']['question_content_answer4']) ) {
+                                        echo $response['error']['validation']['question_content_answer4'];
                                 };
                             };
                         };
@@ -201,7 +201,7 @@ if ( $response['status'] == 200 ) {
                 
                 <div class="input-field col s12">
                     <h6>답안5</h6>
-                    <textarea id="editor3-5" name="question_content_answer"><? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?></textarea>
+                    <textarea id="editor3-5" name="question_content_answer5"><? if ( isset($row['question_content_answer5']) ) { echo $row['question_content_answer5']; } else { echo set_value('question_content_answer5'); }; ?></textarea>
                     <script>
                     CKEDITOR.replace( 'editor3-5', {
                         extraPlugins: 'mathjax',
@@ -218,15 +218,31 @@ if ( $response['status'] == 200 ) {
                         // validation
                         if ( isset($response) ) {
                             if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
-                                if ( isset($response['error']['validation']['question_content_answer']) ) {
-                                        echo $response['error']['validation']['question_content_answer'];
+                                if ( isset($response['error']['validation']['question_content_answer5']) ) {
+                                        echo $response['error']['validation']['question_content_answer5'];
                                 };
                             };
                         };
                         ?>                                         
                     </p>    
                 </div>
-                
+
+                <div class="input-field col s12">
+                    <input type="text" class="validate" name="question_content_answer" value="<? if ( isset($row['question_content_answer']) ) { echo $row['question_content_answer']; } else { echo set_value('question_content_answer'); }; ?>">
+                    <label for="no">정답</label>
+                    <p class="light red-text">
+                        <?
+                        // validation
+                        if ( isset($response) ) {
+                            if ( $response['status'] == 400 || $response['status'] == 200 || $response['status'] == 401 ) {
+                                if ( isset($response['error']['validation']['question_content_answer']) ) {
+                                        echo $response['error']['validation']['question_content_answer'];
+                                };
+                            };
+                        };
+                        ?>                     
+                    </p>                    
+                </div>
                 
             </div>
             <div class="row">

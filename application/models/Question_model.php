@@ -29,6 +29,7 @@ class Question_model extends CI_Model{
         };        
         
         if ( $type == 'create' ) {
+            
             $sql = "
                 INSERT INTO question (    
                     question_id,
@@ -38,6 +39,11 @@ class Question_model extends CI_Model{
                     question_content_title,
                     question_content_article,
                     question_content_answer,
+                    question_content_answer1,
+                    question_content_answer2,
+                    question_content_answer3,
+                    question_content_answer4,
+                    question_content_answer5,
                     question_content_explanation,
                     question_register_date,
                     question_update_date
@@ -46,11 +52,16 @@ class Question_model extends CI_Model{
                     ".$data['question_id'].",                    
                     ".$data['exam_id'].",
                     ".$data['question_state'].",                                                            
-                    ".$data['question_num'].",                                                                                
-                    '".$data['question_content_title']."',
-                    '".$data['question_content_article']."',
-                    '".$data['question_content_answer']."',
-                    '".$data['question_content_explanation']."',                    
+                    ".$data['question_num'].",
+                    '".$this->db->escape_str($data['question_content_title'])."',
+                    '".$this->db->escape_str($data['question_content_article'])."',
+                    ".$data['question_content_answer'].",
+                    '".$this->db->escape_str($data['question_content_answer1'])."',
+                    '".$this->db->escape_str($data['question_content_answer2'])."',
+                    '".$this->db->escape_str($data['question_content_answer3'])."',
+                    '".$this->db->escape_str($data['question_content_answer4'])."',
+                    '".$this->db->escape_str($data['question_content_answer5'])."',
+                    '".$this->db->escape_str($data['question_content_explanation'])."',                    
                     now(),
                     now()
                 );            
@@ -65,7 +76,7 @@ class Question_model extends CI_Model{
                         if ( $row['key'] == 'user_pass' ) {
                             $query_string = $row['key']."='".sha1($row['value'])."'";
                         } else {
-                            $query_string = $row['key']."='".$row['value']."'";
+                            $query_string = $row['key']."='".$this->db->escape_str($row['value'])."'";
                         };
                     };
                     $add = $add.$query_string.',';
@@ -185,6 +196,11 @@ class Question_model extends CI_Model{
             question.question_content_title as question_content_title,
             question.question_content_article as question_content_article,
             question.question_content_answer as question_content_answer,
+            question.question_content_answer1 as question_content_answer1,
+            question.question_content_answer2 as question_content_answer2,
+            question.question_content_answer3 as question_content_answer3,
+            question.question_content_answer4 as question_content_answer4,
+            question.question_content_answer5 as question_content_answer5,            
             question.question_content_explanation as question_content_explanation,
             question.question_register_date as question_register_date,
             question.question_update_date as question_update_date

@@ -1,3 +1,10 @@
+<!--https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML-->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+});
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML-full"></script>
 <?
 $row = FALSE;
 $question_out = FALSE;
@@ -42,6 +49,16 @@ if ( $question_out ) {
     foreach ( $question_out as $out_row ) {
         ?>
         <div class="divider"></div>
+
+
+<p>
+When $a \ne 0$, there are two solutions to \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+    
+    \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\)
+</p>
+
+
         <div class="section">
             <!--ckEdit 영역_문제보기(이미지, 텍스트, 링크)-->
             <? echo $out_row['question_content_title']; ?>

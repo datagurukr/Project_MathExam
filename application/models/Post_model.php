@@ -47,9 +47,9 @@ class Post_model extends CI_Model{
                     ".$data['user_id'].",                    
                     ".$data['post_state'].",                                        
                     ".$data['post_status'].",                                                            
-                    '".$data['post_content_title']."',
-                    '".$data['post_content_article']."',
-                    '".$data['post_content_reply']."',                    
+                    '".$this->db->escape_str($data['post_content_title'])."',
+                    '".$this->db->escape_str($data['post_content_article'])."',
+                    '".$this->db->escape_str($data['post_content_reply'])."',                    
                     now(),                    
                     now(),
                     now()
@@ -65,7 +65,7 @@ class Post_model extends CI_Model{
                         if ( $row['key'] == 'user_pass' ) {
                             $query_string = $row['key']."='".sha1($row['value'])."'";
                         } else {
-                            $query_string = $row['key']."='".$row['value']."'";
+                            $query_string = $row['key']."='".$this->db->escape_str($row['value'])."'";
                         };
                     };
                     $add = $add.$query_string.',';

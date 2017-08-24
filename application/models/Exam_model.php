@@ -44,8 +44,8 @@ class Exam_model extends CI_Model{
                     ".$data['exam_id'].",                    
                     ".$data['unit_id'].",
                     ".$data['exam_num'].",                                                            
-                    '".$data['exam_name']."',                                        
-                    '".$data['exam_description']."',                                                            
+                    '".$this->db->escape_str($data['exam_name'])."',                                        
+                    '".$this->db->escape_str($data['exam_description'])."',                                                            
                     ".$data['exam_state'].",
                     now(),
                     now()
@@ -61,7 +61,7 @@ class Exam_model extends CI_Model{
                         if ( $row['key'] == 'user_pass' ) {
                             $query_string = $row['key']."='".sha1($row['value'])."'";
                         } else {
-                            $query_string = $row['key']."='".$row['value']."'";
+                            $query_string = $row['key']."='".$this->db->escape_str($row['value'])."'";
                         };
                     };
                     $add = $add.$query_string.',';

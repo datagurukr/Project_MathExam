@@ -43,7 +43,7 @@ class Unit_model extends CI_Model{
                     ".$data['unit_id'].",
                     ".$data['subject_id'].",    
                     ".$data['unit_num'].",                                                            
-                    '".$data['unit_name']."',                                        
+                    '".$this->db->escape_str($data['unit_name'])."',                                        
                     ".$data['unit_state'].",
                     now(),
                     now()
@@ -59,7 +59,7 @@ class Unit_model extends CI_Model{
                         if ( $row['key'] == 'user_pass' ) {
                             $query_string = $row['key']."='".sha1($row['value'])."'";
                         } else {
-                            $query_string = $row['key']."='".$row['value']."'";
+                            $query_string = $row['key']."='".$this->db->escape_str($row['value'])."'";
                         };
                     };
                     $add = $add.$query_string.',';
