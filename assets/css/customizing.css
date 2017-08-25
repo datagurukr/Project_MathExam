@@ -21,3 +21,7 @@ main{flex: 1 0 auto}
     left: inherit;
     opacity: inherit;
 }
+
+select.cke_dialog_ui_input_select {
+    display: block;
+}

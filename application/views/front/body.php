@@ -14,7 +14,7 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/assets/js/materialize.js"></script>
         <script src="/assets/js/init.js"></script>
-        <script src="http://cdn.ckeditor.com/4.7.1/standard-all/ckeditor.js"></script>
+        <script src="http://cdn.ckeditor.com/4.7.1/full-all/ckeditor.js"></script>
 
     </head>
     <body>
