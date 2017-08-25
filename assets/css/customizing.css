@@ -12,3 +12,12 @@ main{flex: 1 0 auto}
 .question-section td {
     border: solid 1px;
 }
+
+.picker__select--year.browser-default {
+    position: inherit;
+    pointer-events: auto;
+    height: auto;
+    top: inherit;
+    left: inherit;
+    opacity: inherit;
+}
