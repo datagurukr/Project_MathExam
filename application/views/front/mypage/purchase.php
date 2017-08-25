@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
+                                            <button type="button" class="modal-close waves-effect waves-red btn-flat">취소</button>
                                             <button type="button" class="waves-effect waves-green btn-flat" onclick="if(!$('#reason1').val()){alert('사유를 입력하세요.');}else{ submit() }">승인</button>
                                         </div>
                                     </form>

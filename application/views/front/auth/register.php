@@ -65,12 +65,12 @@
                                         ?>
                                     </p>
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="password" name="user_pass" type="password" class="validate">
                                     <label for="password">Password</label>
-                                </div>                            
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
@@ -88,7 +88,7 @@
                                             };
                                             ?>
                                     </p>
-                                </div>                                
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col s12">
@@ -102,7 +102,7 @@
                                             <p>Just Think에 가입하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
+                                            <button type="button" class="modal-close waves-effect waves-red btn-flat">취소</button>
                                             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
                                         </div>
                                     </div>

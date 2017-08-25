@@ -88,7 +88,7 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                                             <p>프로필을 수정하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="modal-action modal-close waves-effect waves-red btn-flat">최소</button>
+                                            <button class="modal-action modal-close waves-effect waves-red btn-flat">취소</button>
                                             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
                                         </div>
                                     </div>

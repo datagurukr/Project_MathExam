@@ -37,7 +37,7 @@ if ( $response['status'] == 200 ) {
                             <p><b><? if ( isset($row['subject_name']) ) { echo $row['subject_name']; } else { echo '-'; }; ?></b>을 <b><? if ( isset($row['subject_price']) ) { echo number_format($row['subject_price']).'원'; } else { echo '-'; }; ?></b>에 구매 하시겠습니까?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="modal-close waves-effect waves-red btn-flat">최소</button>
+                            <button type="button" class="modal-close waves-effect waves-red btn-flat">취소</button>
                             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
                         </div>
                     </div>                    
