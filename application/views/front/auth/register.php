@@ -44,7 +44,13 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="birthday" name="user_birthday" type="text" class="datepicker" value="<? echo set_value('user_birthday'); ?>">
+                                    <?
+                                    $today = set_value('user_birthday');
+                                    if ( 0 == strlen($today) ) {
+                                        $today = date("Y-m-d");
+                                    }
+                                    ?>
+                                    <input id="birthday" name="user_birthday" type="text" class="datepicker" value="<? echo $today ?>">
                                     <label for="birthday" data-error="wrong" data-success="right">Birthday</label>
                                     <p class="light red-text">
                                         <?
