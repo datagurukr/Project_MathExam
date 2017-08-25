@@ -145,6 +145,8 @@ $route['admin/qna/edit'] = "admin/qna/edit/0";
 $route['admin/qna/edit/(:num)'] = "admin/qna/edit/$1";
 $route['admin/qna/(:num)/delete'] = "admin/qna/edit/$1/delete";
 
+// API
+$route['api/upload'] = "api/upload/ckupload";
 
 /* api/1.0 
 $route['api/app/code'] = "api/app/code";

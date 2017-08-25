@@ -172,6 +172,7 @@ if ( $response['data']['category_out'] ) {
                     <script>
                         CKEDITOR.replace( 'editor1', {
                             extraPlugins: 'mathjax',
+                            filebrowserUploadUrl: '/api/upload/ckupload',
                             mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                             height: 300
                         } );

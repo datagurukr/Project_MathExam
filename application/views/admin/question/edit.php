@@ -35,6 +35,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor1', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 150
                     } );
@@ -64,6 +65,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor2', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 150
                     } );
@@ -93,6 +95,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor3-1', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 100
                     } );
@@ -121,6 +124,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor3-2', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 100
                     } );
@@ -149,6 +153,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor3-3', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 100
                     } );
@@ -177,6 +182,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor3-4', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 100
                     } );
@@ -205,6 +211,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor3-5', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 100
                     } );
@@ -252,6 +259,7 @@ if ( $response['status'] == 200 ) {
                     <script>
                     CKEDITOR.replace( 'editor4', {
                         extraPlugins: 'mathjax',
+                        filebrowserUploadUrl: '/api/upload/ckupload',
                         mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
                         height: 150
                     } );
