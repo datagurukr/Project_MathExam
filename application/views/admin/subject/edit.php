@@ -105,7 +105,7 @@ if ( $response['data']['category_out'] ) {
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <h6>서브 코스 설명</h6>
+                    <h6>상품 설명</h6>
                     <textarea id="editor1" name="subject_description"><? if ( isset($row['subject_description']) ) { echo $row['subject_description']; } else { echo set_value('subject_description'); }; ?></textarea>
                     <script>
                         CKEDITOR.replace( 'editor1', {
