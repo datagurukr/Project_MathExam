@@ -30,19 +30,11 @@ if ( $response['status'] == 200 ) {
             
             <div class="row">
                 <div class="input-field col s12">
-                    <ul class="collapsible" data-collapsible="accordion">
+                    <ul class="collapsible popout" data-collapsible="accordion">
                     <li>
-                      <div class="collapsible-header"><i class="material-icons">info_outline</i>상품설명</div>
+                      <div class="collapsible-header active"><i class="material-icons">info_outline</i>상품설명</div>
                       <div class="collapsible-body"><span><? if ( isset($row['subject_description']) ) { echo $row['subject_description']; } else { echo '-'; }; ?></span></div>
                     </li>
-                  </ul>
-                </div>
-            </div>
-            
-            
-            <div class="row">
-                <div class="input-field col s12">
-                    <ul class="collapsible" data-collapsible="accordion">
                     <li>
                       <div class="collapsible-header"><i class="material-icons">payment</i>환불정책</div>
                       <div class="collapsible-body"><span><? if ( isset($returnpolicy) ) { echo $returnpolicy; } else { echo '-'; }; ?></span></div>
@@ -50,7 +42,6 @@ if ( $response['status'] == 200 ) {
                   </ul>
                 </div>
             </div>
-        
             <div class="row">
                 <div class="input-field col s6 right-align">                    
                     <!-- Modal Trigger -->
