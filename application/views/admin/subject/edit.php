@@ -84,7 +84,7 @@ if ( $response['data']['category_out'] ) {
                         ?>                     
                     </p>                                        
                 </div>
-            </div>
+            </div>         
             <div class="row">
                 <div class="input-field col s12">
                     <input type="text" class="validate" name="subject_price" value="<? if ( isset($row['subject_price']) ) { echo $row['subject_price']; } else { echo set_value('subject_price'); }; ?>">
@@ -103,6 +103,24 @@ if ( $response['data']['category_out'] ) {
                     </p>                                        
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <h6>서브 코스 설명</h6>
+                    <textarea id="editor1" name="subject_description"><? if ( isset($row['subject_description']) ) { echo $row['subject_description']; } else { echo set_value('subject_description'); }; ?></textarea>
+                    <script>
+                        CKEDITOR.replace( 'editor1', {
+                            extraPlugins: 'mathjax',
+                            filebrowserUploadUrl: '/api/upload/ckupload',
+                            mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML',
+                            height: 300
+                        } );
+
+                        if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
+                            document.getElementById( 'ie8-warning' ).className = 'tip alert';
+                        }
+                    </script>                            
+                </div>
+            </div>            
             <div class="row">
                 <div class="input-field col s6">                    
                     <!-- Modal Trigger -->

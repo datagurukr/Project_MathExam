@@ -114,6 +114,7 @@ class Subject_model extends CI_Model{
                     subject_num,
                     subject_state,
                     subject_name,
+                    subject_description,                    
                     subject_price,
                     subject_register_date,
                     subject_update_date
@@ -124,6 +125,7 @@ class Subject_model extends CI_Model{
                     ".$data['subject_num'].",                                                            
                     ".$data['subject_state'].",                                        
                     '".$this->db->escape_str($data['subject_name'])."',
+                    '".$this->db->escape_str($data['subject_description'])."',
                     ".$data['subject_price'].",                                                            
                     now(),
                     now()
@@ -270,6 +272,7 @@ class Subject_model extends CI_Model{
             subject.subject_num as subject_num,
             subject.subject_state as subject_state,
             subject.subject_name as subject_name,
+            subject.subject_description as subject_description,
             subject.subject_price as subject_price,
             subject.subject_register_date as subject_register_date,
             subject.subject_update_date as subject_update_date

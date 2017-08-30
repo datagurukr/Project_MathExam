@@ -255,13 +255,21 @@ class Subject extends CI_Controller {
                 if ($this->form_validation->run() == TRUE ) {
                     $this->load->model('subject_model');                        
                     if ( $subject_id == 0 ) {
-                        $subject_id = mt_rand();                    
+                        $subject_id = mt_rand();                
+                        
+                        
+                        $subject_description = '';
+                        if ( isset($_POST['subject_description']) ) {
+                            $subject_description = $this->input->post('subject_description',TRUE);
+                        };
+                        
                         $result = $this->subject_model->update('create',array(
                             'subject_id' => $subject_id,
                             'category_id' => $this->input->post('category_id',TRUE),                           
                             'subject_name' => $this->input->post('subject_name',TRUE),
                             'subject_price' => $this->input->post('subject_price',TRUE),
-                            'subject_num' => $this->input->post('subject_num',TRUE),                            
+                            'subject_num' => $this->input->post('subject_num',TRUE),  
+                            'subject_description' => $subject_description,
                             'subject_state' => 1
                         ));
                         if ( $result ) {
@@ -280,7 +288,14 @@ class Subject extends CI_Controller {
                                 'type' => 'string',
                                 'value' => $this->input->post('subject_name',TRUE)
                             );
-                        };                
+                        };         
+                        if ( isset($_POST['subject_description']) ) {
+                            $set_data['subject_description'] = array (
+                                'key' => 'subject_description',
+                                'type' => 'string',
+                                'value' => $this->input->post('subject_description',TRUE)
+                            );
+                        };                        
                         if ( isset($_POST['subject_price']) ) {
                             $set_data['subject_price'] = array (
                                 'key' => 'subject_price',

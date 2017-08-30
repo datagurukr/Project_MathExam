@@ -17,6 +17,65 @@ class Page extends CI_Controller {
 		parent::__construct();
 	}
     
+    function returnpolicy ( ) {   
+        /*******************
+        data
+        *******************/
+        $data = array();         
+        
+        /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
+        page key
+        *******************/
+        $data['key'] = 'returnpolicy';
+        
+        /*******************
+        ajax 통신 체크
+        *******************/
+        $ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+                || 
+                (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['REQUEST_METHOD'] == 'GET');
+        
+        /*******************
+        session
+        *******************/
+        $data['session'] = $this->session->all_userdata();  
+        $data['session_id'] = 0;
+        if ( isset($data['session']['logged_in']) ) {
+            $session_id = $data['session']['users_id'];
+        } else {
+            $session_id = 0;
+        };
+        $data['session_id'] = $session_id;
+        
+        $result = FALSE;
+        $filename = './assets/file/returnpolicy.txt';        
+        if (file_exists($filename)) {
+            $file = fopen($filename,"r"); 
+            $result = fread($file, filesize($filename)); fclose($file);
+        }      
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result
+            );        
+        } else {
+            $response['status'] = 401;
+        };                 
+        
+        $data['response'] = $response;        
+        if ( $ajax ) {
+        } else {
+            $data['container'] = $this->load->view('/front/page/returnpolicy', $data, TRUE);
+            $this->load->view('/front/body', $data, FALSE);            
+        };
+    }
+        
     function privacy ( ) {        
         /*******************
         data

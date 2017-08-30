@@ -80,6 +80,7 @@ $route['mypage/purchase'] = "mypage/purchase";
 // Page
 $route['privacy'] = "page/privacy";
 $route['terms'] = "page/terms";
+$route['returnpolicy'] = "page/returnpolicy";
 
 // Qna
 $route['qna'] = "qna/index/1";
@@ -98,6 +99,7 @@ $route['admin/user/(:num)'] = "admin/user/detail/$1";
 // Admin/Page
 $route['admin/privacy'] = "admin/page/privacy";
 $route['admin/terms'] = "admin/page/terms";
+$route['admin/returnpolicy'] = "admin/page/returnpolicy";
 
 // Admin/Book
 $route['admin/category'] = "admin/category/index/1";

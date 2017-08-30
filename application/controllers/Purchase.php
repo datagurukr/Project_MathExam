@@ -360,16 +360,30 @@ class Purchase extends CI_Controller {
         data query
         *******************/     
 		$this->load->model('subject_model');
+    
+        $filename = './assets/file/returnpolicy.txt';
+        if ( isset($_POST['content']) ) {
+            $content = $this->input->post('content',TRUE);
+            $file = fopen($filename, "w") or die("Unable to open file!");
+            fwrite($file, $content);
+            fclose($file);
+        }
+        
+        if (file_exists($filename)) {
+            $file = fopen($filename,"r"); 
+            $returnpolicy = fread($file, filesize($filename)); fclose($file);
+        }              
         
         if ( !isset($response['data']) ) {
             $result = $this->subject_model->out('id',array(
                 'subject_id' => $subject_id
             ));
-
+            
             if ( $result ) {
                 $response['status'] = 200;                    
                 $response['data'] = array(
                     'out' => $result,
+                    'returnpolicy' => $returnpolicy,
                     'count' => count($result)
                 );        
             } else {

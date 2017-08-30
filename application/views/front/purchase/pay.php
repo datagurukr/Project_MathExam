@@ -1,8 +1,10 @@
 <?
 $row = FALSE;
+$returnpolicy = '';
 if ( $response['status'] == 200 ) {
     if ( 0 < $response['data']['count'] ) {
         $row = $response['data']['out'][0];
+        $returnpolicy = $response['data']['returnpolicy'];
     };
 };
 ?>
@@ -37,6 +39,21 @@ if ( $response['status'] == 200 ) {
                 </div>
             </div>
         
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled value="-" type="text" class="validate" style="display:none;">
+                    <label for="no">상품설명</label>
+                    <? if ( isset($row['subject_description']) ) { echo $row['subject_description']; } else { echo '-'; }; ?>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled value="-" type="text" class="validate" style="display:none;">
+                    <label for="no">환불정책</label>
+                    <? if ( isset($returnpolicy) ) { echo $returnpolicy; } else { echo '-'; }; ?>
+                </div>
+            </div>            
+            
             <div class="row">
                 <div class="input-field col s6 right-align">                    
                     <!-- Modal Trigger -->
