@@ -32,28 +32,25 @@ if ( $response['status'] == 200 ) {
                 <div class="input-field col s12">
                     <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                      <div class="collapsible-header"><i class="material-icons">payment</i>환불규정</div>
-                      <div class="collapsible-body"><span>환불규정</span></div>
+                      <div class="collapsible-header"><i class="material-icons">info_outline</i>상품설명</div>
+                      <div class="collapsible-body"><span><? if ( isset($row['subject_description']) ) { echo $row['subject_description']; } else { echo '-'; }; ?></span></div>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+            
+            
+            <div class="row">
+                <div class="input-field col s12">
+                    <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                      <div class="collapsible-header"><i class="material-icons">payment</i>환불정책</div>
+                      <div class="collapsible-body"><span><? if ( isset($returnpolicy) ) { echo $returnpolicy; } else { echo '-'; }; ?></span></div>
                     </li>
                   </ul>
                 </div>
             </div>
         
-            <div class="row">
-                <div class="input-field col s12">
-                    <input disabled value="-" type="text" class="validate" style="display:none;">
-                    <label for="no">상품설명</label>
-                    <? if ( isset($row['subject_description']) ) { echo $row['subject_description']; } else { echo '-'; }; ?>
-                </div>
-            </div>            
-            <div class="row">
-                <div class="input-field col s12">
-                    <input disabled value="-" type="text" class="validate" style="display:none;">
-                    <label for="no">환불정책</label>
-                    <? if ( isset($returnpolicy) ) { echo $returnpolicy; } else { echo '-'; }; ?>
-                </div>
-            </div>            
-            
             <div class="row">
                 <div class="input-field col s6 right-align">                    
                     <!-- Modal Trigger -->
