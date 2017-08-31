@@ -93,6 +93,9 @@
                         <a href="/admin/privacy">개인정보처리방침</a>
                     </li>
                     <li>
+                        <a href="/admin/returnpolicy">환불정책</a>
+                    </li>
+                    <li>
                         <a href="/admin/category">코스</a>
                     </li>
                     <li>
