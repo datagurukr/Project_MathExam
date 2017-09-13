@@ -134,19 +134,17 @@
                     <a class="orange-text text-lighten-3" href="/privacy">개인정보 처리방침</a>
                 </div>
                 경기도 성남시 분당구 판교역로 192번길 14-2 | 
-                사업자등록번호: 111-23-45678 | 대표자: 박준현 | 
+                사업자등록번호: 111-25-21588 | 대표자: 박준현 | 
                 통신판매업신고번호: 제2017-용인기흥-00565호 | 
                 대표전화: 031-283-3934 | 
                 이메일: ohio1029@gmail.com | 
                 Copyright 2017. ⓒ Just Think All right reserved.
             </div>
-<!--
             <div class="footer-copyright">
                 <div class="container">
-                    Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+<!--                    Made by <a class="orange-text text-lighten-3">여의도개발소</a>-->
                 </div>
             </div>
--->
         </footer>
         <script>
         $(document).ready(function(){
