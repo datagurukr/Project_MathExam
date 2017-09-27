@@ -79,6 +79,9 @@
                         <a href="/admin/qna">Q&A</a>
                     </li>
                     <li>
+                        <a href="/admin/notice">공지사항</a>
+                    </li>                    
+                    <li>
                         <a href="#logout" class="modal-trigger">로그아웃</a>
                     </li>
                 </ul>
@@ -116,6 +119,9 @@
                     <li>
                         <a href="/admin/qna">Q&A</a>
                     </li>
+                    <li>
+                        <a href="/admin/notice">공지사항</a>
+                    </li>                    
                     <li>
                         <a href="#logout" class="modal-trigger">로그아웃</a>
                     </li>

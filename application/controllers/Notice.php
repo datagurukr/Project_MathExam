@@ -10,7 +10,7 @@ Var 1.0
 ************************************/
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Qna extends CI_Controller {
+class Notice extends CI_Controller {
     
     function __construct()
 	{
@@ -66,21 +66,21 @@ class Qna extends CI_Controller {
         $this->pagination->initialize($config);
     }     
     
-    function index ( $p = 0 ) {        
+    function index ( $subject_id = 0 ) {        
         /*******************
         data
         *******************/
         $data = array();         
         
         /*******************
-        page key
-        *******************/
-        $data['key'] = 'home';
-        
-        /*******************
         response
         *******************/
         $response = array();        
+        
+        /*******************
+        page key
+        *******************/
+        $data['key'] = 'home';
         
         /*******************
         ajax 통신 체크
@@ -94,17 +94,10 @@ class Qna extends CI_Controller {
         *******************/
         $data['session'] = $this->session->all_userdata();  
         $data['session_id'] = 0;
-        if ( isset($data['session']['logged_in']) && isset($data['session']['admin']) ) {
-            if ( $data['session']['admin'] ) {
-                $session_id = $data['session']['users_id'];                
-            } else {
-                $session_id = 0;
-            };
+        if ( isset($data['session']['logged_in']) ) {
+            $session_id = $data['session']['users_id'];
         } else {
             $session_id = 0;
-        };
-        if ( $session_id == 0 ) {
-            show_404();
         };
         $data['session_id'] = $session_id;
         
@@ -140,14 +133,14 @@ class Qna extends CI_Controller {
         };        
         $data['target'] = $target;
         
-        $result = $this->post_model->out('qna',array(
+        $result = $this->post_model->out('notice',array(
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,
             'order' => 'desc',
             'target' => $target
         ));
-        $result_count = $this->post_model->out('qna',array(
+        $result_count = $this->post_model->out('notice',array(
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,
@@ -159,7 +152,7 @@ class Qna extends CI_Controller {
         if ( $result_count ) {
             $pagination_count = $result_count[0]['cnt'];            
         };
-        $this->global_pagination($pagination_count,'/admin/qna/?',$pagination_url);                        
+        $this->global_pagination($pagination_count,'/notice/?',$pagination_url);                        
         
         if ( $result ) {
             $response['status'] = 200;                    
@@ -170,15 +163,73 @@ class Qna extends CI_Controller {
             );        
         } else {
             $response['status'] = 401;
-        };        
+        };                
         
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/qna/list', $data, TRUE);
-            $this->load->view('/admin/body', $data, FALSE);            
+            $data['container'] = $this->load->view('/front/notice/list', $data, TRUE);
+            $this->load->view('/front/body', $data, FALSE);            
         };
     }
+    
+    function detail ( $post_id = 0 ) {        
+        /*******************
+        data
+        *******************/
+        $data = array();         
+        
+        /*******************
+        response
+        *******************/
+        $response = array();                
+        
+        /*******************
+        page key
+        *******************/
+        $data['key'] = 'home';
+        
+        /*******************
+        ajax 통신 체크
+        *******************/
+        $ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+                || 
+                (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['REQUEST_METHOD'] == 'GET');
+        
+        /*******************
+        session
+        *******************/
+        $data['session'] = $this->session->all_userdata();  
+        $data['session_id'] = 0;
+        if ( isset($data['session']['logged_in']) ) {
+            $session_id = $data['session']['users_id'];
+        } else {
+            $session_id = 0;
+        };
+        $data['session_id'] = $session_id;
+        
+		$this->load->model('post_model');
+        $result = $this->post_model->out('id',array(
+            'post_id' => $post_id
+        ));        
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result,
+                'count' => count($result)
+            );        
+        } else {
+            $response['status'] = 401;
+        };                
+        
+        $data['response'] = $response;        
+        if ( $ajax ) {
+        } else {
+            $data['container'] = $this->load->view('/front/notice/detail', $data, TRUE);
+            $this->load->view('/front/body', $data, FALSE);            
+        };
+    }    
     
     function edit ( $post_id = 0, $action = '' ) {        
         /*******************
@@ -213,17 +264,10 @@ class Qna extends CI_Controller {
         *******************/
         $data['session'] = $this->session->all_userdata();  
         $data['session_id'] = 0;
-        if ( isset($data['session']['logged_in']) && isset($data['session']['admin']) ) {
-            if ( $data['session']['admin'] ) {
-                $session_id = $data['session']['users_id'];                
-            } else {
-                $session_id = 0;
-            };
+        if ( isset($data['session']['logged_in']) ) {
+            $session_id = $data['session']['users_id'];
         } else {
             $session_id = 0;
-        };
-        if ( $session_id == 0 ) {
-            show_404();
         };
         $data['session_id'] = $session_id;
         
@@ -244,8 +288,9 @@ class Qna extends CI_Controller {
             };            
             redirect($referer, 'refresh');
         } else {
-            if ( isset($_POST['post_content_reply']) ) {
-                $this->form_validation->set_rules('post_content_reply','답변','trim|required');                
+            if ( isset($_POST['post_content_title']) && isset($_POST['post_content_article']) ) {
+                $this->form_validation->set_rules('post_content_title','질문','trim|required');                
+                $this->form_validation->set_rules('post_content_article','내용','trim|required');                                
                 /*******************
                 data query
                 *******************/     
@@ -256,36 +301,44 @@ class Qna extends CI_Controller {
                         $result = $this->post_model->update('create',array(
                             'user_id' => $session_id,                            
                             'post_id' => $post_id,
-                            'post_content_title' => '',
-                            'post_content_article' => '',
-                            'post_content_reply' => $this->input->post('post_content_reply',TRUE),
+                            'post_content_title' => $this->input->post('post_content_title',TRUE),
+                            'post_content_article' => $this->input->post('post_content_article',TRUE),
+                            'post_content_reply' => '',
                             'post_state' => 1,
                             'post_status' => 1                            
                         ));
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/qna/edit/'.$post_id, 'refresh');                        
+                            //redirect('/notice/edit/'.$post_id, 'refresh');                        
+                            redirect('/notice/detail/'.$post_id, 'refresh');                                                    
                         } else {
                             $response['update'] = FALSE;
                         }
                     } else {
                         $set_data = array ();
                         $set_data['post_id'] = $post_id;        
-                        if ( isset($_POST['post_content_reply']) ) {
-                            $set_data['post_content_reply'] = array (
-                                'key' => 'post_content_reply',
+                        if ( isset($_POST['post_content_title']) ) {
+                            $set_data['post_content_title'] = array (
+                                'key' => 'post_content_title',
                                 'type' => 'string',
-                                'value' => $this->input->post('post_content_reply',TRUE)
+                                'value' => $this->input->post('post_content_title',TRUE)
                             );
                         };                
+                        if ( isset($_POST['post_content_article']) ) {
+                            $set_data['post_content_article'] = array (
+                                'key' => 'post_content_article',
+                                'type' => 'string',
+                                'value' => $this->input->post('post_content_article',TRUE)
+                            );
+                        };      
                         if ( $this->post_model->update('update',$set_data) ) {
                             $response['update'] = TRUE;
                         } else {
                             $response['update'] = FALSE;
                         };
                     }
-
+                    
                     /*
                     $row = $this->user_model->out('pass',array(
                         'user_email' => $this->input->post('user_email',TRUE),           
@@ -312,11 +365,16 @@ class Qna extends CI_Controller {
                     validation
                     *******************/
                     $validation = array();
-                    if ( isset($_POST['post_content_reply']) ) {
-                        if ( 0 < strlen(strip_tags(form_error('post_content_reply'))) ) {
-                            $validation['post_content_reply'] = strip_tags(form_error('post_content_reply'));
+                    if ( isset($_POST['post_content_title']) ) {
+                        if ( 0 < strlen(strip_tags(form_error('post_content_title'))) ) {
+                            $validation['post_content_title'] = strip_tags(form_error('post_content_title'));
                         };
                     };            
+                    if ( isset($_POST['post_content_article']) ) {
+                        if ( 0 < strlen(strip_tags(form_error('post_content_article'))) ) {
+                            $validation['post_content_article'] = strip_tags(form_error('post_content_article'));
+                        };
+                    };                                
 
                     if ( count($validation) ) {
                         $response['status'] = 400;
@@ -352,8 +410,8 @@ class Qna extends CI_Controller {
         $data['response'] = $response;        
         if ( $ajax ) {
         } else {
-            $data['container'] = $this->load->view('/admin/qna/edit', $data, TRUE);
-            $this->load->view('/admin/body', $data, FALSE);            
+            $data['container'] = $this->load->view('/front/notice/edit', $data, TRUE);
+            $this->load->view('/front/body', $data, FALSE);            
         };
     }    
     

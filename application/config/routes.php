@@ -90,6 +90,15 @@ $route['qna/edit/(:num)'] = "qna/edit/$1";
 $route['qna/detail/(:num)'] = "qna/detail/$1";
 $route['qna/(:num)/delete'] = "qna/edit/$1/delete";
 
+// Notice
+$route['notice'] = "notice/index/1";
+$route['notice/(:num)'] = "notice/index/$1";
+$route['notice/edit'] = "notice/edit/0";
+$route['notice/edit/(:num)'] = "notice/edit/$1";
+$route['notice/detail/(:num)'] = "notice/detail/$1";
+$route['notice/(:num)/delete'] = "notice/edit/$1/delete";
+
+
 /* Admin */
 $route['admin'] = "admin/user/index/1";
 // Admin/User
@@ -146,6 +155,13 @@ $route['admin/qna/(:num)'] = "admin/qna/index/$1";
 $route['admin/qna/edit'] = "admin/qna/edit/0";
 $route['admin/qna/edit/(:num)'] = "admin/qna/edit/$1";
 $route['admin/qna/(:num)/delete'] = "admin/qna/edit/$1/delete";
+
+// Admin/Notice
+$route['admin/notice'] = "admin/notice/index/1";
+$route['admin/notice/(:num)'] = "admin/notice/index/$1";
+$route['admin/notice/edit'] = "admin/notice/edit/0";
+$route['admin/notice/edit/(:num)'] = "admin/notice/edit/$1";
+$route['admin/notice/(:num)/delete'] = "admin/notice/edit/$1/delete";
 
 // API
 $route['api/upload'] = "api/upload/ckupload";

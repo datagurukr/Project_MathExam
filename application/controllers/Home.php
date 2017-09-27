@@ -67,10 +67,19 @@ class Home extends CI_Controller {
             'order' => 'desc'
         ));
         
+        $this->load->model('post_model');                
+        $notice_out = $this->post_model->out('notice',array(
+            'user_id' => $session_id,
+            'p' => 0,
+            'limit' => 5,
+            'order' => 'desc'
+        ));        
+        
         $response['status'] = 200;                    
         $response['data'] = array(
             'category_out' => $category_out,
-            'post_out' => $post_out
+            'post_out' => $post_out,
+            'notice_out' => $notice_out
         );
         
         $data['response'] = $response;        

@@ -133,14 +133,14 @@ class Qna extends CI_Controller {
         };        
         $data['target'] = $target;
         
-        $result = $this->post_model->out('all',array(
+        $result = $this->post_model->out('qna',array(
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,
             'order' => 'desc',
             'target' => $target
         ));
-        $result_count = $this->post_model->out('all',array(
+        $result_count = $this->post_model->out('qna',array(
             'user_id' => $session_id,
             'p' => $p,
             'q' => $q,

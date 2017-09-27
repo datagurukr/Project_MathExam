@@ -20,11 +20,11 @@ class Post_model extends CI_Model{
         
         $sql = FALSE;
 
-        if ( !array_key_exists('category_name',$data) ) {
+        if ( !array_key_exists('post_state',$data) ) {
             $data['post_state'] = 0;
         };        
             
-        if ( !array_key_exists('category_num',$data) ) {
+        if ( !array_key_exists('post_status',$data) ) {
             $data['post_status'] = 1;
         };        
 
@@ -200,10 +200,62 @@ class Post_model extends CI_Model{
                 on
                 (post.user_id = user.user_id)                
             where
+                post.post_status = 1
+                and
                 post.post_content_reply != ''
             order by post.post_register_date ".$data['order']."        
             ".$limit."
             ";  
+        } elseif ( $type == 'qna' ) {      
+            $where = '';
+            if ( strlen(trim($data['q'])) != 0 ) {
+                if ( $data['target'] == 'name' ) {
+                    $where = "and user.user_name like '%".$data['q']."%'";
+                } elseif ( $data['target'] == 'email' ) {
+                    $where = "and user.user_email like '%".$data['q']."%'";
+                } else {
+                    $where = "and ( user.user_name like '%".$data['q']."%' or user.user_email like '%".$data['q']."%' )";
+                }
+            };
+            $sql = "
+            select
+                ".$select."
+            FROM
+                post AS post
+                left outer join user as user
+                on
+                (post.user_id = user.user_id)  
+            where
+                post.post_status = 1
+                ".$where."                
+            order by post.post_register_date ".$data['order']."        
+            ".$limit."
+            ";              
+        } elseif ( $type == 'notice' ) {      
+            $where = '';
+            if ( strlen(trim($data['q'])) != 0 ) {
+                if ( $data['target'] == 'name' ) {
+                    $where = "and user.user_name like '%".$data['q']."%'";
+                } elseif ( $data['target'] == 'email' ) {
+                    $where = "and user.user_email like '%".$data['q']."%'";
+                } else {
+                    $where = "and ( user.user_name like '%".$data['q']."%' or user.user_email like '%".$data['q']."%' )";
+                }
+            };
+            $sql = "
+            select
+                ".$select."
+            FROM
+                post AS post
+                left outer join user as user
+                on
+                (post.user_id = user.user_id)  
+            where
+                post.post_status = 2
+                ".$where."                
+            order by post.post_register_date ".$data['order']."        
+            ".$limit."
+            ";              
         } elseif ( $type == 'all' ) {            
             $where = '';
             if ( strlen(trim($data['q'])) != 0 ) {

@@ -1,9 +1,11 @@
 <?
 $category_out = FALSE;
 $post_out = FALSE;
+$notice_out = FALSE;
 if ( $response['data']['category_out'] ) {
     $category_out = $response['data']['category_out'];
     $post_out = $response['data']['post_out'];
+    $notice_out = $response['data']['notice_out'];    
 };
 ?>
 <div class="section">
@@ -84,4 +86,45 @@ if ( $response['data']['category_out'] ) {
         }
         ?>        
     </ul>
+	<ul class="collapsible collection with-header" data-collapsible="accordion">
+        <li class="collection-item">
+            <div>
+                공지사항
+                <a href="/qna" class="secondary-content">
+                    <i class="material-icons">send</i>
+                </a>
+            </div>
+        </li>
+        <?
+        if ( $notice_out ) {
+            foreach ( $notice_out as $row ) {
+                ?>
+        
+        <li>
+            <div class="collapsible-header">
+                <?
+                if ( 0 < strlen(trim($row['post_content_title'])) ) {
+                    echo $row['post_content_title'];
+                } else { 
+                    echo '-'; 
+                };
+                ?>
+            </div>
+            <div class="collapsible-body">
+                <div>
+                <?
+                if ( 0 < strlen(trim($row['post_content_article'])) ) {
+                    echo $row['post_content_article'];
+                } else { 
+                    echo '-'; 
+                };
+                ?>                    
+                </div>
+            </div>
+        </li>
+                <?
+            }
+        }
+        ?>        
+    </ul>    
 </div>
