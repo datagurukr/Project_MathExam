@@ -298,8 +298,8 @@ class Mypage extends CI_Controller {
         
         $data['session_id'] = $session_id;
         
-        $this->form_validation->set_rules('user_new_pass','New Password','trim|required');        
-        $this->form_validation->set_rules('user_new_pass_re', 'New Re-Password', 'required|matches[user_new_pass]');        
+        $this->form_validation->set_rules('user_new_pass','New Password','trim|required|alpha_numeric');        
+        $this->form_validation->set_rules('user_new_pass_re', 'New Re-Password', 'required|alpha_numeric|matches[user_new_pass]');        
         $this->form_validation->set_rules('user_pass','Password','trim|required|callback_user_pass_check');
         
         /*******************
