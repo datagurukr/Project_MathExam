@@ -17,6 +17,49 @@ class Mypage extends CI_Controller {
 		parent::__construct();
 	}
     
+    function loggedin ( $user_id = 0, $user_status = 0 ) {
+        if ( 0 < $user_id ) {
+            // 로그인 세션 처리 시작
+            if ( $user_status == 9 ) {
+                // 관리자
+                $session_data = array(
+                    'users_id'  => $user_id,
+                    'logged_in' => TRUE,
+                    'admin'  => TRUE
+                );
+            } else {
+                // 일반회원
+                $session_data = array(
+                    'users_id'  => $user_id,
+                    'logged_in' => TRUE
+                );                
+            };
+            $this->session->set_userdata($session_data);   
+        } else {
+            $this->session->sess_destroy();            
+        }
+        
+        /*******************
+        HTTP_REFERER
+        *******************/
+        $http_referer = @$_SERVER['HTTP_REFERER'];
+        
+        /*******************
+        library load
+        *******************/
+		$this->load->helper('url');
+        if ( strpos( $http_referer, 'logout' ) !== false ) {  
+            redirect('/', 'refresh');
+        } else {
+            if ( strpos( $http_referer, 'login' ) ) {
+                redirect('/', 'refresh');
+            } else {
+                redirect('/', 'refresh');                
+                //redirect($http_referer, 'refresh');                
+            }
+        };  
+    }    
+    
     function global_pagination ($count,$url,$query_url = false, $details = false) {
         /*******************
         library load
@@ -277,6 +320,7 @@ class Mypage extends CI_Controller {
             
             if ( $this->user_model->update('update',$set_data) ) {
                 $response['update'] = TRUE;
+                $this->loggedin(0);
             } else {
                 $response['update'] = FALSE;
             };

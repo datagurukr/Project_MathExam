@@ -93,8 +93,8 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                                     <!-- Modal Structure -->
                                     <div id="modal1" class="modal">
                                         <div class="modal-content">
-                                            <h4>프로필 수정</h4>
-                                            <p>프로필을 수정하시겠습니까?</p>
+                                            <h4>비밀번호 변경</h4>
+                                            <p>비밀번호를 변경하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button class="modal-action modal-close waves-effect waves-red btn-flat">취소</button>
