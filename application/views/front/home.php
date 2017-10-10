@@ -51,13 +51,15 @@ if ( $response['data']['category_out'] ) {
         
         <li>
             <div class="collapsible-header">
-                <?
-                if ( 0 < strlen(trim($row['post_content_title'])) ) {
-                    echo $row['post_content_title'];
-                } else { 
-                    echo '-'; 
-                };
-                ?>
+                <a href="/qna/detail/<? echo $row['post_id']; ?>">
+                    <?
+                    if ( 0 < strlen(trim($row['post_content_title'])) ) {
+                        echo $row['post_content_title'];
+                    } else { 
+                        echo '-'; 
+                    };
+                    ?>
+                </a>
             </div>
             <div class="collapsible-body">
                 <div>
@@ -102,13 +104,15 @@ if ( $response['data']['category_out'] ) {
         
         <li>
             <div class="collapsible-header">
-                <?
-                if ( 0 < strlen(trim($row['post_content_title'])) ) {
-                    echo $row['post_content_title'];
-                } else { 
-                    echo '-'; 
-                };
-                ?>
+                <a href="/notice/detail/<? echo $row['post_id']; ?>">
+                    <?
+                    if ( 0 < strlen(trim($row['post_content_title'])) ) {
+                        echo $row['post_content_title'];
+                    } else { 
+                        echo '-'; 
+                    };
+                    ?>
+                </a>
             </div>
             <div class="collapsible-body">
                 <div>

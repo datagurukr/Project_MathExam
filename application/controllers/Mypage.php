@@ -154,6 +154,27 @@ class Mypage extends CI_Controller {
             redirect('/login', 'refresh');
         }
         
+        // 회원탈퇴
+        if ( isset($_POST['memberleave']) ) {            
+            $this->load->model('user_model');
+            $set_data = array ();
+            $set_data['user_id'] = $session_id;                    
+            
+            $set_data['user_state'] = array (
+                'key' => 'user_state',
+                'type' => 'int',
+                'value' => 9
+            );
+            
+            if ( $this->user_model->update('update',$set_data) ) {
+                $this->loggedin(0);                
+                redirect('/', 'refresh');                
+                $response['update'] = TRUE;
+            } else {
+                $response['update'] = FALSE;
+            };            
+        }
+        
         $data['session_id'] = $session_id;
         
         $this->form_validation->set_rules('user_pass','Password','trim|required|callback_user_pass_check');        
@@ -162,6 +183,7 @@ class Mypage extends CI_Controller {
         data query
         *******************/   
         if ($this->form_validation->run() == TRUE ) {
+            $this->load->model('user_model');                
             
             $set_data = array ();
             $set_data['user_id'] = $session_id;        
@@ -302,10 +324,16 @@ class Mypage extends CI_Controller {
         $this->form_validation->set_rules('user_new_pass_re', 'New Re-Password', 'required|alpha_numeric|matches[user_new_pass]');        
         $this->form_validation->set_rules('user_pass','Password','trim|required|callback_user_pass_check');
         
+        $password = $this->input->post('user_new_pass',TRUE);
+        $password_check = FALSE;
+        if ( preg_match('/[0-9]/', $password) && preg_match('/[a-z]/i', $password) ) {
+            $password_check = TRUE;
+        }
+        
         /*******************
         data query
         *******************/   
-        if ($this->form_validation->run() == TRUE ) {
+        if ($this->form_validation->run() == TRUE && $password_check ) {
             
             $set_data = array ();
             $set_data['user_id'] = $session_id;        
@@ -344,7 +372,10 @@ class Mypage extends CI_Controller {
                 if ( 0 < strlen(strip_tags(form_error('user_pass'))) ) {
                     $validation['user_pass'] = strip_tags(form_error('user_pass'));
                 };
-            };                        
+            };
+            if ( !$password_check ) {
+                $validation['user_new_pass'] = '영문과 숫자를 조합해야 합니다.';
+            };
             
             if ( count($validation) ) {
                 $response['status'] = 400;

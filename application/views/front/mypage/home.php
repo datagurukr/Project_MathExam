@@ -88,7 +88,38 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                                             <p>프로필을 수정하시겠습니까?</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="modal-action modal-close waves-effect waves-red btn-flat">취소</button>
+                                            <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat">취소</button>
+                                            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <form class="col s12" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="memberleave" value="1">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card grey lighten-5">
+                        <div class="card-content">
+                            <span class="card-title">회원탈퇴</span>
+                            <div class="row">
+                                <div class="col s12">
+                                    <!-- Modal Trigger -->
+                                    <a class="waves-effect waves-light btn modal-trigger" href="#modal2">회원탈퇴</a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal2" class="modal">
+                                        <div class="modal-content">
+                                            <h4>회원탈퇴</h4>
+                                            <p>회원탈퇴를 하시겠습니까?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat">취소</button>
                                             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">승인</button>
                                         </div>
                                     </div>

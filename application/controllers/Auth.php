@@ -222,10 +222,16 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('user_pass','Password','trim|required|alpha_numeric');        
         $this->form_validation->set_rules('user_pass_re', 'Re-Password', 'required|alpha_numeric|matches[user_pass]');        
         
+        $password = $this->input->post('user_pass',TRUE);
+        $password_check = FALSE;
+        if ( preg_match('/[0-9]/', $password) && preg_match('/[a-z]/i', $password) ) {
+            $password_check = TRUE;
+        }        
+        
         /*******************
         data query
         *******************/     
-        if ($this->form_validation->run() == TRUE ) {
+        if ($this->form_validation->run() == TRUE && $password_check ) {
             
             $this->load->model('user_model');        
             $row = $this->user_model->update('create',array(
@@ -292,6 +298,9 @@ class Auth extends CI_Controller {
                     $validation['user_pass_re'] = strip_tags(form_error('user_pass_re'));
                 };
             };                        
+            if ( !$password_check ) {
+                $validation['user_pass'] = '영문과 숫자를 조합해야 합니다.';
+            };
             
             if ( count($validation) ) {
                 $response['status'] = 400;
@@ -362,9 +371,6 @@ class Auth extends CI_Controller {
         if( $row = $this->user_model->out('email',array(
             'user_email' => $user_email            
         )) ) {
-            echo $user_email;
-            print_r($row);
-            
             $this->form_validation->set_message('user_email_overlap_check', '이미 등록된 %s 입니다.');
             return FALSE;
         } else {
