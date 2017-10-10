@@ -11,6 +11,7 @@
                                 <th>코스</th>
                                 <th>서브코스</th>
                                 <th>상품가격</th>
+                                <th>수정</th>                                
                                 <th>삭제</th>
                             </tr>
                         </thead>
@@ -29,16 +30,18 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <?
-                                    if ( 0 < strlen(trim($row['category_name'])) ) {
-                                        echo $row['category_name'];
-                                    } else { 
-                                        echo '-'; 
-                                    }; 
-                                    ?>                                         
+                                    <a href="/admin/subject/<? echo $row['category_id']; ?>?referer=/admin/category?p=<? echo $p; ?>">
+                                        <?
+                                        if ( 0 < strlen(trim($row['category_name'])) ) {
+                                            echo $row['category_name'];
+                                        } else { 
+                                            echo '-'; 
+                                        }; 
+                                        ?>                                         
+                                    </a>                                    
                                 </td>
                                 <td>
-                                    <a href="/admin/subject/edit/<? echo $row['subject_id']; ?>?referer=/admin/subject?p=<? echo $p; ?>">
+                                    <a href="/admin/unit/<? echo $row['subject_id']; ?>?referer=/admin/subject?p=<? echo $p; ?>">
                                         <?
                                         if ( 0 < strlen(trim($row['subject_name'])) ) {
                                             echo $row['subject_name'];
@@ -57,6 +60,11 @@
                                 }; 
                                 ?>                                         
                                 </td>
+                                <td>
+                                    <a href="/admin/subject/edit/<? echo $row['subject_id']; ?>?referer=/admin/subject?p=<? echo $p; ?>">
+                                        수정                                         
+                                    </a>
+                                </td>                                
                                 <td>
                                     <a class="red-text modal-trigger" href="#modal<? echo $row['subject_id']; ?>">삭제</a>
                                     <!-- Modal Structure -->

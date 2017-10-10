@@ -66,7 +66,7 @@ class Exam extends CI_Controller {
         $this->pagination->initialize($config);
     }      
     
-    function index ( $p = 0 ) {        
+    function index ( $unit_id = 0 ) {        
         /*******************
         data
         *******************/
@@ -140,21 +140,42 @@ class Exam extends CI_Controller {
         };        
         $data['target'] = $target;
         
-        $result = $this->exam_model->out('all',array(
-            'user_id' => $session_id,
-            'p' => $p,
-            'q' => $q,
-            'order' => 'asc',
-            'target' => $target
-        ));
-        $result_count = $this->exam_model->out('all',array(
-            'user_id' => $session_id,
-            'p' => $p,
-            'q' => $q,
-            'order' => 'asc',            
-            'target' => $target,            
-            'count' => TRUE
-        ));    
+        if ( $unit_id != 0 ) {
+            $result = $this->exam_model->out('unit_id',array(
+                'user_id' => $session_id,
+                'unit_id' => $unit_id,
+                'p' => $p,
+                'q' => $q,
+                'order' => 'asc',
+                'target' => $target
+            ));
+            $result_count = $this->exam_model->out('unit_id',array(
+                'user_id' => $session_id,
+                'unit_id' => $unit_id,                
+                'p' => $p,
+                'q' => $q,
+                'order' => 'asc',            
+                'target' => $target,            
+                'count' => TRUE
+            ));                
+        } else {
+            $result = $this->exam_model->out('all',array(
+                'user_id' => $session_id,
+                'p' => $p,
+                'q' => $q,
+                'order' => 'asc',
+                'target' => $target
+            ));
+            $result_count = $this->exam_model->out('all',array(
+                'user_id' => $session_id,
+                'p' => $p,
+                'q' => $q,
+                'order' => 'asc',            
+                'target' => $target,            
+                'count' => TRUE
+            ));                
+        }
+        
         $pagination_count = 0;
         if ( $result_count ) {
             $pagination_count = $result_count[0]['cnt'];            

@@ -9,6 +9,7 @@
                             <tr>
                                 <th>번호</th>
                                 <th>코스명</th>
+                                <th>수정</th>                                
                                 <th>삭제</th>
                             </tr>
                         </thead>
@@ -28,7 +29,7 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="/admin/category/edit/<? echo $row['category_id']; ?>?referer=/admin/category?p=<? echo $p; ?>">
+                                    <a href="/admin/subject/<? echo $row['category_id']; ?>?referer=/admin/category?p=<? echo $p; ?>">
                                         <?
                                         if ( 0 < strlen(trim($row['category_name'])) ) {
                                             echo $row['category_name'];
@@ -38,6 +39,12 @@
                                         ?>                                         
                                     </a>
                                 </td>
+                                <td>
+                                    <a href="/admin/category/edit/<? echo $row['category_id']; ?>?referer=/admin/category?p=<? echo $p; ?>">
+                                        수정                                        
+                                    </a>
+                                </td>
+                                
                                 <td>
                                     
                                     <a class="red-text modal-trigger" href="#modal<? echo $row['category_id']; ?>">삭제</a>
