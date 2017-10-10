@@ -298,7 +298,7 @@ class Auth extends CI_Controller {
                     $validation['user_pass_re'] = strip_tags(form_error('user_pass_re'));
                 };
             };                        
-            if ( !$password_check ) {
+            if ( !$password_check && isset($_POST['user_pass']) ) {
                 $validation['user_pass'] = '영문과 숫자를 조합해야 합니다.';
             };
             
