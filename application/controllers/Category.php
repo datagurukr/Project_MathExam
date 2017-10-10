@@ -203,6 +203,21 @@ class Category extends CI_Controller {
         /*******************
         data query
         *******************/     
+		$this->load->model('subject_model');
+        $result = $this->subject_model->out('id',array(
+            'subject_id' => $subject_id,
+            'session_id' => $session_id
+        ));
+        
+        if ( $result ) {
+            if ( $result[0]['user_subject_purchase'] == 0 ) {
+                $this->load->helper('url');
+                redirect('/purchase/'.$subject_id, 'refresh');
+            };
+        } else {
+            $response['status'] = 401;
+        };
+        
 		$this->load->model('unit_model');
         $result = $this->unit_model->out('id',array(
             'unit_id' => $unit_id
@@ -273,6 +288,21 @@ class Category extends CI_Controller {
         /*******************
         data query
         *******************/     
+		$this->load->model('subject_model');
+        $result = $this->subject_model->out('id',array(
+            'subject_id' => $subject_id,
+            'session_id' => $session_id
+        ));
+        
+        if ( $result ) {
+            if ( $result[0]['user_subject_purchase'] == 0 ) {
+                $this->load->helper('url');
+                redirect('/purchase/'.$subject_id, 'refresh');
+            };
+        } else {
+            $response['status'] = 401;
+        };        
+        
 		$this->load->model('exam_model');
         $result = $this->exam_model->out('id',array(
             'exam_id' => $exam_id
