@@ -41,7 +41,10 @@ if ( !$row ) {
     </nav>
 </div>
 <div class="section">
-        <? echo $row['exam_description']; ?>
+    <?
+    $str = $row['exam_description'];
+    echo $str;
+    ?>
 </div>
 
 <?
@@ -166,3 +169,12 @@ if ( $question_out ) {
     };
 };
 ?>
+<div id="exam-modal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>

@@ -152,6 +152,12 @@
                     }
                 });
             });
+            $('.btn-modal').on('click', function () {
+                var btn = $(this);
+                $('#exam-modal').modal('open');
+                $('#exam-modal .modal-content h4').html(btn.attr('title'));
+                $('#exam-modal .modal-content p').html(btn.attr('type'));
+            });
         });
         
         $(document).ready(function() {
