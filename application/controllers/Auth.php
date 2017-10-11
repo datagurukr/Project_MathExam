@@ -219,7 +219,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('user_email','Email','trim|required|valid_email|callback_user_email_overlap_check');
         $this->form_validation->set_rules('user_birthday','Birthday','trim|required');        
         $this->form_validation->set_rules('user_name','Name','trim|required');                
-        $this->form_validation->set_rules('user_pass','Password','trim|required|alpha_numeric');        
+        $this->form_validation->set_rules('user_pass','Password','trim|required|alpha_numeric|min_length[8]|max_length[100]');        
         $this->form_validation->set_rules('user_pass_re', 'Re-Password', 'required|alpha_numeric|matches[user_pass]');        
         
         $password = $this->input->post('user_pass',TRUE);
