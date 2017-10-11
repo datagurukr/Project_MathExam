@@ -12,6 +12,7 @@
                                 <th>Email</th>
                                 <th>성별</th>
                                 <th>생년월일</th>
+                                <th>상태</th>                                
                                 <th>가입일</th>
                             </tr>
                         </thead>
@@ -64,6 +65,20 @@
                                         echo '-'; 
                                     }; 
                                     ?>                                    
+                                </td>
+                                <td>
+                                    <?
+                                    if ( $row['user_state'] == 9 ) {
+                                        echo '탈퇴';
+                                    } elseif ( $row['user_state'] == 8 ) { 
+                                        echo '일시정지';
+                                    } elseif ( $row['user_state'] == 0 ) {                                         
+                                        //echo '승인안된'; 
+                                        echo '정상';                                                                                 
+                                    } else {
+                                        echo '정상';                                         
+                                    }; 
+                                    ?>                                                                        
                                 </td>
                                 <td>
                                     <?
