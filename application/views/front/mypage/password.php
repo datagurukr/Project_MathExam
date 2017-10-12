@@ -32,6 +32,25 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                             
                             <div class="row">
                                 <div class="input-field col s12">
+                                    <input id="password" name="user_pass" type="password" class="validate">
+                                    <label for="password">Password</label>
+                                    <p class="light red-text">
+                                    <?
+                                    // validation
+                                    if ( isset($response) ) {
+                                            if ( $response['status'] == 400 || $response['status'] == 200 ) {
+                                                    if ( isset($response['error']['validation']['user_pass']) ) {
+                                                            echo $response['error']['validation']['user_pass'];
+                                                    };
+                                            };
+                                    };
+                                    ?>
+                                    </p>
+                                </div>                                
+                            </div>                            
+                            
+                            <div class="row">
+                                <div class="input-field col s12">
                                     <input id="new_password" name="user_new_pass" type="password" class="validate">
                                     <label for="new_password">New Password</label>
                                     <p class="light red-text">
@@ -67,25 +86,7 @@ if ( $response['status'] == 200 || $response['status'] == 400 ) {
                                 </div>                                
                             </div>
                             
-                            
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="password" name="user_pass" type="password" class="validate">
-                                    <label for="password">Password</label>
-                                    <p class="light red-text">
-                                    <?
-                                    // validation
-                                    if ( isset($response) ) {
-                                            if ( $response['status'] == 400 || $response['status'] == 200 ) {
-                                                    if ( isset($response['error']['validation']['user_pass']) ) {
-                                                            echo $response['error']['validation']['user_pass'];
-                                                    };
-                                            };
-                                    };
-                                    ?>
-                                    </p>
-                                </div>                                
-                            </div>
+
                             <div class="row">
                                 <div class="col s12">
                                     <!-- Modal Trigger -->
