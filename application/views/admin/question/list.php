@@ -3,7 +3,9 @@
         <form class="col s12">
             <div class="row">
                 <div class="col s12">
-                    <h4>문제(유닛명)</h4>
+                    <h4>
+                        <? if ( isset($response['data']['exam_out'][0]['exam_name']) ) { echo $response['data']['exam_out'][0]['exam_name']; }; ?>
+                    </h4>
                     <table class="striped centered">
                         <thead>
                             <tr>

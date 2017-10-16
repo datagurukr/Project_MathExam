@@ -60,6 +60,7 @@ if ( $response['data']['category_out'] ) {
                     </a>
                 </p>    
                     <?
+                    $num++;
                 }
             } else {
                 ?>
@@ -94,6 +95,7 @@ if ( $response['data']['category_out'] ) {
                     </a>
                 </p>                        
                     <?
+                    $num++;
                 }
             } else {
                 ?>

@@ -113,6 +113,7 @@ class Question extends CI_Controller {
         data query
         *******************/             
 		$this->load->model('question_model');                
+		$this->load->model('exam_model');                
         
         if ( isset($_GET['p']) ) {
             $p = (int)$_GET['p'];
@@ -141,6 +142,15 @@ class Question extends CI_Controller {
         };        
         $data['target'] = $target;
         
+        
+        $result_exam = $this->exam_model->out('id',array(
+            'user_id' => $session_id,
+            'exam_id' => $exam_id,
+            'p' => $p,
+            'q' => $q,
+            'order' => 'asc',            
+            'target' => $target
+        ));
         $result = $this->question_model->out('exam_id',array(
             'exam_id' => $exam_id,
             'user_id' => $session_id,
@@ -168,11 +178,15 @@ class Question extends CI_Controller {
             $response['status'] = 200;                    
             $response['data'] = array(
                 'out' => $result,
+                'exam_out' => $result_exam,
                 'out_cnt' => $pagination_count,               
                 'count' => count($result)
             );        
         } else {
             $response['status'] = 401;
+            $response['data'] = array(
+                'exam_out' => $result_exam
+            );
         };          
         
         $data['response'] = $response;        

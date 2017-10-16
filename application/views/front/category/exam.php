@@ -21,24 +21,22 @@ if ( !$row ) {
 }
 ?>
 <div class="section row">
-    <nav>
-        <div class="nav-wrapper">
-            <div class="col s12 truncate">
-                <a href="/category/<? echo $row['category_id']; ?>" class="breadcrumb">
-                    <? echo $row['category_name']; ?>
-                </a>
-                <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>" class="breadcrumb">
-                    <? echo $row['subject_name']; ?>
-                </a>                
-                <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>/<? echo $row['unit_id']; ?>" class="breadcrumb">
-                    <? echo $row['unit_name']; ?>
-                </a>                                
-                <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>/<? echo $row['unit_id']; ?>/<? echo $row['exam_id']; ?>" class="breadcrumb">
-                    <? echo $row['exam_name']; ?>
-                </a>                                                
-            </div>
+    <div class="nav-wrapper">
+        <div class="col s12 truncate tabs" style="background-color: #ee6e73;">
+            <a href="/category/<? echo $row['category_id']; ?>" class="breadcrumb tab">
+                <? echo $row['category_name']; ?>
+            </a>
+            <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>" class="breadcrumb tab">
+                <? echo $row['subject_name']; ?>
+            </a>                
+            <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>/<? echo $row['unit_id']; ?>" class="breadcrumb tab">
+                <? echo $row['unit_name']; ?>
+            </a>                                
+            <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>/<? echo $row['unit_id']; ?>/<? echo $row['exam_id']; ?>" class="breadcrumb tab">
+                <? echo $row['exam_name']; ?>
+            </a>                                                
         </div>
-    </nav>
+    </div>
 </div>
 <div class="section">
     <?

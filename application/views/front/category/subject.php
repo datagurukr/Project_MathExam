@@ -14,18 +14,16 @@ if ( !$row ) {
 }
 ?>
 <div class="section row">
-    <nav>
-        <div class="nav-wrapper">
-            <div class="col s12">
-                <a href="/category/<? echo $row['category_id']; ?>" class="breadcrumb">
-                    <? echo $row['category_name']; ?>
-                </a>
-                <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>" class="breadcrumb">
-                    <? echo $row['subject_name']; ?>
-                </a>                
-            </div>
+    <div class="nav-wrapper">
+        <div class="col s12 truncate tabs" style="background-color: #ee6e73;">
+            <a href="/category/<? echo $row['category_id']; ?>" class="breadcrumb tab">
+                <? echo $row['category_name']; ?>
+            </a>
+            <a href="/category/<? echo $row['category_id']; ?>/<? echo $row['subject_id']; ?>" class="breadcrumb tab">
+                <? echo $row['subject_name']; ?>
+            </a>                
         </div>
-    </nav>
+    </div>
     <ul class="collection with-header">
         <?
         if ( $unit_out ) {
