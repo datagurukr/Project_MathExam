@@ -265,7 +265,11 @@ class Qna extends CI_Controller {
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/qna/edit/'.$post_id, 'refresh');                        
+                            if ( isset($_GET['referer']) ) {
+                                redirect($_GET['referer'], 'refresh');
+                            } else {
+                                redirect('/admin/qna/edit/'.$post_id, 'refresh');                        
+                            };                                                                                    
                         } else {
                             $response['update'] = FALSE;
                         }

@@ -321,7 +321,11 @@ class Question extends CI_Controller {
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/question/edit/'.$exam_id.'/'.$question_id, 'refresh');                        
+                            if ( isset($_GET['referer']) ) {
+                                redirect($_GET['referer'], 'refresh');
+                            } else {
+                                redirect('/admin/question/edit/'.$exam_id.'/'.$question_id, 'refresh');                        
+                            };
                         } else {
                             $response['update'] = FALSE;
                         }

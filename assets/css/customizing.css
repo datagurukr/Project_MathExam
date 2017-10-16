@@ -25,3 +25,35 @@ main{flex: 1 0 auto}
 select.cke_dialog_ui_input_select {
     display: block;
 }
+
+.collapsible-header.link-header {
+    position: relative;
+}
+
+.collapsible-header.link-header .link-more {
+    position: absolute;
+    right: 10px;
+    font-size: 12px;
+    top: 15px;
+}
+
+.collapsible-body.link-body {
+    padding: 0;
+}
+
+.collapsible-body.link-body p {
+    border-bottom: solid 1px #eee;
+    margin: 0;
+}
+
+.collapsible-body.link-body p a {
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 12px;
+}
+
+.collapsible-body.link-body .alert-msg {
+    padding: 30px;
+    text-align: center;
+}

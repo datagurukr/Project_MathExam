@@ -295,7 +295,11 @@ class Subject extends CI_Controller {
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/subject/edit/'.$subject_id, 'refresh');                        
+                            if ( isset($_GET['referer']) ) {
+                                redirect($_GET['referer'], 'refresh');
+                            } else {
+                                redirect('/admin/subject/edit/'.$subject_id, 'refresh');
+                            };                            
                         } else {
                             $response['update'] = FALSE;
                         }

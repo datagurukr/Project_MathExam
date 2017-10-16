@@ -38,17 +38,18 @@ if ( $response['data']['category_out'] ) {
     
 	<ul class="collapsible collection with-header" data-collapsible="accordion">
         <li>
-            <div class="collapsible-header">
-                공지사항                
+            <div class="collapsible-header link-header">
+                공지사항
+                <a href="/notice" class="link-more">더보기</a>
             </div>
-            <div class="collapsible-body">
+            <div class="collapsible-body link-body">
             <?
             if ( $notice_out ) {
                 $num = 1;
                 foreach ( $notice_out as $row ) {
                     ?>
                 <p>
-                    <a href="/notice/detail/<? echo $row['post_id']; ?>">
+                    <a href="/notice/detail/<? echo $row['post_id']; ?>" class="collection-item">
                         <?
                         echo $num.'. ';
                         if ( 0 < strlen(trim($row['post_content_title'])) ) {
@@ -64,7 +65,7 @@ if ( $response['data']['category_out'] ) {
                 }
             } else {
                 ?>
-                <p>공지사항이 없습니다.</p>
+                <p class="alert-msg">공지사항이 없습니다.</p>
                 <?
             }
             ?>                 
@@ -72,10 +73,11 @@ if ( $response['data']['category_out'] ) {
         </li>     
         
         <li>
-            <div class="collapsible-header">
-                QA                
+            <div class="collapsible-header link-header">
+                QA      
+                <a href="/qna" class="link-more">더보기</a>                
             </div>
-            <div class="collapsible-body">
+            <div class="collapsible-body link-body">
                 
             <?
             if ( $post_out ) {
@@ -83,7 +85,7 @@ if ( $response['data']['category_out'] ) {
                 foreach ( $post_out as $row ) {
                     ?>
                 <p>                
-                    <a href="/qna/detail/<? echo $row['post_id']; ?>">
+                    <a href="/qna/detail/<? echo $row['post_id']; ?>" class="collection-item">
                         <?
                         echo $num.'. ';
                         if ( 0 < strlen(trim($row['post_content_title'])) ) {
@@ -99,7 +101,7 @@ if ( $response['data']['category_out'] ) {
                 }
             } else {
                 ?>
-                <p>Q&A 없습니다.</p>
+                <p class="alert-msg">Q&A 없습니다.</p>
                 <?
             }
             ?>                 

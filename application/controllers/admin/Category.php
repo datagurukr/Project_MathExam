@@ -263,7 +263,11 @@ class Category extends CI_Controller {
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/category/edit/'.$category_id, 'refresh');                        
+                            if ( isset($_GET['referer']) ) {
+                                redirect($_GET['referer'], 'refresh');
+                            } else {
+                                redirect('/admin/category/edit/'.$category_id, 'refresh');
+                            };
                         } else {
                             $response['update'] = FALSE;
                         }

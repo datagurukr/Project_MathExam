@@ -296,7 +296,11 @@ class Unit extends CI_Controller {
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/unit/edit/'.$unit_id, 'refresh');                        
+                            if ( isset($_GET['referer']) ) {
+                                redirect($_GET['referer'], 'refresh');
+                            } else {
+                                redirect('/admin/unit/edit/'.$unit_id, 'refresh');
+                            };                                                        
                         } else {
                             $response['update'] = FALSE;
                         }

@@ -265,7 +265,11 @@ class Notice extends CI_Controller {
                         if ( $result ) {
                             $response['update'] = TRUE;
                             $this->load->helper('url');
-                            redirect('/admin/notice/edit/'.$post_id, 'refresh');                        
+                            if ( isset($_GET['referer']) ) {
+                                redirect($_GET['referer'], 'refresh');
+                            } else {
+                                redirect('/admin/notice/edit/'.$post_id, 'refresh');                        
+                            };                                                        
                         } else {
                             $response['update'] = FALSE;
                         }
