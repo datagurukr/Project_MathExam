@@ -40,7 +40,6 @@ if ( $response['data']['category_out'] ) {
         <li>
             <div class="collapsible-header link-header">
                 공지사항
-                <a href="/notice" class="link-more">더보기</a>
             </div>
             <div class="collapsible-body link-body">
             <?
@@ -48,7 +47,6 @@ if ( $response['data']['category_out'] ) {
                 $num = 1;
                 foreach ( $notice_out as $row ) {
                     ?>
-                <p>
                     <a href="/notice/detail/<? echo $row['post_id']; ?>" class="collection-item">
                         <?
                         echo $num.'. ';
@@ -59,7 +57,6 @@ if ( $response['data']['category_out'] ) {
                         };
                         ?>
                     </a>
-                </p>    
                     <?
                     $num++;
                 }
@@ -75,7 +72,6 @@ if ( $response['data']['category_out'] ) {
         <li>
             <div class="collapsible-header link-header">
                 QA      
-                <a href="/qna" class="link-more">더보기</a>                
             </div>
             <div class="collapsible-body link-body">
                 
@@ -84,7 +80,6 @@ if ( $response['data']['category_out'] ) {
                 $num = 1;                
                 foreach ( $post_out as $row ) {
                     ?>
-                <p>                
                     <a href="/qna/detail/<? echo $row['post_id']; ?>" class="collection-item">
                         <?
                         echo $num.'. ';
@@ -95,13 +90,12 @@ if ( $response['data']['category_out'] ) {
                         };
                         ?>
                     </a>
-                </p>                        
                     <?
                     $num++;
                 }
             } else {
                 ?>
-                <p class="alert-msg">Q&A 없습니다.</p>
+                <p class="alert-msg">Q&A가 존재하지 않습니다.</p>
                 <?
             }
             ?>                 
