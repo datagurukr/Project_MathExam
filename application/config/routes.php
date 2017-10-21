@@ -163,6 +163,11 @@ $route['admin/notice/edit'] = "admin/notice/edit/0";
 $route['admin/notice/edit/(:num)'] = "admin/notice/edit/$1";
 $route['admin/notice/(:num)/delete'] = "admin/notice/edit/$1/delete";
 
+// Admin/Statistics
+$route['admin/statistics'] = "admin/statistics/index/day";
+$route['admin/statistics/day'] = "admin/statistics/index/day";
+$route['admin/statistics/month'] = "admin/statistics/index/month";
+
 // API
 $route['api/upload'] = "api/upload/ckupload";
 

@@ -17,7 +17,7 @@ class Statistics extends CI_Controller {
 		parent::__construct();
 	}
     
-    function index ( ) {        
+    function index ( $type ) {        
         /*******************
         data
         *******************/
@@ -26,7 +26,7 @@ class Statistics extends CI_Controller {
         /*******************
         page key
         *******************/
-        $data['key'] = 'privacy';
+        $data['key'] = 'statistics';
         
         /*******************
         response
@@ -58,6 +58,27 @@ class Statistics extends CI_Controller {
             show_404();
         };
         $data['session_id'] = $session_id;
+        
+        if ( $type == 'day' || $type == 'month' ) {
+        } else {
+            exit();            
+        };
+        
+		$this->load->model('purchase_model');
+        $date = date('Y-m-d');
+        $result = $this->purchase_model->out($type,array(
+            'date' => $date
+        ));        
+        
+        if ( $result ) {
+            $response['status'] = 200;                    
+            $response['data'] = array(
+                'out' => $result,
+                'count' => count($result)
+            );        
+        } else {
+            $response['status'] = 401;
+        };        
         
         $data['response'] = $response;        
         if ( $ajax ) {
