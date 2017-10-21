@@ -11,10 +11,11 @@ if ( $response['status'] == 200 ) {
 <div class="section">
     <div class="row">
         <form action="/Danal/Teledit/Mobile/Script/Ready.php" class="col s12" method="post" enctype="application/x-www-form-urlencoded">
-            <input type="hidden" name="user_id" value="<? if ( isset($session_id) ) { echo $session_id; } else { echo '0'; }; ?>">
-            <input type="hidden" name="subject_id" value="<? if ( isset($row['subject_id']) ) { echo $row['subject_id']; } else { echo '-'; }; ?>">     
-            <input type="hidden" name="subject_name" value="<? if ( isset($row['subject_name']) ) { echo $row['subject_name']; } else { echo '-'; }; ?>">
-            <input type="hidden" name="subject_price" value="<? if ( isset($row['subject_price']) ) { echo $row['subject_price']; } else { echo '-'; }; ?>">
+            <input type="hidden" name="pay_user_id" value="<? if ( isset($session_id) ) { echo $session_id; } else { echo '0'; }; ?>">
+            <input type="hidden" name="pay_user_email" value="<? if ( isset($session_email) ) { echo $session_email; } else { echo ''; }; ?>">            
+            <input type="hidden" name="pay_subject_id" value="<? if ( isset($row['subject_id']) ) { echo $row['subject_id']; } else { echo '-'; }; ?>">     
+            <input type="hidden" name="pay_subject_name" value="<? if ( isset($row['subject_name']) ) { echo $row['subject_name']; } else { echo '-'; }; ?>">
+            <input type="hidden" name="pay_subject_price" value="<? if ( isset($row['subject_price']) ) { echo $row['subject_price']; } else { echo '-'; }; ?>">
             
             <div class="row">
                 <div class="input-field col s12">

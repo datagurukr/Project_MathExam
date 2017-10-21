@@ -283,7 +283,14 @@ class Purchase extends CI_Controller {
         $data['session'] = $this->session->all_userdata();  
         $data['session_id'] = 0;
         if ( isset($data['session']['logged_in']) ) {
-            $session_id = $data['session']['users_id'];
+            $this->load->model('user_model');                                       
+            $session_id = $data['session']['users_id'];            
+            $user_result = $this->user_model->out('id', array(
+                'user_id' => $session_id
+            ));
+            if ( $user_result ) {
+                $data['session_email'] = $user_result[0]['user_email'];
+            }
         } else {
             $session_id = 0;
         };

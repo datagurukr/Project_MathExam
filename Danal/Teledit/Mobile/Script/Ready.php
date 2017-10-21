@@ -26,10 +26,32 @@ $base_url = 'http://justthink.co.kr/';
 </head>
 <?php
     
-    $user_id = '';
-    $subject_id = '';
-    $subject_name = '';    
-    $subject_price = 0;
+    $pay_user_id = '';
+    $pay_user_email = '';
+    $pay_subject_id = '';
+    $pay_subject_name = '';    
+    $pay_subject_price = 0;
+    
+    if (
+        isset($_POST['pay_user_id']) &&
+        isset($_POST['pay_subject_id']) &&
+        isset($_POST['pay_subject_name']) &&
+        isset($_POST['pay_subject_price']) &&
+        isset($_POST['pay_user_email'])
+       ) {
+        $pay_user_id = $_POST['pay_user_id'];
+        $pay_user_email = $_POST['pay_user_email'];        
+        $pay_subject_id = $_POST['pay_subject_id'];
+        $pay_subject_name = $_POST['pay_subject_name'];
+        $pay_subject_name = '111';
+        $pay_subject_price = $_POST['pay_subject_price'];
+        //$AMOUNT = $pay_subject_price;
+        $AMOUNT = 1004;
+    } else {
+        exit();
+    };
+    
+
     
 	/********************************************************************************
 	 *
@@ -59,7 +81,7 @@ $base_url = 'http://justthink.co.kr/';
 	 ******************************************************/
 	$TransR["ID"] = $ID;
 	$TransR["PWD"] = $PWD;
-	$CPName = "CP명";
+	$CPName = "JustThink";
 
 	/******************************************************
 	 * ItemAmt      : 결제 금액( function 파일 참조 )
@@ -69,8 +91,9 @@ $base_url = 'http://justthink.co.kr/';
 	 * ItemCode     : 다날에서 제공해 드린 ItemCode
 	 ******************************************************/
 	$ItemAmt = $AMOUNT;
-	$ItemName = "휴대폰결제";
-	$ItemCode = "1270000000";
+    $mt_rand = mt_rand();
+	$ItemName = $pay_subject_name; //"휴대폰결제";
+	$ItemCode = $mt_rand; //"1270000000";
 	$ItemInfo = MakeItemInfo( $ItemAmt,$ItemCode,$ItemName );
 
 	$TransR["ItemInfo"] = $ItemInfo;
@@ -85,7 +108,7 @@ $base_url = 'http://justthink.co.kr/';
 	 ******************************************************/
 	$TransR["SUBCP"] = "";
 	$TransR["USERID"] = "USERID";
-	$TransR["ORDERID"] = "ORDERID";
+	$TransR["ORDERID"] = $mt_rand;//"ORDERID";
 	$TransR["IsPreOtbill"] = "N";
 	$TransR["IsSubscript"] = "N";
 
@@ -106,10 +129,10 @@ $base_url = 'http://justthink.co.kr/';
 	 * CIURL        : CP의 CI FULL URL
 	 ******************************************************/
 	$ByPassValue["BgColor"] = "00";
-	$ByPassValue["TargetURL"] = $base_url."/Danal/Teledit/Mobile/CPCGI.php";
-	$ByPassValue["BackURL"] = $base_url."/Danal/Teledit/Mobile/BackURL.php";
+	$ByPassValue["TargetURL"] = $base_url."/Danal/Teledit/Mobile/Script/CPCGI.php";
+	$ByPassValue["BackURL"] = $base_url."/Danal/Teledit/Mobile/Script/BackURL.php";
 	$ByPassValue["IsUseCI"] = "N";
-	$ByPassValue["CIURL"] = $base_url."/Danal/Teledit/Mobile/images/logo.png";
+	$ByPassValue["CIURL"] = $base_url."/Danal/Teledit/Mobile/Script/images/logo.png";
 
 	/***[ 선택 사항 ]**************************************/
 
@@ -117,8 +140,8 @@ $base_url = 'http://justthink.co.kr/';
 	 * Email	: 사용자 E-mail 주소 - 결제 화면에 표기 
 	 * IsCharSet	: CP의 Webserver Character set
 	 ******************************************************/
-	$ByPassValue["Email"] = "user@cp.co.kr";
-	$ByPassValue["IsCharSet"] = "";
+	$ByPassValue["Email"] = $pay_user_email; //"user@cp.co.kr";
+	$ByPassValue["IsCharSet"] = "utf8";
 
 	/******************************************************
 	 ** CPCGI에 POST DATA로 전달 됩니다.
