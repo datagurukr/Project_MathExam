@@ -228,7 +228,25 @@ class Purchase_model extends CI_Model{
             ".$limit."
             ";              
         } elseif ( $type == 'day' ) {            
-            echo 'asd1';
+            $time = strtotime("1years ago");
+            $start_time = date("Y-m-d", $time);            
+            $end_time = $data['date']; 
+            $sql = "
+            SELECT 
+                COUNT(*) AS statistics_cnt,
+                DATE_FORMAT(purchase.purchase_register_date, '%Y-%m-%d') AS statistics_date
+            FROM
+                purchase AS purchase
+                    LEFT OUTER JOIN
+                user AS user ON (purchase.user_id = user.user_id)
+                    LEFT OUTER JOIN
+                subject AS subject ON (purchase.subject_id = subject.subject_id)
+            WHERE
+                DATE_FORMAT(purchase.purchase_register_date,'%Y-%m-%d') <= '".$end_time."'
+            GROUP BY DATE_FORMAT(purchase.purchase_register_date, '%Y-%m-%d')
+            ORDER BY purchase.purchase_register_date DESC            
+            limit 31
+            ";
         } elseif ( $type == 'month' ) {     
             $time = strtotime("1years ago");
             $start_time = date("Y-m-d", $time);            

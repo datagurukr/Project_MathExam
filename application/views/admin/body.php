@@ -10,7 +10,8 @@
         <link href="/assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="/assets/css/customizing.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/FreddyFY/material-datepicker/master/dist/material-datepicker.css">
+        
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/assets/js/materialize.js"></script>

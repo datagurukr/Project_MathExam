@@ -27,6 +27,7 @@ class Statistics extends CI_Controller {
         page key
         *******************/
         $data['key'] = 'statistics';
+        $data['sub_key'] = $type;
         
         /*******************
         response
@@ -65,7 +66,14 @@ class Statistics extends CI_Controller {
         };
         
 		$this->load->model('purchase_model');
-        $date = date('Y-m-d');
+        
+        if ( isset($_GET['date']) ) {
+            $date = date('Y-m-d',strtotime($_GET['date']));
+        } else {
+            $date = date('Y-m-d');            
+        }
+        $data['date'] = $date;
+
         $result = $this->purchase_model->out($type,array(
             'date' => $date
         ));        
