@@ -1,16 +1,15 @@
 <?php
-$base_url = 'http://justthink.co.kr/';
 	header( "Pragma: No-Cache" );
 	include( "./inc/function.php" );
 
 	/******************************************************************************** 
 	 *
-	 * ´Ù³¯ ÈŞ´ëÆù °áÁ¦
+	 * ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ
 	 *
-	 * - °áÁ¦ ¿äÃ» ÆäÀÌÁö 
-	 *	±İ¾× È®ÀÎ ¹× °áÁ¦ ¿äÃ»
+	 * - ê²°ì œ ìš”ì²­ í˜ì´ì§€ 
+	 *	ê¸ˆì•¡ í™•ì¸ ë° ê²°ì œ ìš”ì²­
 	 *
-	 * °áÁ¦ ½Ã½ºÅÛ ¿¬µ¿¿¡ ´ëÇÑ ¹®ÀÇ»çÇ×ÀÌ ÀÖÀ¸½Ã¸é ¼­ºñ½º°³¹ßÆÀÀ¸·Î ¿¬¶ô ÁÖ½Ê½Ã¿À.
+	 * ê²°ì œ ì‹œìŠ¤í…œ ì—°ë™ì— ëŒ€í•œ ë¬¸ì˜ì‚¬í•­ì´ ìˆìœ¼ì‹œë©´ ì„œë¹„ìŠ¤ê°œë°œíŒ€ìœ¼ë¡œ ì—°ë½ ì£¼ì‹­ì‹œì˜¤.
 	 * DANAL Commerce Division Technique supporting Team 
 	 * EMail : tech@danal.co.kr 
 	 *
@@ -18,9 +17,9 @@ $base_url = 'http://justthink.co.kr/';
 ?>
 <html>
 <head>
-<title>´Ù³¯ ÈŞ´ëÆù °áÁ¦</title>
+<title>ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, target-densitydpi=medium-dpi;" />
 </head>
 <?php
@@ -30,12 +29,12 @@ $base_url = 'http://justthink.co.kr/';
 	/*
 	 * Get ServerInfo
 	 */
-	$ServerInfo = $_POST["ServerInfo"]; 
+	$ServerInfo = $_POST["ServerInfo"];
 
 	/*
 	 * NCONFIRM
 	 */
-	$nConfirmOption = 1; 
+	$nConfirmOption = 1;
 	$TransR["Command"] = "NCONFIRM";
 	$TransR["OUTPUTOPTION"] = "DEFAULT";
 	$TransR["ServerInfo"] = $ServerInfo;
@@ -43,7 +42,7 @@ $base_url = 'http://justthink.co.kr/';
 	$TransR["ConfirmOption"] = $nConfirmOption;
 
 	/*
-	 * ConfirmOptionÀÌ 1ÀÌ¸é CPID, AMOUNT ÇÊ¼ö Àü´Ş
+	 * ConfirmOptionì´ 1ì´ë©´ CPID, AMOUNT í•„ìˆ˜ ì „ë‹¬
 	 */
 	if( $nConfirmOption == 1 )
 	{
@@ -80,12 +79,37 @@ $base_url = 'http://justthink.co.kr/';
 	{
 		/**************************************************************************
 		 *
-		 * °áÁ¦ ¿Ï·á¿¡ ´ëÇÑ ÀÛ¾÷ 
-		 * - AMOUNT, ORDERID µî °áÁ¦ °Å·¡³»¿ë¿¡ ´ëÇÑ °ËÁõÀ» ¹İµå½Ã ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.
-		 * - CAP, RemainAmt: °³ÀÎÁ¤º¸ Á¤Ã¥¿¡ ÀÇÇØ ÀÜ¿© ÇÑµµ ±İ¾×Àº ¹ÌÀü´Ş µË´Ï´Ù. (¡°000000¡±)
+		 * ê²°ì œ ì™„ë£Œì— ëŒ€í•œ ì‘ì—… 
+		 * - AMOUNT, ORDERID ë“± ê²°ì œ ê±°ë˜ë‚´ìš©ì— ëŒ€í•œ ê²€ì¦ì„ ë°˜ë“œì‹œ í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.
+		 * - CAP, RemainAmt: ê°œì¸ì •ë³´ ì •ì±…ì— ì˜í•´ ì”ì—¬ í•œë„ ê¸ˆì•¡ì€ ë¯¸ì „ë‹¬ ë©ë‹ˆë‹¤. (â€œ000000â€)
 		 *
 		 **************************************************************************/
 ?>
+    
+<?php
+$pay_user_id = '';
+$pay_user_email = '';
+$pay_subject_id = '';
+$pay_subject_name = '';
+$pay_subject_price = 0;
+
+if (
+    isset($_POST['pay_user_id']) &&
+    isset($_POST['pay_subject_id']) &&
+    isset($_POST['pay_subject_name']) &&
+    isset($_POST['pay_subject_price']) &&
+    isset($_POST['pay_user_email'])
+   ) {
+    $pay_user_id = $_POST['pay_user_id'];
+    $pay_user_email = $_POST['pay_user_email'];
+    $pay_subject_id = $_POST['pay_subject_id'];
+    $pay_subject_name = $_POST['pay_subject_name'];
+    $pay_subject_price = $_POST['pay_subject_price'];
+} else {
+    exit();
+};
+?>
+    
 <body>
 <form name="Success" action="./Success.php" method="post">
 <?php
@@ -93,6 +117,11 @@ $base_url = 'http://justthink.co.kr/';
 	MakeFormInput($Res,array("Result","ErrMsg"));
 	MakeFormInput($Res2,array("Result","ErrMsg"));
 ?>
+    <input type="hidden" name="pay_user_id" value="<?=$pay_user_id?>">
+    <input type="hidden" name="pay_user_email" value="<?=$pay_user_email?>">
+    <input type="hidden" name="pay_subject_id" value="<?=$pay_subject_id?>">
+    <input type="hidden" name="pay_subject_name" value="<?=$pay_subject_name?>">
+    <input type="hidden" name="pay_subject_price" value="<?=$pay_subject_price?>">    
 </form>
 <script>
 	document.Success.submit();
@@ -103,7 +132,7 @@ $base_url = 'http://justthink.co.kr/';
 	} else {
 		/**************************************************************************
 		 *
-		 * °áÁ¦ ½ÇÆĞ¿¡ ´ëÇÑ ÀÛ¾÷ 
+		 * ê²°ì œ ì‹¤íŒ¨ì— ëŒ€í•œ ì‘ì—… 
 		 *
 		 **************************************************************************/
 

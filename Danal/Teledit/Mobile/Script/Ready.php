@@ -6,12 +6,12 @@ $base_url = 'http://justthink.co.kr/';
 
 	/********************************************************************************
 	 *
-	 * ´Ù³¯ ÈŞ´ëÆù °áÁ¦
+	 * ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ
 	 *
-	 * - °áÁ¦ ¿äÃ» ÆäÀÌÁö
-	 *      CPÀÎÁõ ¹× °áÁ¦ Á¤º¸ Àü´Ş
+	 * - ê²°ì œ ìš”ì²­ í˜ì´ì§€
+	 *      CPì¸ì¦ ë° ê²°ì œ ì •ë³´ ì „ë‹¬
 	 *
-	 * °áÁ¦ ½Ã½ºÅÛ ¿¬µ¿¿¡ ´ëÇÑ ¹®ÀÇ»çÇ×ÀÌ ÀÖÀ¸½Ã¸é ¼­ºñ½º°³¹ßÆÀÀ¸·Î ¿¬¶ô ÁÖ½Ê½Ã¿À.
+	 * ê²°ì œ ì‹œìŠ¤í…œ ì—°ë™ì— ëŒ€í•œ ë¬¸ì˜ì‚¬í•­ì´ ìˆìœ¼ì‹œë©´ ì„œë¹„ìŠ¤ê°œë°œíŒ€ìœ¼ë¡œ ì—°ë½ ì£¼ì‹­ì‹œì˜¤.
 	 * DANAL Commerce Division Technique supporting Team
 	 * EMail : tech@danal.co.kr
 	 *
@@ -19,19 +19,19 @@ $base_url = 'http://justthink.co.kr/';
 ?>
 <html>
 <head>
-<title>´Ù³¯ ÈŞ´ëÆù °áÁ¦</title>
+<title>ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, target-densitydpi=medium-dpi;" />
 </head>
 <?php
-    
+
     $pay_user_id = '';
     $pay_user_email = '';
     $pay_subject_id = '';
-    $pay_subject_name = '';    
+    $pay_subject_name = '';
     $pay_subject_price = 0;
-    
+
     if (
         isset($_POST['pay_user_id']) &&
         isset($_POST['pay_subject_id']) &&
@@ -40,30 +40,30 @@ $base_url = 'http://justthink.co.kr/';
         isset($_POST['pay_user_email'])
        ) {
         $pay_user_id = $_POST['pay_user_id'];
-        $pay_user_email = $_POST['pay_user_email'];        
+        $pay_user_email = $_POST['pay_user_email'];
         $pay_subject_id = $_POST['pay_subject_id'];
         $pay_subject_name = $_POST['pay_subject_name'];
         $pay_subject_name = '111';
         $pay_subject_price = $_POST['pay_subject_price'];
-        //$AMOUNT = $pay_subject_price;
-        $AMOUNT = 1004;
+        $AMOUNT = $pay_subject_price;
+        //$AMOUNT = 1004;
     } else {
         exit();
     };
-    
 
-    
+
+
 	/********************************************************************************
 	 *
-	 * [ Àü¹® ¿äÃ» µ¥ÀÌÅÍ ] *********************************************************
+	 * [ ì „ë¬¸ ìš”ì²­ ë°ì´í„° ] *********************************************************
 	 *
 	 ********************************************************************************/
 
-	/***[ ÇÊ¼ö µ¥ÀÌÅÍ ]************************************/
+	/***[ í•„ìˆ˜ ë°ì´í„° ]************************************/
 	$TransR = array();
 
 	/******************************************************
-	 ** ¾Æ·¡ÀÇ µ¥ÀÌÅÍ´Â °íÁ¤°ªÀÔ´Ï´Ù.( º¯°æÇÏÁö ¸¶¼¼¿ä )
+	 ** ì•„ë˜ì˜ ë°ì´í„°ëŠ” ê³ ì •ê°’ì…ë‹ˆë‹¤.( ë³€ê²½í•˜ì§€ ë§ˆì„¸ìš” )
 	 * Command      : ITEMSEND2
 	 * SERVICE      : TELEDIT
 	 * ItemCount    : 1
@@ -75,36 +75,36 @@ $base_url = 'http://justthink.co.kr/';
 	$TransR["OUTPUTOPTION"] = "DEFAULT";
 
 	/******************************************************
-	 *  ID          : ´Ù³¯¿¡¼­ Á¦°øÇØ µå¸° ID( function ÆÄÀÏ ÂüÁ¶ )
-	 *  PWD         : ´Ù³¯¿¡¼­ Á¦°øÇØ µå¸° PWD( function ÆÄÀÏ ÂüÁ¶ )
-	 *  CPNAME      : CP ¸í
+	 *  ID          : ë‹¤ë‚ ì—ì„œ ì œê³µí•´ ë“œë¦° ID( function íŒŒì¼ ì°¸ì¡° )
+	 *  PWD         : ë‹¤ë‚ ì—ì„œ ì œê³µí•´ ë“œë¦° PWD( function íŒŒì¼ ì°¸ì¡° )
+	 *  CPNAME      : CP ëª…
 	 ******************************************************/
 	$TransR["ID"] = $ID;
 	$TransR["PWD"] = $PWD;
 	$CPName = "JustThink";
 
 	/******************************************************
-	 * ItemAmt      : °áÁ¦ ±İ¾×( function ÆÄÀÏ ÂüÁ¶ )
-	 *      - ½ÇÁ¦ »óÇ°±İ¾× Ã³¸®½Ã¿¡´Â Session ¶Ç´Â DB¸¦ ÀÌ¿ëÇÏ¿© Ã³¸®ÇØ ÁÖ½Ê½Ã¿À.
-	 *      - ±İ¾× Ã³¸® ½Ã ±İ¾×º¯Á¶ÀÇ À§ÇèÀÌ ÀÖ½À´Ï´Ù.
-	 * ItemName     : »óÇ°¸í
-	 * ItemCode     : ´Ù³¯¿¡¼­ Á¦°øÇØ µå¸° ItemCode
+	 * ItemAmt      : ê²°ì œ ê¸ˆì•¡( function íŒŒì¼ ì°¸ì¡° )
+	 *      - ì‹¤ì œ ìƒí’ˆê¸ˆì•¡ ì²˜ë¦¬ì‹œì—ëŠ” Session ë˜ëŠ” DBë¥¼ ì´ìš©í•˜ì—¬ ì²˜ë¦¬í•´ ì£¼ì‹­ì‹œì˜¤.
+	 *      - ê¸ˆì•¡ ì²˜ë¦¬ ì‹œ ê¸ˆì•¡ë³€ì¡°ì˜ ìœ„í—˜ì´ ìˆìŠµë‹ˆë‹¤.
+	 * ItemName     : ìƒí’ˆëª…
+	 * ItemCode     : ë‹¤ë‚ ì—ì„œ ì œê³µí•´ ë“œë¦° ItemCode
 	 ******************************************************/
 	$ItemAmt = $AMOUNT;
     $mt_rand = mt_rand();
-	$ItemName = $pay_subject_name; //"ÈŞ´ëÆù°áÁ¦";
-	$ItemCode = $mt_rand; //"1270000000";
+	$ItemName = $pay_subject_name; //"å ìŒ¨ëŒì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™";
+	$ItemCode = '1'.substr($pay_subject_id,0,5).'0000'; //$mt_rand; //"1270000000";
 	$ItemInfo = MakeItemInfo( $ItemAmt,$ItemCode,$ItemName );
 
 	$TransR["ItemInfo"] = $ItemInfo;
 
-	/***[ ¼±ÅÃ »çÇ× ]**************************************/
+	/***[ ì„ íƒ ì‚¬í•­ ]**************************************/
 	/******************************************************
-	 * SUBCP		: ´Ù³¯¿¡¼­ Á¦°øÇØµå¸° SUBCP ID
-	 * USERID		: »ç¿ëÀÚ ID
-	 * ORDERID		: CP ÁÖ¹®¹øÈ£
-	 * IsPreOtbill		: AuthKey ¼ö½Å À¯¹«(Y/N) (Àç½ÂÀÎ, ¿ùÀÚµ¿°áÁ¦¸¦ À§ÇÑ AuthKey ¼ö½ÅÀÌ ÇÊ¿äÇÑ °æ¿ì : Y)
-	 * IsSubscript		: ¿ù Á¤¾× °¡ÀÔ À¯¹«(Y/N) (¿ù Á¤¾× °¡ÀÔÀ» À§ÇÑ Ã¹ °áÁ¦ÀÎ °æ¿ì : Y)
+	 * SUBCP		: ë‹¤ë‚ ì—ì„œ ì œê³µí•´ë“œë¦° SUBCP ID
+	 * USERID		: ì‚¬ìš©ì ID
+	 * ORDERID		: CP ì£¼ë¬¸ë²ˆí˜¸
+	 * IsPreOtbill		: AuthKey ìˆ˜ì‹  ìœ ë¬´(Y/N) (ì¬ìŠ¹ì¸, ì›”ìë™ê²°ì œë¥¼ ìœ„í•œ AuthKey ìˆ˜ì‹ ì´ í•„ìš”í•œ ê²½ìš° : Y)
+	 * IsSubscript		: ì›” ì •ì•¡ ê°€ì… ìœ ë¬´(Y/N) (ì›” ì •ì•¡ ê°€ì…ì„ ìœ„í•œ ì²« ê²°ì œì¸ ê²½ìš° : Y)
 	 ******************************************************/
 	$TransR["SUBCP"] = "";
 	$TransR["USERID"] = "USERID";
@@ -114,19 +114,19 @@ $base_url = 'http://justthink.co.kr/';
 
 	/********************************************************************************
 	 *
-	 * [ CPCGI¿¡ HTTP POST·Î Àü´ŞµÇ´Â µ¥ÀÌÅÍ ] **************************************
+	 * [ CPCGIì— HTTP POSTë¡œ ì „ë‹¬ë˜ëŠ” ë°ì´í„° ] **************************************
 	 *
 	 ********************************************************************************/
 
-	/***[ ÇÊ¼ö µ¥ÀÌÅÍ ]************************************/
+	/***[ í•„ìˆ˜ ë°ì´í„° ]************************************/
 	$ByPassValue = array();
-	
+
 	/******************************************************
-	 * BgColor      : °áÁ¦ ÆäÀÌÁö Background Color ¼³Á¤
-	 * TargetURL    : ÃÖÁ¾ °áÁ¦ ¿äÃ» ÇÒ CPÀÇ CPCGI FULL URL
-	 * BackURL      : ¿¡·¯ ¹ß»ı ¹× Ãë¼Ò ½Ã ÀÌµ¿ ÇÒ ÆäÀÌÁöÀÇ FULL URL
-	 * IsUseCI      : CPÀÇ CI »ç¿ë ¿©ºÎ( Y or N )
-	 * CIURL        : CPÀÇ CI FULL URL
+	 * BgColor      : ê²°ì œ í˜ì´ì§€ Background Color ì„¤ì •
+	 * TargetURL    : ìµœì¢… ê²°ì œ ìš”ì²­ í•  CPì˜ CPCGI FULL URL
+	 * BackURL      : ì—ëŸ¬ ë°œìƒ ë° ì·¨ì†Œ ì‹œ ì´ë™ í•  í˜ì´ì§€ì˜ FULL URL
+	 * IsUseCI      : CPì˜ CI ì‚¬ìš© ì—¬ë¶€( Y or N )
+	 * CIURL        : CPì˜ CI FULL URL
 	 ******************************************************/
 	$ByPassValue["BgColor"] = "00";
 	$ByPassValue["TargetURL"] = $base_url."/Danal/Teledit/Mobile/Script/CPCGI.php";
@@ -134,17 +134,17 @@ $base_url = 'http://justthink.co.kr/';
 	$ByPassValue["IsUseCI"] = "N";
 	$ByPassValue["CIURL"] = $base_url."/Danal/Teledit/Mobile/Script/images/logo.png";
 
-	/***[ ¼±ÅÃ »çÇ× ]**************************************/
+	/***[ ì„ íƒ ì‚¬í•­ ]**************************************/
 
 	/******************************************************
-	 * Email	: »ç¿ëÀÚ E-mail ÁÖ¼Ò - °áÁ¦ È­¸é¿¡ Ç¥±â 
-	 * IsCharSet	: CPÀÇ Webserver Character set
+	 * Email	: ì‚¬ìš©ì E-mail ì£¼ì†Œ - ê²°ì œ í™”ë©´ì— í‘œê¸° 
+	 * IsCharSet	: CPì˜ Webserver Character set
 	 ******************************************************/
 	$ByPassValue["Email"] = $pay_user_email; //"user@cp.co.kr";
-	$ByPassValue["IsCharSet"] = "utf8";
+	$ByPassValue["IsCharSet"] = "utf-8";
 
 	/******************************************************
-	 ** CPCGI¿¡ POST DATA·Î Àü´Ş µË´Ï´Ù.
+	 ** CPCGIì— POST DATAë¡œ ì „ë‹¬ ë©ë‹ˆë‹¤.
 	 **
 	 ******************************************************/
 	$ByPassValue["ByBuffer"] = "This value bypass to CPCGI Page";
@@ -165,6 +165,13 @@ $base_url = 'http://justthink.co.kr/';
 <input type="hidden" name="ItemAmt"     value="<?=$ItemAmt?>">
 <input type="hidden" name="IsPreOtbill" value="<?=$TransR['IsPreOtbill']?>">
 <input type="hidden" name="IsSubscript" value="<?=$TransR['IsSubscript']?>">
+    
+<input type="hidden" name="pay_user_id" value="<?=$pay_user_id?>">
+<input type="hidden" name="pay_user_email" value="<?=$pay_user_email?>">
+<input type="hidden" name="pay_subject_id" value="<?=$pay_subject_id?>">
+<input type="hidden" name="pay_subject_name" value="<?=$pay_subject_name?>">
+<input type="hidden" name="pay_subject_price" value="<?=$pay_subject_price?>">
+    
 </form>
 <script Language="JavaScript">
 	document.Ready.submit();
@@ -175,7 +182,7 @@ $base_url = 'http://justthink.co.kr/';
 	} else {
 		/**************************************************************************
 		 *
-		 * °áÁ¦ ½ÇÆĞ¿¡ ´ëÇÑ ÀÛ¾÷
+		 * ê²°ì œ ì‹¤íŒ¨ì— ëŒ€í•œ ì‘ì—…
 		 *
 		 **************************************************************************/
 

@@ -303,22 +303,24 @@ class Purchase extends CI_Controller {
         if ( $action == 'delete' ) {
             
         } else {
-            if ( isset($_POST['subject_id']) && isset($_POST['subject_name']) && isset($_POST['subject_price']) ) {
-                $this->form_validation->set_rules('subject_id','서브코스','trim|required|numeric');
-                $this->form_validation->set_rules('subject_name','서브코스','trim|required');
-                $this->form_validation->set_rules('subject_price','가격','trim|required|numeric');
+            if ( isset($_POST['pay_subject_id']) && isset($_POST['pay_subject_name']) && isset($_POST['pay_subject_price']) ) {
+                $this->form_validation->set_rules('pay_subject_id','서브코스','trim|required|numeric');
+                $this->form_validation->set_rules('pay_subject_name','서브코스','trim|required');
+                $this->form_validation->set_rules('pay_subject_price','가격','trim|required|numeric');
+                
                 /*******************
                 data query
                 *******************/     
                 if ($this->form_validation->run() == TRUE ) {
+                    echo 'asd';
                     $this->load->model('purchase_model');       
                     $purchase_id = mt_rand();
                     $result = $this->purchase_model->update('create', array(
                         'purchase_id' => $purchase_id,
                         'user_id' => $session_id,                        
-                        'subject_id' => $this->input->post('subject_id',TRUE),
-                        'purchase_name' => $this->input->post('subject_name',TRUE),
-                        'purchase_price' => $this->input->post('subject_price',TRUE),
+                        'subject_id' => $this->input->post('pay_subject_id',TRUE),
+                        'purchase_name' => $this->input->post('pay_subject_name',TRUE),
+                        'purchase_price' => $this->input->post('pay_subject_price',TRUE),
                         'purchase_state' => 1
                     ));
                     if ( $result ) {
@@ -327,14 +329,14 @@ class Purchase extends CI_Controller {
                         $result = $this->subject_model->pay('create', array(
                             'relation_id' => mt_rand(),
                             'user_id' => $session_id,                        
-                            'subject_id' => $this->input->post('subject_id',TRUE)
+                            'subject_id' => $this->input->post('pay_subject_id',TRUE)
                         ));
                         if ( $result ) {
                             $response['update'] = TRUE;                        
                         } else {
                             $result = $this->subject_model->out('user_subject',array(
                                 'user_id' => $session_id,
-                                'subject_id' => $this->input->post('subject_id',TRUE)                                
+                                'subject_id' => $this->input->post('pay_subject_id',TRUE)                                
                             ));
                             if ( $result ) {
                                 $response['update'] = TRUE;                                

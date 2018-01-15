@@ -124,7 +124,7 @@
                     <a class="orange-text text-lighten-3" href="/privacy">개인정보 처리방침</a>
                 </div>
                 경기도 성남시 분당구 판교역로 192번길 14-2 | 
-                사업자등록번호: 111-25-21588 | 대표자: 박준현 | 
+                사업자등록번호: 111-25-21588 | 상호명: JustThink | 대표자: 박준현 | 
                 통신판매업신고번호: 제2017-용인기흥-00565호 | 
                 대표전화: 031-283-3934 | 
                 이메일: ohio1029@gmail.com | 
@@ -158,6 +158,16 @@
                 $('#exam-modal .modal-content h4').html(btn.attr('title'));
                 $('#exam-modal .modal-content p').html(btn.attr('type'));
             });
+            $('.btn-fold').on('click', function () {
+                var btn = $(this);
+                btn.attr('title')
+                if ( $('#'+btn.attr('title')).css('display') == 'none' ) { 
+                } else {
+                };
+                $('#'+btn.attr('title')).fadeToggle();             
+                $('#exam-modal .modal-content h4').html(btn.attr('title'));
+                $('#exam-modal .modal-content p').html(btn.attr('type'));
+            });            
         });
         
         $(document).ready(function() {

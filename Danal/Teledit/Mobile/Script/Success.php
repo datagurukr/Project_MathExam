@@ -5,17 +5,17 @@ $base_url = 'http://justthink.co.kr/';
 
 	/********************************************************************************
 	*
-	* ´Ù³¯ ÈÞ´ëÆù °áÁ¦
+	* ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ
 	*
-	* - °áÁ¦ ¿Ï·á ÆäÀÌÁö
-	*	°áÁ¦ È®ÀÎ
+	* - ê²°ì œ ì™„ë£Œ íŽ˜ì´ì§€
+	*	ê²°ì œ í™•ì¸
 	*
-	* °áÁ¦ ½Ã½ºÅÛ ¿¬µ¿¿¡ ´ëÇÑ ¹®ÀÇ»çÇ×ÀÌ ÀÖÀ¸½Ã¸é ¼­ºñ½º°³¹ßÆÀÀ¸·Î ¿¬¶ô ÁÖ½Ê½Ã¿À.
+	* ê²°ì œ ì‹œìŠ¤í…œ ì—°ë™ì— ëŒ€í•œ ë¬¸ì˜ì‚¬í•­ì´ ìžˆìœ¼ì‹œë©´ ì„œë¹„ìŠ¤ê°œë°œíŒ€ìœ¼ë¡œ ì—°ë½ ì£¼ì‹­ì‹œì˜¤.
 	* DANAL Commerce Division Technique supporting Team
 	* EMail : tech@danal.co.kr
 	*
 	********************************************************************************/
-       
+
 	/*
 	 * Get CIURL
 	 */
@@ -26,45 +26,87 @@ $base_url = 'http://justthink.co.kr/';
 	 */
 	$BgColor = GetBgColor( $_POST["BgColor"] );
 ?>
+
+<?php
+$pay_user_id = '';
+$pay_user_email = '';
+$pay_subject_id = '';
+$pay_subject_name = '';
+$pay_subject_price = 0;
+
+if (
+    isset($_POST['pay_user_id']) &&
+    isset($_POST['pay_subject_id']) &&
+    isset($_POST['pay_subject_name']) &&
+    isset($_POST['pay_subject_price']) &&
+    isset($_POST['pay_user_email'])
+   ) {
+    $pay_user_id = $_POST['pay_user_id'];
+    $pay_user_email = $_POST['pay_user_email'];
+    $pay_subject_id = $_POST['pay_subject_id'];
+    $pay_subject_name = $_POST['pay_subject_name'];
+    $pay_subject_price = $_POST['pay_subject_price'];
+} else {
+    exit();
+};
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>´Ù³¯ ÈÞ´ëÆù °áÁ¦</title>
+<title>ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, target-densitydpi=medium-dpi;" />
 <link href="./css/style.css" type="text/css" rel="stylesheet"  media="screen" />
 <script language="javascript" src="./js/jquery-latest.js" type="text/javascript"></script>
 <script language="javascript" src="./js/jquery.mobile-1.2.0.js" type="text/javascript"></script>
 <script language="JavaScript" src="./js/Common.js" type="text/javascript"></script>
-<script language="javascript">
-//<![CDATA[
-// Run the script on DOM ready:
-$(document).ready(function(){
-	OrtChange();
-});
-//]]>
-</script>
 </head>
-<!-- °¡·Î¸ðµåÀÏ¶§ horizontal Ãß°¡ -->
+<!-- ê°€ë¡œëª¨ë“œì¼ë•Œ horizontal ì¶”ê°€ -->
 <body class="">
-	<!-- »ö»ó°ªÀº type01 ~ type10 ¹ø±îÁö -->
+    <form name="Success" action="/purchase/<?=$pay_subject_id?>" method="post">
+    <?php
+        MakeFormInput($Res,array("Result","ErrMsg"));
+        MakeFormInput($ByPassValue);
+    ?>
+        
+    <input type="hidden" name="pay_user_id" value="<?=$pay_user_id?>">
+    <input type="hidden" name="pay_user_email" value="<?=$pay_user_email?>">
+    <input type="hidden" name="pay_subject_id" value="<?=$pay_subject_id?>">
+    <input type="hidden" name="pay_subject_name" value="<?=$pay_subject_name?>">
+    <input type="hidden" name="pay_subject_price" value="<?=$pay_subject_price?>">
+
+    </form>    
+	<!-- ìƒ‰ìƒê°’ì€ type01 ~ type10 ë²ˆê¹Œì§€ -->
 	<div class="wrap type<?=$BgColor?>">
 		<div class="header">
-			<p class="tit">°áÁ¦ ¼º°ø</p>
+			<p class="tit">ê²°ì œ ì„±ê³µ</p>
 		</div>
 		<div class="content">
-			<p class="message">°áÁ¦°¡ Á¤»ó Ã³¸®µÇ¾ú½À´Ï´Ù.</p>
+			<p class="message">ê²°ì œê°€ ì •ìƒ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.</p>
 			<p class="btn st02">
-				<!--WebView ´ÝÀ¸¸ç AppÀ¸·Î µ¥ÀÌÅÍ Àü¼Û(ÀÚ¼¼ÇÑ »çÇ×Àº ¸Å´º¾ó ÂüÁ¶)-->
-				<!--<a href="Javascript:window.TeleditApp.Result('xxxxx');" class="on">È®ÀÎ</a>-->
-				<a href="#" class="on">È®ÀÎ</a>
+				<!--WebView ë‹«ìœ¼ë©° Appìœ¼ë¡œ ë°ì´í„° ì „ì†¡(ìžì„¸í•œ ì‚¬í•­ì€ ë§¤ë‰´ì–¼ ì°¸ì¡°)-->
+				<!--<a href="Javascript:window.TeleditApp.Result('xxxxx');" class="on">í™•ì¸</a>-->
+				<a href="#" class="on">í™•ì¸</a>
 			</p>
 			<div class="cs">
-				<p class="text">´Ù³¯ °í°´¼¾ÅÍ : 1566-3355</p>
-				<span class="logo"><img src="<?=$URL?>" width="77" alt="°¡¸ÍÁ¡·Î°í" /></span>
+				<p class="text">ë‹¤ë‚  ê³ ê°ì„¼í„° : 1566-3355</p>
+				<span class="logo"><img src="<?=$URL?>" width="77" alt="ê°€ë§¹ì ë¡œê³ " /></span>
 			</div>
 		</div>
 	</div>
+    
+    
+    <script language="javascript">
+    //<![CDATA[
+    // Run the script on DOM ready:
+    $(document).ready(function(){
+        OrtChange();
+        document.Success.submit();    
+    });
+    //]]>
+    </script>
+    
 </body>
 </html>

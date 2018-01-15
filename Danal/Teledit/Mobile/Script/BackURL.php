@@ -1,31 +1,59 @@
 <? $base_url = 'http://justthink.co.kr/'; ?>
 <html>
 <head>
-<title>´Ù³¯ ÈŞ´ëÆù °áÁ¦</title>
+<title>ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, target-densitydpi=medium-dpi;" />
 </head>
 <body>
 <?php
-	/*
-	 * Æ¯Á¤ URL ÁöÁ¤
-	 */
-	//$nextURL = "http://www.danal.co.kr";
+/*
+ * íŠ¹ì • URL ì§€ì •
+ */
+//$nextURL = "http://www.danal.co.kr";
 
-	/*
-	 * Ã¢ ´İ±â Script
-	 * - Javascript:self.close(); »ç¿ë½Ã¿¡´Â ´Ù³¯ °áÁ¦Ã¢À» ÆË¾÷À¸·Î ¶ç¿öÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
-	 */
-	//$nextURL = "Javascript:self.close();";
+/*
+ * ì°½ ë‹«ê¸° Script
+ * - Javascript:self.close(); ì‚¬ìš©ì‹œì—ëŠ” ë‹¤ë‚  ê²°ì œì°½ì„ íŒì—…ìœ¼ë¡œ ë„ì›Œì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
+ */
+//$nextURL = "Javascript:self.close();";
 
-	/*
-	 * À¥ºä ´İ±â Script
-	 * - Å×½ºÆ® ¾Û ¼Ò½º Âü°í
-	 */
+/*
+ * ì›¹ë·° ë‹«ê¸° Script
+ * - í…ŒìŠ¤íŠ¸ ì•± ì†ŒìŠ¤ ì°¸ê³ 
+ */
 	$nextURL = "Javascript:window.TeleditApp.BestClose();";
 ?>
+<?php
+$pay_user_id = '';
+$pay_user_email = '';
+$pay_subject_id = '';
+$pay_subject_name = '';
+$pay_subject_price = 0;
+
+if (
+    isset($_POST['pay_user_id']) &&
+    isset($_POST['pay_subject_id']) &&
+    isset($_POST['pay_subject_name']) &&
+    isset($_POST['pay_subject_price']) &&
+    isset($_POST['pay_user_email'])
+   ) {
+    $pay_user_id = $_POST['pay_user_id'];
+    $pay_user_email = $_POST['pay_user_email'];
+    $pay_subject_id = $_POST['pay_subject_id'];
+    $pay_subject_name = $_POST['pay_subject_name'];
+    $pay_subject_price = $_POST['pay_subject_price'];
+} else {
+    exit();
+};    
+?>    
 <form name="BackURL" action="<?=$nextURL?>" method="post">
+    <input type="hidden" name="pay_user_id" value="<?=$pay_user_id?>">
+    <input type="hidden" name="pay_user_email" value="<?=$pay_user_email?>">
+    <input type="hidden" name="pay_subject_id" value="<?=$pay_subject_id?>">
+    <input type="hidden" name="pay_subject_name" value="<?=$pay_subject_name?>">
+    <input type="hidden" name="pay_subject_price" value="<?=$pay_subject_price?>">    
 </form>
 <script Language="Javascript">
 	document.BackURL.submit();

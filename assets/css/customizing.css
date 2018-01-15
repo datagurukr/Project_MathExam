@@ -57,3 +57,13 @@ select.cke_dialog_ui_input_select {
     padding: 30px;
     text-align: center;
 }
+
+.btn-fold {
+    
+}
+
+.view-fold {
+    display: none;
+    background-color: #eee;
+    border: solid 3px #ccc;
+}

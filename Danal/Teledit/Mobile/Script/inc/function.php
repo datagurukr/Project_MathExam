@@ -26,7 +26,11 @@
 	 ******************************************************/
 	$ID  = "A010002002";
 	$PWD = "bbbbb";
-	$AMOUNT = "301";
+    if ( isset($_POST['ItemAmt']) ) {
+        $AMOUNT = (int)$_POST['ItemAmt'];        
+    } else {
+	   $AMOUNT = "0";        
+    };
 
 	/******************************************************
 	 * - CallTeledit
@@ -52,7 +56,8 @@
 
 			for( $i=0;$i<count($Output);$i++ )
 			{
-				echo( "Out Line[$i]: ".trim($Output[$i])."<BR>" );
+                echo( "Out Line[$i]: ".trim(iconv("euc-kr", "utf-8",$Output[$i]))."<BR>" );
+				//echo( "Out Line[$i]: ".trim($Output[$i])."<BR>" );
 			}
 		}
 
@@ -119,7 +124,8 @@
 			for( $j=2;$j<count($tmp);$j++ )
 				$value .= $sep2.trim($tmp[$j]);
 
-			$Out[$name] = urldecode($value);
+            $Out[$name] = iconv("euc-kr", "utf-8", urldecode($value));
+			//$Out[$name] = urldecode($value);
 		}
 
 		return $Out;

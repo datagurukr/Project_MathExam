@@ -1,7 +1,7 @@
 <?php
 $base_url = 'http://justthink.co.kr/';
-	if( $AbleBack ) $btn_error = "°áÁ¦ Àç½Ãµµ";
-	else		$btn_error = "Ãë ¼Ò";
+	if( $AbleBack ) $btn_error = "ê²°ì œ ìž¬ì‹œë„";
+	else		$btn_error = "ì·¨ ì†Œ";
 
 	/*
 	 * Get CIURL
@@ -16,9 +16,9 @@ $base_url = 'http://justthink.co.kr/';
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>´Ù³¯ ÈÞ´ëÆù °áÁ¦</title>
+<title>ë‹¤ë‚  íœ´ëŒ€í° ê²°ì œ</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, target-densitydpi=medium-dpi;" />
 <link href="./css/style.css" type="text/css" rel="stylesheet"  media="screen" />
 <script language="javascript" src="./js/jquery-latest.js" type="text/javascript"></script>
@@ -33,31 +33,31 @@ $(document).ready(function(){
 //]]>
 </script>
 </head>
-<!-- °¡·Î¸ðµåÀÏ¶§ horizontal Ãß°¡ -->
+<!-- ê°€ë¡œëª¨ë“œì¼ë•Œ horizontal ì¶”ê°€ -->
 <body class="">
-	<!-- »ö»ó°ªÀº type01 ~ type10 ¹ø±îÁö -->
+	<!-- ìƒ‰ìƒê°’ì€ type01 ~ type10 ë²ˆê¹Œì§€ -->
 	<div class="wrap type<?=$BgColor?>">
 		<div class="header">
-			<p class="tit">°áÁ¦ ¿¡·¯</p>
-			<a href="<?=$BackURL?>" class="closeBtn"><img src="./images/btn_close.png" width="37" alt="´Ý±â" /></a>
+			<p class="tit">ê²°ì œ ì—ëŸ¬</p>
+			<a href="<?=$BackURL?>" class="closeBtn"><img src="./images/btn_close.png" width="37" alt="ï¿½Ý±ï¿½" /></a>
 		</div>
 		<div class="content">
 			<div class="error">
 				<dl class="info">
-					<dt>¿¡·¯ ³»¿ë(<?=$Result?>)</dt>
+					<dt>ì—ëŸ¬ ë‚´ìš©(<?=$Result?>)</dt>
 					<dd><?=str_replace(".","<br>",$ErrMsg)?></dd>
 				</dl>
-				<p class="customer">»ó´ã¿ø ÅëÈ­°¡´É½Ã°£ : <br />
-				ÆòÀÏ : 9½Ã ~ 18½Ã<br />
-				<span>Åä¿äÀÏ, ÀÏ¿äÀÏ, °øÈÞÀÏ ÈÞ¹«</span></p>
+				<p class="customer">ìƒë‹´ì› í†µí™”ê°€ëŠ¥ì‹œê°„ : <br />
+				í‰ì¼ : 9ì‹œ ~ 18ì‹œ<br />
+				<span>í† ìš”ì¼, ì¼ìš”ì¼, ê³µíœ´ì¼ íœ´ë¬´</span></p>
 			</div>
-			
+
 			<p class="btn st02">
 				<a href="<?=$BackURL?>" class="on"><?=$btn_error?></a>
 			</p>
 			<div class="cs">
-				<p class="text">´Ù³¯ °í°´¼¾ÅÍ : 1566-3355</p>
-				<span class="logo"><img src="<?=$URL?>" width="77" alt="°¡¸ÍÁ¡·Î°í" /></span>
+				<p class="text">ë‹¤ë‚  ê³ ê°ì„¼í„° : 1566-3355</p>
+				<span class="logo"><img src="<?=$URL?>" width="77" alt="ê°€ë§¹ì ë¡œê³ " /></span>
 			</div>
 		</div>
 	</div>
